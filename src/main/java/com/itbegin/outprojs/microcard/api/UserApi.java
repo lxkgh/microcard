@@ -22,9 +22,9 @@ public class UserApi {
 	public void addUser() {
 		User u = new User();
 		u.setId("3");
-		u.setCount("testCount3");
+		u.setUsername("testCount3");
 		u.setPassword("123456");
-		u.setName("曹勇政3");
+		u.setRealname("曹勇政3");
 		userRepositoryInterface.save(u);
 	}
 

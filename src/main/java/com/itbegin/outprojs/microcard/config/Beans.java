@@ -1,4 +1,4 @@
-package com.itbegin.outprojs.microcard.beans;
+package com.itbegin.outprojs.microcard.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

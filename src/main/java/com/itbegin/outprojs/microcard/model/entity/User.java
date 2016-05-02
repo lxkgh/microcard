@@ -1,44 +1,49 @@
 package com.itbegin.outprojs.microcard.model.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+
+import com.itbegin.outprojs.microcard.model.enums.UserRole;
 
 public class User {
 
 	@Id
 	private String id;
-	private String count;
+	@Indexed(unique=true)
+	private String username;
 	private String password;
-	private String name;
-
+	private String realname;
+	private UserRole role=UserRole.ROLE_USER;
+	
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getCount() {
-		return count;
+	public String getUsername() {
+		return username;
 	}
-
-	public void setCount(String count) {
-		this.count = count;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getName() {
-		return name;
+	public String getRealname() {
+		return realname;
+	}
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 }
