@@ -9,4 +9,6 @@ public class SecurityWebApplicationInitializer extends
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class[] { SecurityConfig.class };
 	}
+	
+
 }

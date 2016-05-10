@@ -7,7 +7,8 @@ var config={
     context:__dirname,
     entry:{
         vendor:["react","react-dom"],
-        index:'src/js/entry/index/entry.jsx'
+        index:'src/js/entry/index/entry.jsx',
+        admin:'src/js/entry/admin/admin.jsx'
     },
     output:{
         path:'assets/',

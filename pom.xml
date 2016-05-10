@@ -40,6 +40,12 @@
 	    <artifactId>spring-security-config</artifactId>
 	    <version>4.0.4.RELEASE</version>
       </dependency>
+        <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <version>1.3.3.RELEASE</version>
+        <optional>true</optional>
+      </dependency>
 	  <dependency>
 	    <groupId>junit</groupId>
 	    <artifactId>junit</artifactId>
@@ -47,6 +53,8 @@
 	    <scope>test</scope>
 	  </dependency>
 	</dependencies>
+	
+	
 	  <dependencyManagement>
 	    <dependencies>
 	    <dependency>
@@ -72,6 +80,7 @@
 	        <configuration>
 	            <source>1.7</source>
 	            <target>1.7</target>
+                <fork>true</fork>
 	        </configuration>
 	      </plugin>
 	  </plugins>

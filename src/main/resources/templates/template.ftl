@@ -3,6 +3,7 @@
 
 <head>
     <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <#if CSSes?exists>
         <#list CSSes as css>
