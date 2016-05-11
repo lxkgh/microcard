@@ -21,7 +21,7 @@ public class TestAction {
 		model.addAttribute("CSSes", PathUtil.resolveCSSs("index"));
 		model.addAttribute("JSs", PathUtil.resolveJSs("vendor","index"));
 		List<Entry> datas=new ArrayList<Entry>();
-		datas.add(new Entry("username","123"));
+		datas.add(new Entry("username","1234"));
 		model.addAttribute("Datas", datas);
 		return "template";
 	}

@@ -15,7 +15,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	    .addContentVersionStrategy("/**");
 
 	  registry.addResourceHandler("/**")
-	    .addResourceLocations("classpath:/statics/assets/")
+	    .addResourceLocations("classpath:/assets/")
 	    .resourceChain(false).addResolver(versionResolver);
 	}
 }

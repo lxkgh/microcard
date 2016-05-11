@@ -15,7 +15,7 @@ class SideNav extends React.Component {
     render() {
         return (
             <div style={styles.sidenav}>
-                12356
+                12
             </div>
         )
     }

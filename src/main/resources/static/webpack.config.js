@@ -11,7 +11,7 @@ var config={
         admin:'src/js/entry/admin/admin.jsx'
     },
     output:{
-        path:'assets/',
+        path:'../../../../target/classes/assets/',
         publicPath: '/assets/',
         filename: './js/[name].js',
         sourceMapFilename:'[file].map'
