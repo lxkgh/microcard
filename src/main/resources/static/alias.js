@@ -1,4 +1,8 @@
 module.exports={
+    'Cover':'src/js/component/common/popup/cover/cover.jsx',
+
+
+
     'admin.Button':'src/js/component/admin/common/button/button.jsx',
     'admin.Content':'src/js/component/admin/common/content/content.jsx',
     'admin.OpColumn':'src/js/component/admin/common/opcolumn/opcolumn.jsx',

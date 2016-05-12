@@ -1,9 +1,12 @@
 import React from 'react'
 
+import Request from 'Request'
+
 import Content from 'admin.Content'
 import BaseColumn from '../component/basecolumn/basecolum.jsx'
 import BaseTable from '../component/basetable/basetable.jsx'
-import Request from 'Request'
+
+import Cover from 'Cover'
 
 class User extends React.Component {
     constructor(props) {
@@ -12,7 +15,7 @@ class User extends React.Component {
             users:[]
         }
         this.buttons=[
-            {desc:'新增'},
+            {desc:'新增',onClick:()=>{this.showAddModal()}},
             {desc:'修改'},
             {desc:'刷新'},
             {desc:'删除'}
@@ -34,8 +37,14 @@ class User extends React.Component {
                 <div style={{width:'100%',marginTop:'30px'}}>
                     <BaseTable {...this.userTable} />
                 </div>
+                <Cover ref="cover"/>
             </Content>
         )
+    }
+    showAddModal(){
+        this.refs['cover'].setState({
+            show:true
+        })
     }
     getUsers(i){
         new Request('/get/userpage/'+i)

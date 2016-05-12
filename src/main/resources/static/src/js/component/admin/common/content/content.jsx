@@ -13,12 +13,22 @@ class Content extends React.Component {
                     padding:'20px',
                     overflow:'auto'
                 }}>
-                {children[0]}
-                <div style={{width:'100%',marginTop:'30px'}}>
-                    {children[1]}
-                </div>
+                {this.renderChildren(children)}
             </div>
         )
+    }
+    renderChildren(children){
+        const childsNode=children.map((child,i)=>{
+            if (i==1) {
+                return (
+                    <div key={i} style={{width:'100%',marginTop:'30px'}}>
+                        {child}
+                    </div>
+                )
+            }
+            return child
+        })
+        return childsNode
     }
 }
 export default Content
