@@ -1,6 +1,6 @@
 module.exports={
     'Cover':'src/js/component/common/popup/cover/cover.jsx',
-
+    'Dialog':'src/js/component/common/popup/dialog/dialog.jsx',
 
 
     'admin.Button':'src/js/component/admin/common/button/button.jsx',

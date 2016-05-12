@@ -7,6 +7,7 @@ import BaseColumn from '../component/basecolumn/basecolum.jsx'
 import BaseTable from '../component/basetable/basetable.jsx'
 
 import Cover from 'Cover'
+import Dialog from 'Dialog'
 
 class User extends React.Component {
     constructor(props) {
@@ -37,7 +38,20 @@ class User extends React.Component {
                 <div style={{width:'100%',marginTop:'30px'}}>
                     <BaseTable {...this.userTable} />
                 </div>
-                <Cover ref="cover"/>
+                <Cover ref="cover">
+                    <Dialog width="40%">
+                        <Dialog.Header><h4>新增用户</h4></Dialog.Header>
+                        <Dialog.Body>
+                            <label>用户名</label>
+                            <input/>
+                            <label>真实姓名</label>
+                            <input/>
+                            <label>角色</label>
+                            <input/>
+                        </Dialog.Body>
+                        <Dialog.Footer/>
+                    </Dialog>
+                </Cover>
             </Content>
         )
     }
