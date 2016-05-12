@@ -2,7 +2,7 @@ var webpack = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var path = require('path')
 var alias=require('./alias.js')
-
+var noParseAlias=require('./noparseAlias.js')
 var config={
     context:__dirname,
     entry:{
@@ -40,7 +40,8 @@ var config={
         ],
         preLoaders:[
             { test: /\.jsx$/, loader: "eslint-loader", exclude: /node_modules/}
-        ]
+        ],
+        noParse:[]
     },
     resolve:{
       root:[__dirname,path.resolve(__dirname,"node_modules")],
@@ -53,4 +54,12 @@ var config={
         new webpack.NoErrorsPlugin()
     ],
 }
+
+for (var i in noParseAlias) {
+  if (Object.prototype.hasOwnProperty.call(noParseAlias,i)) {
+    config.resolve.alias[i]=noParseAlias[i]
+    config.module.noParse.push(noParseAlias[i]);
+  }
+}
+
 module.exports = config

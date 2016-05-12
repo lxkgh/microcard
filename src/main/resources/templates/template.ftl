@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE>
 <html>
 
 <head>
@@ -10,6 +10,35 @@
             <link href="${css}" rel="stylesheet">
         </#list>
     </#if>
+    <style media="screen">
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        * {}
+
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #common-body {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
