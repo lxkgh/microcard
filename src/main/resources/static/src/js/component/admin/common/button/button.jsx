@@ -5,14 +5,15 @@ const styles={
     button:{
         position: 'relative',
         display: 'inline-block',
-        marginRight: '3px',
+        marginRight: '5px',
         padding: '5px 8px',
         border: '1px solid #999',
         cursor: 'pointer',
         color: '#000',
         borderRadius: '2px',
         boxShadow: '1px 1px 3px #ccc',
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        maxHeight:'30px'
     }
 }
 

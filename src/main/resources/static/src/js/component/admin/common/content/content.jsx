@@ -6,12 +6,17 @@ class Content extends React.Component {
         super(props)
     }
     render() {
+        const {children} = this.props
         return (
             <div className={this.props.className}
                 style={{
-                    padding:'20px'
+                    padding:'20px',
+                    overflow:'auto'
                 }}>
-                {this.props.children}
+                {children[0]}
+                <div style={{width:'100%',marginTop:'30px'}}>
+                    {children[1]}
+                </div>
             </div>
         )
     }

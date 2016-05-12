@@ -3,7 +3,7 @@ import React from 'react'
 
 const styles={
     opcolumn:{
-        height:'50px',
+        minHeight:'50px',
         width:'100%',
         backgroundColor:'#f5f5f5',
         borderRadius: '3px',

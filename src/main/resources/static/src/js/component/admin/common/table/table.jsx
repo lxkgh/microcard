@@ -17,9 +17,8 @@ const styles={
     },
     row:{
         width:'100%',
-        border:'solid 1px #ddd',
-        borderTop:'0px',
-        borderLeft:'0px'
+        borderBottom:'solid 1px #ddd',
+        height:'35px'
     }
 }
 
@@ -86,10 +85,8 @@ class Row extends React.Component {
             return (
                 <div key={i} style={{
                     width:percent,
-                    minHeight:'35px',
                     display:'inline-block',
                     padding:'2px',
-                    borderLeft:'solid 1px #ddd',
                     lineHeight:'35px'
                 }}>{item}</div>
             )
