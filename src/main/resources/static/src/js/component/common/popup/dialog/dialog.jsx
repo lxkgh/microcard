@@ -6,6 +6,7 @@ const styles={
         minHeight:'60px',
         margin:'120px auto 0px',
         borderRadius:'4px',
+        WebkitBoxShadow:'0 5px 15px rgba(0,0,0,.5)',
         boxShadow: '0 5px 15px rgba(0,0,0,.5)'
     },
     header:{
@@ -83,7 +84,7 @@ class Footer extends React.Component {
     render() {
         const {children} = this.props
         return (
-            <div style={styles.footer}>
+            <div style={styles.footer} className="flexbox items-center">
                 {children}
             </div>
         )

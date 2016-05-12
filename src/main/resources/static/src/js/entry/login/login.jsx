@@ -19,7 +19,6 @@ class Login extends React.Component {
         this.setState({
             check: !this.state.check
         })
-        console.log(this.state.check)
     }
     onChangeUn(e){
         this.setState({

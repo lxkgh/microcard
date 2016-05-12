@@ -1,4 +1,5 @@
 module.exports={
+    'Button':'src/js/component/common/button/button.jsx',
     'Cover':'src/js/component/common/popup/cover/cover.jsx',
     'Dialog':'src/js/component/common/popup/dialog/dialog.jsx',
     'SvgIcon':'src/js/component/common/svg/SvgIcon.jsx',

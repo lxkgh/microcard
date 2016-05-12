@@ -8,6 +8,7 @@ import BaseTable from '../component/basetable/basetable.jsx'
 
 import Cover from 'Cover'
 import Dialog from 'Dialog'
+import Button from 'Button'
 
 class User extends React.Component {
     constructor(props) {
@@ -49,7 +50,9 @@ class User extends React.Component {
                             <label>角色</label>
                             <input/>
                         </Dialog.Body>
-                        <Dialog.Footer/>
+                        <Dialog.Footer>
+                            <Button bstyle="primary">保存</Button>
+                        </Dialog.Footer>
                     </Dialog>
                 </Cover>
             </Content>
