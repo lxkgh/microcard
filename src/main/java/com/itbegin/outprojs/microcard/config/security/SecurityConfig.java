@@ -23,11 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()                                                              
-				.antMatchers("/get/**", "/test","/add/**","/admin/home").permitAll()                  
-				.antMatchers("/edit/**").hasAnyRole("USER","ADMIN")                                 
+				.antMatchers("/get/**","/add/**","/admin/home").permitAll()                  
+				.antMatchers("/edit/**","/test").hasAnyRole("USER","ADMIN")                                 
 				.anyRequest().authenticated()
 			.and()
-			.formLogin();
+			.formLogin()
+			.loginPage("/login").permitAll()
+			.and()
+			.logout().permitAll();
 	}
 	
 	@Override

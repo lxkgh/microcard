@@ -9,4 +9,7 @@ module.exports={
     'admin.SideNav':'src/js/component/admin/common/sidenav/sidenav.jsx',
     'admin.NavItem':'src/js/component/admin/common/sidenav/navitem/navitem.jsx',
     'admin.Table':'src/js/component/admin/common/table/table.jsx',
-}
+    'SvgIcon':'src/components/svg/SvgIcon.jsx',
+    'svgIcons':'src/components/svg/svgIcons.js',
+};
+
