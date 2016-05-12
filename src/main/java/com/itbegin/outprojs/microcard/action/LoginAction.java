@@ -14,12 +14,11 @@ import com.itbegin.outprojs.microcard.utils.PathUtil;
 
 @Controller
 @EnableAutoConfiguration
-public class TestAction {
-
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String editUser(Model model) {
-		model.addAttribute("CSSes", PathUtil.resolveCSSs("index"));
-		model.addAttribute("JSs", PathUtil.resolveJSs("vendor","index"));
+public class LoginAction {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage(Model model) {
+		model.addAttribute("CSSes", PathUtil.resolveCSSs("login"));
+		model.addAttribute("JSs", PathUtil.resolveJSs("vendor","login"));
 		List<Entry> datas=new ArrayList<Entry>();
 		datas.add(new Entry("username","234"));
 		model.addAttribute("Datas", datas);

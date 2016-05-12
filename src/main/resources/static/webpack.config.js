@@ -8,7 +8,8 @@ var config={
     entry:{
         vendor:["react","react-dom"],
         index:'src/js/entry/index/entry.jsx',
-        admin:'src/js/entry/admin/admin.jsx'
+        admin:'src/js/entry/admin/admin.jsx',
+        login:'src/js/entry/login/login.jsx'
     },
     output:{
         path:'../../../../target/classes/assets/',
