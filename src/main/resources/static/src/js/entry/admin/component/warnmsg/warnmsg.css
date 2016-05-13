@@ -1,0 +1,11 @@
+.msg {
+    height: 16px;
+    color: red;
+    font-size: 14px
+}
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}

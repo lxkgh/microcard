@@ -1,8 +1,8 @@
 package com.itbegin.outprojs.microcard.model.json;
 
-public class Entry {
+public class MyEntry {
 	
-	public Entry(String key, String value) {
+	public MyEntry(String key, String value) {
 		super();
 		this.key = key;
 		this.value = value;

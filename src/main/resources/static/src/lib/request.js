@@ -1,4 +1,4 @@
-class request {
+class Request {
   constructor(url) {
     this.url = url
     this.client=new XMLHttpRequest()
@@ -14,13 +14,13 @@ class request {
   post (obj) {
     this.obj=obj
     this.client.open('POST',this.url,true)
-    this.set("Content-type", "application/x-www-form-urlencoded")
+    this.set("Content-type", "application/json;charset=utf-8")
     return this
   }
   put (obj) {
     this.obj=obj
     this.client.open('PUT',AddObj(this.url,obj),true)
-    this.set("Content-type", "application/x-www-form-urlencoded")
+    this.set("Content-type", "application/json;charset=utf-8")
     return this
   }
   delete (obj) {
@@ -37,7 +37,7 @@ class request {
     return this
   }
 }
-export default request
+export default Request
 
 
 function Ajax(client,obj){

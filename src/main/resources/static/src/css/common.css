@@ -7,6 +7,12 @@
 .flexbox.flex-center {
     justify-content: center;
 }
+.flexbox.row {
+    flex-direction: row;
+}
+.flexbox.row-reverse {
+    flex-direction: row-reverse;
+}
 .flexbox.column {
     flex-direction: column;
 }

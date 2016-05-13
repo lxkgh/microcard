@@ -3,5 +3,10 @@ module.exports={
     'css.Common':'src/css/common.css',
 
     //========================lib=========================//
-    'Request':'src/js/lib/request/request.js'
+    'Request':'src/lib/request.js',
+
+    //=======================model========================//
+
+    //enums
+    'UserRole':'src/model/enums/UserRole.jsx'
 }

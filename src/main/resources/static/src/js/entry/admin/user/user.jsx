@@ -1,14 +1,11 @@
 import React from 'react'
-
-import Request from 'Request'
+import request from 'superagent'
 
 import Content from 'admin.Content'
 import BaseColumn from '../component/basecolumn/basecolum.jsx'
 import BaseTable from '../component/basetable/basetable.jsx'
 
-import Cover from 'Cover'
-import Dialog from 'Dialog'
-import Button from 'Button'
+import AddModal from './AddModal.jsx'
 
 class User extends React.Component {
     constructor(props) {
@@ -39,50 +36,43 @@ class User extends React.Component {
                 <div style={{width:'100%',marginTop:'30px'}}>
                     <BaseTable {...this.userTable} />
                 </div>
-                <Cover ref="cover">
-                    <Dialog width="40%">
-                        <Dialog.Header><h4>新增用户</h4></Dialog.Header>
-                        <Dialog.Body>
-                            <label>用户名</label>
-                            <input/>
-                            <label>真实姓名</label>
-                            <input/>
-                            <label>角色</label>
-                            <input/>
-                        </Dialog.Body>
-                        <Dialog.Footer>
-                            <Button bstyle="primary">保存</Button>
-                        </Dialog.Footer>
-                    </Dialog>
-                </Cover>
+                <AddModal ref="addModal" onSubmit={(user)=>{this.addUser(user)}}/>
             </Content>
         )
     }
     showAddModal(){
-        this.refs['cover'].setState({
-            show:true
-        })
+        this.refs['addModal'].show()
+    }
+    hideAddModal(){
+        this.refs['addModal'].hide()
     }
     getUsers(i){
-        new Request('/get/userpage/'+i)
-        .get()
-        .then((data)=>{
-            if (data.success) {
-                this.setState({
-                    users:data.data
-                })
-                this.userTable.body=data.data
+        request.get('/get/userpage/'+i)
+        .end((err,res)=>{
+            if (!err) {
+                const data=JSON.parse(res.text)
+                if (data.success) {
+                    this.userTable.body=data.data
+                    this.setState({
+                        users:data.data
+                    })
+                }
             }
         })
     }
     addUser(user){
-        new Request('/add/User')
-        .post(user)
-        .then((data)=>{
-            if (data.success) {
-                this.getUsers(0)
+        request.post('/add/user')
+        .send(user)
+        .set('Accept', 'application/json')
+        .end((err, res)=>{
+            if (!err) {
+                const data=JSON.parse(res.text)
+                if (data.success) {
+                    this.hideAddModal()
+                    this.getUsers(0)
+                }
             }
-        })
+        });
     }
 }
 

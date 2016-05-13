@@ -24,9 +24,13 @@ public class UserApi {
 	}
 	
 	@RequestMapping(value = "/add/user", method = RequestMethod.POST)
-	public void addUser(@RequestBody User u) {
-
-		userRepositoryInterface.save(u);
+	public ApiResult addUser(@RequestBody User u) {
+		try {
+			User uu=userRepositoryInterface.save(u);
+			return new ApiResult(true, 0, "添加用户成功", uu);
+		} catch (Exception e) {
+			return new ApiResult(false, 0, "添加用户失败", null);
+		}
 	}
 
 	@RequestMapping(value = "/edit/user", method = RequestMethod.GET)

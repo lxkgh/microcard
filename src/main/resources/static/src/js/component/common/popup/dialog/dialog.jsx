@@ -13,16 +13,18 @@ const styles={
         height:'55px',
         borderBottom:'solid 1px #e5e5e5',
         lineHeight:'55px',
-        padding:'0 10px'
+        padding:'0 15px',
+        fontSize:'1.6rem'
     },
     body:{
-        minHeight:'80px'
+        minHeight:'80px',
+        padding:'10px 15px'
     },
     footer:{
         height:'60px',
         borderTop:'solid 1px #e5e5e5',
         lineHeight:'50px',
-        padding:'0 10px'
+        padding:'0 15px'
     }
 }
 
@@ -84,7 +86,7 @@ class Footer extends React.Component {
     render() {
         const {children} = this.props
         return (
-            <div style={styles.footer} className="flexbox items-center">
+            <div style={styles.footer} className="flexbox items-center row-reverse">
                 {children}
             </div>
         )

@@ -8,10 +8,10 @@ class Button extends React.Component {
         super(props)
     }
     render() {
-        const {bstyle, size, children,style} = this.props
+        const {bstyle, size, children,style,onClick} = this.props
         const classes = cx(styles.btn,styles[bstyle],styles[size])
         return (
-            <button className={classes} style={style}>{children}</button>
+            <button className={classes} style={style} onClick={onClick}>{children}</button>
         )
     }
 }
@@ -23,7 +23,8 @@ Button.defaultProps={
 
 Button.propTypes={
     bstyle:PropTypes.oneOf(['default','primary','success','info','warning','danger']),
-    size:PropTypes.oneOf(['lg','default','sm','xs'])
+    size:PropTypes.oneOf(['lg','default','sm','xs']),
+    onClick:PropTypes.func
 }
 
 export default Button

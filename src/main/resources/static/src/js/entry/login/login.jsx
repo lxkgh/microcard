@@ -5,7 +5,7 @@ import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
 import 'src/css/common.css'
-import Request from 'src/lib/request.js'
+import request from 'superagent'
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -31,14 +31,15 @@ class Login extends React.Component {
         })
     }
     doSubmit(){
-        new Request('/login')
-          .post({username:this.state.username,password:this.state.password})
-          .then(function(err,data){
+        request.post('/login')
+          .send({username:this.state.username,password:this.state.password})
+          .end((err,res)=>{
               if (!err) {
+                  const data=JSON.parse(res.text)
                   if (data.success) {
-                      console.log('succes');}
-                  else{console.log(data.desc)}
-              }else{console.log(err)}
+                      window.location=window.location
+                  }
+              }
           })
     }
     render() {

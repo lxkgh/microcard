@@ -27,6 +27,7 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "superagent": "^1.8.3"
   }
 }
