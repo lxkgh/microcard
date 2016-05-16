@@ -31,8 +31,12 @@ class Login extends React.Component {
         })
     }
     doSubmit(){
+        const user={
+            username:this.state.username,
+            password:this.state.password
+        }
         request.post('/login')
-          .send({username:this.state.username,password:this.state.password})
+          .send(user)
           .end((err,res)=>{
               if (!err) {
                   const data=JSON.parse(res.text)

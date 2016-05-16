@@ -8,4 +8,5 @@ import com.itbegin.outprojs.microcard.model.entity.User;
 public interface UserRepositoryInterface extends MongoRepository<User, String>,
 		UserRepositoryInterfaceCustom {
 	User findByUsername(String username);
+	void deleteByUsername(String username);
 }

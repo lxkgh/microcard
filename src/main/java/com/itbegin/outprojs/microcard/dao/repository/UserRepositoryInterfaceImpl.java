@@ -13,11 +13,22 @@ public class UserRepositoryInterfaceImpl implements
 	@Autowired
 	MongoOperations mongoOperations;
 
-	public void unpdateName(String id, String Name) {
+	@Override
+	public void updateName(String id, String Name) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("id").is(id));
 		Update update = new Update();
-		update.set("name", Name);
-		mongoOperations.updateFirst(query, update, User.class).toString();
+		update.set("username", Name);
+		mongoOperations.updateFirst(query, update, User.class);
+	}
+
+	@Override
+	public void updateUser(User u) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("username").is(u.getUsername()));
+		Update update = new Update();
+		update.set("realname", u.getRealname());
+		update.set("role", u.getRole());
+		mongoOperations.updateFirst(query, update, User.class);
 	}
 }

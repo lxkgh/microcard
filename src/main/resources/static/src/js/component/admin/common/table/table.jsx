@@ -1,5 +1,8 @@
 import React,{PropTypes} from 'react'
 
+import csses from './table.css'
+import cx from 'classnames'
+
 const styles={
     table:{
         position:'relative',
@@ -14,11 +17,6 @@ const styles={
     body:{
         width:'100%',
         position:'relative'
-    },
-    row:{
-        width:'100%',
-        borderBottom:'solid 1px #ddd',
-        height:'35px'
     }
 }
 
@@ -70,9 +68,10 @@ class Row extends React.Component {
         super(props)
     }
     render() {
-        const {children,percents,className} = this.props
+        const {children,percents,className,active,onClick} = this.props
+        const classes = cx(csses.row,className,{[csses.active]:active})
         return (
-            <div style={styles.row} className={className}>
+            <div className={classes} onClick={onClick}>
                 {
                     this.renderItems(children,percents)
                 }
@@ -94,8 +93,13 @@ class Row extends React.Component {
         return itemsDom
     }
 }
+Row.defaultProps={
+    active:false
+}
 Row.propTypes={
-    percents:PropTypes.arrayOf(PropTypes.string)
+    percents:PropTypes.arrayOf(PropTypes.string),
+    active:PropTypes.bool,
+    onClick:PropTypes.func
 }
 Table.Row=Row
 export default Table
