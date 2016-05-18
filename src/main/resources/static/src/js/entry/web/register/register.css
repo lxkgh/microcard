@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+.RegisterCont {
+    top: 0;
+    margin:auto;;
+    position: relative;
+    max-width: 600px;
+    height: 100%;
+}
+.Wrap {
+
+    padding: 30px 0;
+    background: #1f8ff3;
+    text-align: center;
+    height: 60%;
+}
+.loginBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #fff;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+}
+.wrapbox {
+    width: 100%;
+    height: 40%;
+    padding: 30px 40px;
+}
+.wrapbox label{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+
+}
+.wrapbox .areaCode{
+    position: absolute;
+    top: 13px;
+    left: 12px;
+    color: #000;
+}
+.wrapbox .firlb input {
+    padding-left: 45px;
+}
+.wrapbox input[type=text] {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    outline: none;
+    -webkit-appearance: none;
+}
+.wrapbox .getCheckCode {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    padding-right: 10px;
+    height: 38px;
+    color: #1f8ff3;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    border-radius: 0 5px 5px 0;
+}
+.wrapbox .seclb input {
+    padding-left: 15px;
+}
