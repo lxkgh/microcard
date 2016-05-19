@@ -64,6 +64,7 @@ class PageTool extends React.Component {
                 const data=JSON.parse(res.text)
                 if (data.success&&data.data) {
                     this.setState({
+                        page:data.data['totalPages']<page+1?data.data['totalPages']-1:page,
                         totalPages: data.data['totalPages'],
                         totalElems:data.data['totalElems'],
                         datasize:data.data['datasize'],
