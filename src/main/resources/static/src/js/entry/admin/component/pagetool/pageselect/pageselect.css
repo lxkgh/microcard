@@ -1,0 +1,40 @@
+.pageselect {
+    display: inline-block;
+    float: right;
+    height: 36px;
+    margin-right: 50px;
+}
+.span {
+    padding: 7px 12px;
+    margin-left: -1px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: bold;
+    color: #4078c0;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+}
+.span:hover {
+    z-index: 2;
+    text-decoration: none;
+    background-color: #e7e7e7;
+    border-color: #e5e5e5;
+}
+.span.active {
+    z-index: 3;
+    color: #fff;
+    background-color: #4078c0!important;
+    border-color: #4078c0!important;
+}
+.span.disabled {
+    color: #d3d3d3;
+    cursor: default;
+    background-color: #fafafa;
+}

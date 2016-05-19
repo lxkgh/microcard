@@ -4,8 +4,9 @@ import request from 'superagent'
 import {ApiPrefix} from '../config.jsx'
 
 import Content from 'admin.Content'
-import BaseColumn from '../component/basecolumn/basecolum.jsx'
+import BaseColumn from '../component/crudcolumn/crudcolumn.jsx'
 import BaseTable from '../component/basetable/basetable.jsx'
+import PageTool from '../component/pagetool/pagetool.jsx'
 
 import AddModal from './AddModal.jsx'
 import EditModal from './EditModal.jsx'
@@ -14,8 +15,7 @@ class User extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            users:[],
-            page:0
+            users:[]
         }
         this.buttons=[
             {desc:'新增',onClick:()=>{this.showAddModal()}},
@@ -32,15 +32,17 @@ class User extends React.Component {
         }
     }
     componentDidMount() {
-        this.getUsers(0)
+        this.refs['pageTool'].refresh()
     }
     render() {
         return (
             <Content className="flex">
                 <BaseColumn buttons={this.buttons}/>
-                <div style={{width:'100%',marginTop:'30px'}}>
+                <div style={{width:'100%',margin:'20px 0'}}>
                     <BaseTable ref="baseTable" {...this.userTable} />
                 </div>
+                <PageTool ref="pageTool" setData={(data)=>{this.setData(data)}}
+                    url={`${ApiPrefix}/get/userpage`}/>
                 <AddModal ref="addModal" onSubmit={(user)=>{this.addUser(user)}}/>
                 <EditModal ref="editModal" onSubmit={(user)=>{this.updateUser(user)}}/>
             </Content>
@@ -58,25 +60,16 @@ class User extends React.Component {
     hideEditModal(){
         this.refs['editModal'].hide()
     }
-    getUsers(i){
-        request.get(`${ApiPrefix}/get/userpage/${i}`)
-        .end((err,res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    this.userTable.body=data.data
-                    this.setState({
-                        users:data.data
-                    })
-                }
-            }
+    setData(data){
+        this.userTable.body=data
+        this.setState({
+            users:data
         })
     }
     refresh(){
         this.hideAddModal()
         this.hideEditModal()
-        const {page} = this.state
-        this.getUsers(page)
+        this.refs['pageTool'].refresh()
     }
     addUser(user){
         request.post(`${ApiPrefix}/add/user`)
@@ -87,7 +80,7 @@ class User extends React.Component {
                 const data=JSON.parse(res.text)
                 if (data.success) {
                     this.hideAddModal()
-                    this.getUsers(0)
+                    this.refs['pageTool'].refresh()
                 }
             }
         })

@@ -38,7 +38,7 @@
         no-obj-calls: 2,
         no-unreachable: 2,
         // Best Practices
-        complexity: [2, 5],
+        complexity: [2, 6],
         curly: [2, "all"],
         default-case: 2,
         no-alert: 2,
@@ -65,7 +65,7 @@
         // ECMAScript 6
         no-const-assign: 2,
         // Stylistic Issues,
-        id-length: [2, { "min": 1, "max": 20 }],
+        id-length: [2, { "min": 1, "max": 30 }],
         indent: [2, 4],
         jsx-quotes: 2,
         max-depth: [2, 8],

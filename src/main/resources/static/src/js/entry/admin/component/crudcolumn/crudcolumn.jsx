@@ -1,6 +1,6 @@
 import React,{PropTypes} from 'react'
 
-import OpColumn from 'admin.OpColumn'
+import Column from 'admin.Column'
 import Button from 'admin.Button'
 
 
@@ -11,9 +11,9 @@ class BaseColumn extends React.Component {
     render() {
         const {buttons} = this.props
         return (
-            <OpColumn className="flexbox">
+            <Column className="flexbox">
                 {this.renderButtons(buttons)}
-            </OpColumn>
+            </Column>
         )
     }
     renderButtons(buttons){

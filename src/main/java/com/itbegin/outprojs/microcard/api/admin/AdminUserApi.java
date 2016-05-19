@@ -1,8 +1,12 @@
 package com.itbegin.outprojs.microcard.api.admin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,11 +66,16 @@ public class AdminUserApi {
 		}
 	}
 	
-	@RequestMapping(value = "/get/userpage/{page}")
-	public ApiResult getUserPage(@PathVariable int page){
+	@RequestMapping(value = "/get/userpage")
+	public ApiResult getUserPage(@Param("page") int page,@Param("pagesize") int pagesize){
 		try {
-			Page<User> userpage=userRepositoryInterface.findAll(new PageRequest(page, 10));
-			return new ApiResult(true,userpage.getTotalPages(),"获取用户成功",userpage.getContent());
+			Page<User> userpage=userRepositoryInterface.findAll(new PageRequest(page, pagesize));
+			Map<String,Object> datas=new HashMap<String,Object>();
+			datas.put("totalPages",userpage.getTotalPages());
+			datas.put("totalElems",userpage.getTotalElements());
+			datas.put("datasize", userpage.getNumberOfElements());
+			datas.put("data",userpage.getContent());
+			return new ApiResult(true,userpage.getTotalPages(),"获取用户成功",datas);
 		} catch (Exception e) {
 			return new ApiResult(false, 0, "获取用户失败", null);
 		}

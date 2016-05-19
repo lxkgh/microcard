@@ -2,13 +2,13 @@ package com.itbegin.outprojs.microcard.model.json;
 
 public class MyEntry {
 	
-	public MyEntry(String key, String value) {
+	public MyEntry(String key, Object value) {
 		super();
 		this.key = key;
 		this.value = value;
 	}
 	private String key;
-	private String value;
+	private Object value;
 	
 	public String getKey() {
 		return key;
@@ -18,11 +18,11 @@ public class MyEntry {
 		this.key = key;
 	}
 
-	public String getValue() {
+	public Object getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(Object value) {
 		this.value = value;
 	}
 
