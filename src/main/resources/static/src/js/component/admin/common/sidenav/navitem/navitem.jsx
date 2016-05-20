@@ -5,7 +5,9 @@ var styles={
     navitem:{
         height:'30px',
         width:'100%',
-        backgroundColor:'#80dcff'
+        backgroundColor:'#80dcff',
+        marginTop:'-1px',
+        border:'solid 1px #009547'
     }
 }
 
@@ -15,7 +17,7 @@ class NavItem extends React.Component {
     }
     render() {
         return (
-            <div style={styles.navitem}>
+            <div style={styles.navitem} className="flexbox flex-center items-center">
                 {this.props.children}
             </div>
         )

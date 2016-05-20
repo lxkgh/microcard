@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import { browserHistory, Router, Route} from 'react-router'
+
 import './admin.css'
 import 'css.Common'
 
 import LeftNav from './component/leftnav/leftnav.jsx'
-import User from './user/user.jsx'
-
+import Users from './users/users.jsx'
+import Images from './images/images.jsx'
 
 const styles={
     adminAPP:{
@@ -23,12 +25,17 @@ class AdminAPP extends React.Component {
         return (
             <div style={styles.adminAPP} className="flexbox">
                 <LeftNav/>
-                <User />
+                {this.props.children}
             </div>
         )
     }
 }
-ReactDOM.render(
-    <AdminAPP />,
-    document.getElementById('common-body')
-)
+
+ReactDOM.render((
+    <Router history={browserHistory}>
+        <Route path="/admin/home" component={AdminAPP}>
+            <Route path="users" component={Users} />
+            <Route path="images" component={Images} />
+        </Route>
+    </Router>
+),document.getElementById('common-body'))

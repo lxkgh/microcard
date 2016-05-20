@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "react-router": "^2.4.1",
     "superagent": "^1.8.3"
   }
 }

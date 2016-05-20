@@ -11,7 +11,7 @@ import PageTool from '../component/pagetool/pagetool.jsx'
 import AddModal from './AddModal.jsx'
 import EditModal from './EditModal.jsx'
 
-class User extends React.Component {
+class Users extends React.Component {
     constructor(props) {
         super(props)
         this.state={
@@ -123,4 +123,4 @@ class User extends React.Component {
     }
 }
 
-export default User
+export default Users
