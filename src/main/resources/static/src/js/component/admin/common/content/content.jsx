@@ -1,14 +1,15 @@
 import React from 'react'
 
+import cx from 'classnames'
 
 class Content extends React.Component {
     constructor(props) {
         super(props)
     }
     render() {
-        const {children} = this.props
+        const {children,className} = this.props
         return (
-            <div className={this.props.className}
+            <div className={cx(className,'flex')}
                 style={{
                     padding:'20px',
                     overflow:'auto'
@@ -21,7 +22,7 @@ class Content extends React.Component {
         const childsNode=children.map((child,i)=>{
             if (i==1) {
                 return (
-                    <div key={i} style={{width:'100%',marginTop:'30px'}}>
+                    <div key={i} style={{width:'100%',margin:'20px 0'}}>
                         {child}
                     </div>
                 )

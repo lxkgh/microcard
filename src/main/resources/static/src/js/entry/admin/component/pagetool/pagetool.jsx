@@ -10,7 +10,7 @@ class PageTool extends React.Component {
         super(props)
         this.state={
             page:0,
-            totalPages:0,
+            totalPages:1,
             totalElems:0,
             pagesize:10,
             datasize:0,

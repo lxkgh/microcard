@@ -12,8 +12,8 @@ class LeftNav extends React.Component {
     render() {
         return (
             <SideNav>
-                <NavItem><Link to="/admin/home/users">用户管理</Link></NavItem>
-                <NavItem><Link to="/admin/home/images">图片管理</Link></NavItem>
+                <NavItem><Link to="users">用户管理</Link></NavItem>
+                <NavItem><Link to="images">图片管理</Link></NavItem>
             </SideNav>
         )
     }

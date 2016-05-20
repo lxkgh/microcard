@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { browserHistory, Router, Route} from 'react-router'
+import { hashHistory, Router, Route} from 'react-router'
 
 import './admin.css'
 import 'css.Common'
@@ -32,8 +32,8 @@ class AdminAPP extends React.Component {
 }
 
 ReactDOM.render((
-    <Router history={browserHistory}>
-        <Route path="/admin/home" component={AdminAPP}>
+    <Router history={hashHistory}>
+        <Route path="/" component={AdminAPP}>
             <Route path="users" component={Users} />
             <Route path="images" component={Images} />
         </Route>

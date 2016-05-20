@@ -36,7 +36,7 @@ class Users extends React.Component {
     }
     render() {
         return (
-            <Content className="flex">
+            <Content>
                 <BaseColumn buttons={this.buttons}/>
                 <div style={{width:'100%',margin:'20px 0'}}>
                     <BaseTable ref="baseTable" {...this.userTable} />
