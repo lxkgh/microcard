@@ -1,6 +1,7 @@
 package com.itbegin.outprojs.microcard.api.admin;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,18 +24,23 @@ public class AdminImageApi {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ApiResult addUser(@RequestBody Image image) {
 		try {
-			//生成图片文件
-			String hashImage=HashUtil.generateMD5(image.getImage());
-			File imageFile=new File(PathUtil.getImgPath(hashImage, image.getType()));
-			ImageUtil.ConvertBase64ToImage(image.getImage(), image.getType().getSuffix(), imageFile);
-		
+			String imageData = image.getImage();
+			
 			//保持图片
+			String hashImage=HashUtil.generateMD5(imageData);
 			image.setImage(hashImage);
 			imageRepositoryInterface.save(image);
 			
+			//生成图片文件	
+			File imageFile=new File(PathUtil.getImgPath(hashImage, image.getType()));
+			ImageUtil.ConvertBase64ToImage(imageData, image.getType().getSuffix(), imageFile);
+			
 			return new ApiResult(true, 0, "添加图片成功",null);
+		} catch (IOException e) {
+			return new ApiResult(false, 0, "保存图片失败",null);
 		} catch (Exception e) {
-			return new ApiResult(false, 0, "添加图片失败", null);
+			return new ApiResult(false, 1, "图片已存在",null);
 		}
+			
 	}
 }
