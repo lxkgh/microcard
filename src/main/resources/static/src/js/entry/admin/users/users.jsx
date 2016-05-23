@@ -1,12 +1,10 @@
 import React from 'react'
 import request from 'superagent'
 
-import {ApiPrefix} from '../config.jsx'
+import {UserApiPrefix} from '../config.jsx'
 
-import Content from 'admin.Content'
-import BaseColumn from '../component/crudcolumn/crudcolumn.jsx'
+import BaseContent from '../component/basecontent/basecontent.jsx'
 import BaseTable from '../component/basetable/basetable.jsx'
-import PageTool from '../component/pagetool/pagetool.jsx'
 
 import AddModal from './AddModal.jsx'
 import EditModal from './EditModal.jsx'
@@ -32,20 +30,17 @@ class Users extends React.Component {
         }
     }
     componentDidMount() {
-        this.refs['pageTool'].refresh()
+        this.refresh()
     }
     render() {
         return (
-            <Content>
-                <BaseColumn buttons={this.buttons}/>
-                <div style={{width:'100%',margin:'20px 0'}}>
-                    <BaseTable ref="baseTable" {...this.userTable} />
-                </div>
-                <PageTool ref="pageTool" setData={(data)=>{this.setData(data)}}
-                    url={`${ApiPrefix}/get/userpage`}/>
+            <BaseContent ref="content" buttons={this.buttons}
+                setData={(data)=>{this.setData(data)}}
+                url={`${UserApiPrefix}/get/page`}>
+                <BaseTable ref="baseTable" {...this.userTable} />
                 <AddModal ref="addModal" onSubmit={(user)=>{this.addUser(user)}}/>
                 <EditModal ref="editModal" onSubmit={(user)=>{this.updateUser(user)}}/>
-            </Content>
+            </BaseContent>
         )
     }
     showAddModal(){
@@ -69,24 +64,23 @@ class Users extends React.Component {
     refresh(){
         this.hideAddModal()
         this.hideEditModal()
-        this.refs['pageTool'].refresh()
+        this.refs['content'].refresh()
     }
     addUser(user){
-        request.post(`${ApiPrefix}/add/user`)
+        request.post(`${UserApiPrefix}/add`)
         .send(user)
         .set('Accept', 'application/json')
         .end((err, res)=>{
             if (!err) {
                 const data=JSON.parse(res.text)
                 if (data.success) {
-                    this.hideAddModal()
-                    this.refs['pageTool'].refresh()
+                    this.refresh()
                 }
             }
         })
     }
     updateUser(user){
-        request.put(`${ApiPrefix}/put/user`)
+        request.put(`${UserApiPrefix}/put`)
         .send(user)
         .end((err,res)=>{
             if (!err) {
@@ -99,7 +93,7 @@ class Users extends React.Component {
     }
     delete(){
         const username=this.refs['baseTable'].getActiveId()
-        request.delete(`${ApiPrefix}/delete/user/${username}`)
+        request.delete(`${UserApiPrefix}/delete/${username}`)
         .end((err,res)=>{
             if (!err) {
                 const data=JSON.parse(res.text)
@@ -112,7 +106,7 @@ class Users extends React.Component {
     getUser(handleFunc){
         const username=this.refs['baseTable'].getActiveId()
         if (username) {
-            request.get(`${ApiPrefix}/get/user/${username}`)
+            request.get(`${UserApiPrefix}/get/${username}`)
             .end((err,res)=>{
                 if (!err) {
                     const data = JSON.parse(res.text)

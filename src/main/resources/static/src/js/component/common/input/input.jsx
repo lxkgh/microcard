@@ -8,7 +8,7 @@ class Input extends React.Component {
     }
     render() {
         return (
-            <input  {...this.props} className={styles.input}/>
+            <input {...this.props} className={styles.input}/>
         )
     }
 }

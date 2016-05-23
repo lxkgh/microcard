@@ -21,7 +21,6 @@ class Cover extends React.Component {
         )
     }
     onClick(e){
-        e.preventDefault()
         if(e.currentTarget==e.target){
             this.setState({
                 show:false

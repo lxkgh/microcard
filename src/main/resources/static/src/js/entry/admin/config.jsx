@@ -1,1 +1,2 @@
-export const ApiPrefix='/api/admin'
+export const UserApiPrefix='/api/admin/user'
+export const ImageApiPrefix='/api/admin/image'

@@ -18,12 +18,12 @@ import com.itbegin.outprojs.microcard.model.entity.User;
 import com.itbegin.outprojs.microcard.model.json.ApiResult;
 
 @RestController
-@RequestMapping(value="/api/admin")
+@RequestMapping(value="/api/admin/user")
 public class AdminUserApi {
 	@Autowired
 	private UserRepositoryInterface userRepositoryInterface;
 	
-	@RequestMapping(value = "/get/user/{username}",method = RequestMethod.GET)
+	@RequestMapping(value = "/get/{username}",method = RequestMethod.GET)
 	public ApiResult getUser(@PathVariable String username){
 		try {
 			User u = userRepositoryInterface.findByUsername(username);
@@ -33,7 +33,7 @@ public class AdminUserApi {
 		}
 		
 	}
-	@RequestMapping(value = "/add/user", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ApiResult addUser(@RequestBody User u) {
 		try {
 			if (u.getPassword()==null||u.getPassword()=="") {
@@ -46,7 +46,7 @@ public class AdminUserApi {
 		}
 	}
 	
-	@RequestMapping(value = "/put/user", method = RequestMethod.PUT)
+	@RequestMapping(value = "/put", method = RequestMethod.PUT)
 	public ApiResult updateUser(@RequestBody User u){
 		try {
 			userRepositoryInterface.updateUser(u);
@@ -56,7 +56,7 @@ public class AdminUserApi {
 		}
 	}
 	
-	@RequestMapping(value = "/delete/user/{username}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{username}", method = RequestMethod.DELETE)
 	public ApiResult deleteUser(@PathVariable String username){
 		try {
 			userRepositoryInterface.deleteByUsername(username);
@@ -66,7 +66,7 @@ public class AdminUserApi {
 		}
 	}
 	
-	@RequestMapping(value = "/get/userpage")
+	@RequestMapping(value = "/get/page")
 	public ApiResult getUserPage(@Param("page") int page,@Param("pagesize") int pagesize){
 		try {
 			Page<User> userpage=userRepositoryInterface.findAll(new PageRequest(page, pagesize));

@@ -16,6 +16,9 @@
 .flexbox.column {
     flex-direction: column;
 }
+.flexbox.wrap {
+    flex-wrap: wrap;
+}
 .flexbox .flex {
     flex: 1;
 }
