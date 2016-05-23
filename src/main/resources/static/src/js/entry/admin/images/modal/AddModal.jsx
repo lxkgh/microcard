@@ -52,7 +52,7 @@ class AddModal extends React.Component {
     handleSubmit(e,onSubmit) {
         e.preventDefault()
         const data={
-            image:this.state.image,
+            data:this.state.image,
             type:this.state.type.split('/')[1].toUpperCase(),
             name:this.state.name
         }

@@ -9,50 +9,37 @@ import Img from './img/img.jsx'
 
 import AddModal from './modal/AddModal.jsx'
 
-const imgs=[
-    {src:'http://gtb.baidu.com/HttpService/get?p=dHlwZT1pbWFnZS9qcGVnJm49dmlzJnQ9YWRpbWcmYz10YjppZyZyPTQ4MjUyMjcyLDE2Mjk0MTUyNTIASn8&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'},
-    {src:'http://img4.imgtn.bdimg.com/it/u=4236942158,2307642402&fm=21&gp=0.jpg'}
-]
-
 class Images extends React.Component {
     constructor(props) {
         super(props)
         this.buttons=[
             {desc:'新增',onClick:()=>{this.showAddModal()}}
         ]
+        this.state={imgs:[]}
     }
     render() {
+        const {imgs} = this.state
         return (
-            <BaseContent buttons={this.buttons}>
+            <BaseContent buttons={this.buttons}
+                setData={(data)=>{this.setImgs(data)}}
+                url={`${ImageApiPrefix}/page`}>
                 <div className="flexbox wrap">
                     {this.renderImgs(imgs)}
                 </div>
-                <AddModal ref="addModal" onSubmit={(img)=>{this.onAddSubmit(img)}}/>
+                <AddModal ref="addModal" onSubmit={(img)=>{this.addImage(img)}}/>
             </BaseContent>
         )
     }
-    onAddSubmit(img){
-        request.post(`${ImageApiPrefix}/add`)
+    setImgs(imgs){
+        this.setState({
+            imgs: imgs
+        })
+    }
+    addImage(img){
+        request.post(`${ImageApiPrefix}`)
         .send(img)
         .set('Accept', 'application/json')
         .end((err,res)=>{
-            console.log(err,res);
             if (!err) {
                 const data=JSON.parse(res.text)
                 if (data.success) {
@@ -69,7 +56,7 @@ class Images extends React.Component {
     }
     renderImgs(images){
         return images.map((img,i)=>{
-            return <Img key={i} src={img.src}/>
+            return <Img key={i} src={img.path}/>
         })
     }
 }

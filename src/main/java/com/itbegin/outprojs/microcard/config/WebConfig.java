@@ -15,7 +15,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	    .addContentVersionStrategy("/**");
 
 	  registry.addResourceHandler("/**")
-	    .addResourceLocations("classpath:/assets/")
+	    .addResourceLocations("classpath:/assets/","file:///resources/microcard/")
 	    .resourceChain(false).addResolver(versionResolver);
 	}
 }

@@ -3,6 +3,7 @@ package com.itbegin.outprojs.microcard.model.entity;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,8 +17,12 @@ public class Image implements Serializable {
 	private String id;
 	private String name;
 	@Indexed(unique=true)
-	private String image;//图片base64字符串的哈西值
+	private String path;//图片相对路经
 	private FileType type;
+	
+	@Transient
+	private String data;
+	
 	public String getId() {
 		return id;
 	}
@@ -30,16 +35,22 @@ public class Image implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getImage() {
-		return image;
+	public String getPath() {
+		return path;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setPath(String path) {
+		this.path = path;
 	}
 	public FileType getType() {
 		return type;
 	}
 	public void setType(FileType type) {
 		this.type = type;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
 	}
 }

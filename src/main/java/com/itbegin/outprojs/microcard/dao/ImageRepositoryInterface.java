@@ -6,6 +6,7 @@ import com.itbegin.outprojs.microcard.dao.repository.ImageRepositoryInterfaceCus
 import com.itbegin.outprojs.microcard.model.entity.Image;
 
 public interface ImageRepositoryInterface  extends MongoRepository<Image, String>,
-ImageRepositoryInterfaceCustom {
-
+	ImageRepositoryInterfaceCustom {
+	Image findByPath(String path);
+	void deleteByPath(String path);
 }

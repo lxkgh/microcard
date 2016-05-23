@@ -14,11 +14,11 @@ public class UserRepositoryInterfaceImpl implements
 	MongoOperations mongoOperations;
 
 	@Override
-	public void updateName(String id, String Name) {
+	public void updateUsername(String id, String username) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("id").is(id));
 		Update update = new Update();
-		update.set("username", Name);
+		update.set("username", username);
 		mongoOperations.updateFirst(query, update, User.class);
 	}
 

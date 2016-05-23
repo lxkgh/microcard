@@ -29,9 +29,6 @@ class Users extends React.Component {
             id:'username'
         }
     }
-    componentDidMount() {
-        this.refresh()
-    }
     render() {
         return (
             <BaseContent ref="content" buttons={this.buttons}

@@ -22,6 +22,9 @@ class PageTool extends React.Component {
             this.getPage(nextState.url,nextState.page,nextState.pagesize)
         }
     }
+    componentDidMount() {
+        this.refresh()
+    }
     render() {
         const {page,totalElems,pagesize,datasize,totalPages} = this.state
         const beginElem=page*pagesize+1

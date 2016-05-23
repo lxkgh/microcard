@@ -20,7 +20,7 @@ public class UserApi {
 	
 	@RequestMapping(value = "/edit/user", method = RequestMethod.GET)
 	public String editUser() {
-		userRepositoryInterface.updateName("3", "updatedName1");
+		userRepositoryInterface.updateUsername("3", "updatedName1");
 		return "Success";
 	}
 }
