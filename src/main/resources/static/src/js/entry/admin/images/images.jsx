@@ -26,7 +26,8 @@ class Images extends React.Component {
         return (
             <BaseContent ref="baseContent" buttons={this.buttons}
                 setData={(data)=>{this.setImgs(data)}}
-                url={`${ImageApiPrefix}/page`}>
+                getPageUrl={`${ImageApiPrefix}/page`}
+                defaultUrl={`${ImageApiPrefix}`}>
                 <div className="flexbox wrap">
                     {this.renderImgs(imgs,activeImg)}
                 </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import request from 'superagent'
 
 import {UserApiPrefix} from '../config.jsx'
 
@@ -28,12 +27,14 @@ class Users extends React.Component {
             body:this.state.users,
             id:'username'
         }
+        this.refresh=this.refresh.bind(this)
     }
     render() {
         return (
             <BaseContent ref="content" buttons={this.buttons}
                 setData={(data)=>{this.setData(data)}}
-                url={`${UserApiPrefix}/get/page`}>
+                getPageUrl={`${UserApiPrefix}/page`}
+                defaultUrl={`${UserApiPrefix}`}>
                 <BaseTable ref="baseTable" {...this.userTable} />
                 <AddModal ref="addModal" onSubmit={(user)=>{this.addUser(user)}}/>
                 <EditModal ref="editModal" onSubmit={(user)=>{this.updateUser(user)}}/>
@@ -47,7 +48,12 @@ class Users extends React.Component {
         this.refs['addModal'].hide()
     }
     showEditModal(){
-        this.getUser(this.refs['editModal'].show)
+        this.refs['content'].get(
+            `username=${this.refs['baseTable'].getActiveId()}`,
+            (data)=>{
+                this.refs['editModal'].show(data.data)
+            }
+        )
     }
     hideEditModal(){
         this.refs['editModal'].hide()
@@ -64,53 +70,16 @@ class Users extends React.Component {
         this.refs['content'].refresh()
     }
     addUser(user){
-        request.post(`${UserApiPrefix}/add`)
-        .send(user)
-        .set('Accept', 'application/json')
-        .end((err, res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    this.refresh()
-                }
-            }
-        })
+        this.refs['content'].add(user,this.refresh)
     }
     updateUser(user){
-        request.put(`${UserApiPrefix}/put`)
-        .send(user)
-        .end((err,res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    this.refresh()
-                }
-            }
-        })
+        this.refs['content'].edit(user,()=>{this.refresh()})
     }
     delete(){
-        const username=this.refs['baseTable'].getActiveId()
-        request.delete(`${UserApiPrefix}/delete/${username}`)
-        .end((err,res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    this.refresh()
-                }
-            }
-        })
-    }
-    getUser(handleFunc){
-        const username=this.refs['baseTable'].getActiveId()
-        if (username) {
-            request.get(`${UserApiPrefix}/get/${username}`)
-            .end((err,res)=>{
-                if (!err) {
-                    const data = JSON.parse(res.text)
-                    handleFunc(data.data)
-                }
-            })
-        }
+        this.refs['content'].delete(
+            `username=${this.refs['baseTable'].getActiveId()}`,
+            ()=>{this.refresh()}
+        )
     }
 }
 

@@ -55,6 +55,9 @@ class BaseTable extends React.Component {
     getActiveId(){
         const {body,id} = this.props
         const {activeRow} = this.state
+        if (!body[activeRow]) {
+            return ''
+        }
         return body[activeRow][id]
     }
 }
