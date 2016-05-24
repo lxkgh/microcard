@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
@@ -17,10 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itbegin.outprojs.microcard.dao.ImageRepositoryInterface;
 import com.itbegin.outprojs.microcard.model.entity.Image;
+import com.itbegin.outprojs.microcard.model.exceptions.EmptyKeyException;
+import com.itbegin.outprojs.microcard.model.exceptions.NotFoundException;
 import com.itbegin.outprojs.microcard.model.json.ApiResult;
 import com.itbegin.outprojs.microcard.utils.HashUtil;
 import com.itbegin.outprojs.microcard.utils.ImageUtil;
 import com.itbegin.outprojs.microcard.utils.PathUtil;
+import com.itbegin.outprojs.microcard.utils.StrUtil;
 
 @RestController
 @RequestMapping(value="/api/admin/image")
@@ -43,26 +47,48 @@ public class AdminImageApi {
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.GET)
+	public ApiResult get(@Param("id") String id){
+		try {
+			if (StrUtil.isEmpty(id)) {
+				throw new EmptyKeyException(0, "id为空");
+			}
+			Image image = imageRepositoryInterface.findOne(id);
+			if (image==null) {
+				throw new NotFoundException(1, "图片不存在");
+			}
+			return new ApiResult(true, 0, "获取图片成功", image);
+		} catch (EmptyKeyException ek){
+			return new ApiResult(false, ek.getState(), ek.getDesc(), null);
+		} catch (NotFoundException nf) {
+			return new ApiResult(false, nf.getState(), nf.getDesc(), null);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "未知异常", null);
+		}
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ApiResult addUser(@RequestBody Image image) {
+	public ApiResult add(@RequestBody Image image) {
 		String hashImage=null;
 		try {
 			hashImage=HashUtil.generateMD5(image.getData());
+
 			//保持图片
 			image.setPath(PathUtil.getImgRelPath(hashImage, image.getType()));
 			imageRepositoryInterface.save(image);
-			
 			//生成图片文件	
 			File imageFile=new File(PathUtil.getImgPath(hashImage, image.getType()));
-			ImageUtil.ConvertBase64ToImage(image.getData(), image.getType().getSuffix(), imageFile);
+			ImageUtil.ConvertBase64ToImage(image.getData(), imageFile);
 			
 			return new ApiResult(true, 0, "添加图片成功",null);
 		} catch (IOException e) {
 			imageRepositoryInterface.deleteByPath(hashImage);
 			return new ApiResult(false, 0, "保存图片失败",null);
-		} catch (Exception e) {
+		} catch (DuplicateKeyException e) {
 			return new ApiResult(false, 1, "图片已存在",null);
-		}	
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "未知异常",null);
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
@@ -84,8 +110,9 @@ public class AdminImageApi {
 			}
 			imageRepositoryInterface.delete(id);
 			FileUtils.forceDelete(new File(PathUtil.getImgAbsPath(img.getPath())));
-			return new ApiResult(false, 0, "删除图片成功",null);
+			return new ApiResult(true, 0, "删除图片成功",null);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ApiResult(false, 1, "删除图片失败",null);
 		}
 	}

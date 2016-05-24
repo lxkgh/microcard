@@ -1,0 +1,6 @@
+.active {
+    outline-color: #289AFF;
+    outline-offset: 2px;
+    outline-style: dotted;
+    outline-width: 3px;
+}

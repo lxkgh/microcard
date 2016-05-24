@@ -1,16 +1,17 @@
 package com.itbegin.outprojs.microcard.model.exceptions;
 
-public class ExistException extends RuntimeException {
-	private static final long serialVersionUID = -5212691424135782328L;
+public class NotFoundException extends RuntimeException {
+	
+	private static final long serialVersionUID = 3351616437989057838L;
 	
 	private int state ;  //异常对应的返回码  
 	private String desc;  //异常对应的描述信息
 	
-	public ExistException() {
+	public NotFoundException() {
 		super();
 	}
 
-	public ExistException(int state, String desc) {
+	public NotFoundException(int state, String desc) {
 		super();
 		this.state = state;
 		this.desc = desc;
@@ -31,5 +32,4 @@ public class ExistException extends RuntimeException {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-
 }

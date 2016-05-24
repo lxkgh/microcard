@@ -7,14 +7,14 @@ import com.itbegin.outprojs.microcard.model.enums.FileType;
 
 public class PathUtil {
 	
-	public static String IMG="/resources/microcard/img";
+	public static String IMG="/resources/microcard";
 	
 	public static String getImgAbsPath(String relPath){
 		return new StringBuffer(IMG).append(relPath).toString();
 	}
 	
 	public static String getImgPath(String hashImage,FileType type){
-		return new StringBuffer(IMG).append("/").append(hashImage.substring(0,2)).append("/")
+		return new StringBuffer(IMG).append("/img/").append(hashImage.substring(0,2)).append("/")
 				.append(hashImage).append(".").append(type.getSuffix()).toString();
 	}
 	

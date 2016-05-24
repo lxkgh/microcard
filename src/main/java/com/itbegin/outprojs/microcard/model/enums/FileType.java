@@ -1,7 +1,7 @@
 package com.itbegin.outprojs.microcard.model.enums;
 
 public enum FileType {
-	PNG("image/png","png");
+	PNG("image/png","png"),JPEG("image/jpeg","jpg");
 	public String getTypeName() {
 		return typeName;
 	}

@@ -13,11 +13,12 @@ import com.itbegin.outprojs.microcard.model.enums.FileType;
 public class Image implements Serializable {
 
 	private static final long serialVersionUID = 8489328588672633164L;
+	
 	@Id
 	private String id;
-	private String name;
 	@Indexed(unique=true)
 	private String path;//图片相对路经
+	private String name;
 	private FileType type;
 	
 	@Transient

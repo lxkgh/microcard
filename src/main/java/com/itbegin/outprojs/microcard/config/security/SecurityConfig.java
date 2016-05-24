@@ -37,8 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll()
 			.and()
 			.httpBasic();
-			
-			
 	}
 	
 	@Override

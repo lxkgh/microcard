@@ -11,12 +11,13 @@ import javax.xml.bind.DatatypeConverter;
 import org.apache.commons.io.FileUtils;
 
 public class ImageUtil {
-	public static void ConvertBase64ToImage(String base64,String type,File file) throws IOException{
-		byte[] imageByte=DatatypeConverter.parseBase64Binary(base64.split(",")[1]);
+	public static void ConvertBase64ToImage(String base64,File file) throws IOException{
+		String[] strings = base64.split(",");
+		byte[] imageByte=DatatypeConverter.parseBase64Binary(strings[1]);
 		FileUtils.touch(file);
 		ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
 		BufferedImage imgBuf = ImageIO.read(new ByteArrayInputStream(imageByte));
 		bis.close();
-		ImageIO.write(imgBuf,type, file);
+		ImageIO.write(imgBuf,strings[0].split("/")[1].split(";")[0], file);
 	}
 }

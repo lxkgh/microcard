@@ -25,7 +25,7 @@ class AddModal extends React.Component {
             <Cover ref="cover">
                 <Dialog width="40%">
                     <Dialog.Header>
-                        <h4>新增用户</h4>
+                        <h4>新增图片</h4>
                     </Dialog.Header>
                     <Dialog.Body>
                         <Col col={2}>

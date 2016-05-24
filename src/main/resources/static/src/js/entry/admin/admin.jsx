@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 
 import { hashHistory, Router, Route} from 'react-router'
 
-import './admin.css'
 import 'css.Common'
 
 import LeftNav from './component/leftnav/leftnav.jsx'

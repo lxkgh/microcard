@@ -19,7 +19,6 @@ public class User implements Serializable {
 	private String password;
 	private String realname;
 	private UserRole role=UserRole.ROLE_USER;
-	
 	public String getId() {
 		return id;
 	}
