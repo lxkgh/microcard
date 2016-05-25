@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import InputItem from 'webfront.InputItem'
 import Topbar from 'topbar'
 import styles from './changePassword.css'
@@ -52,8 +51,4 @@ class ChangePassword extends React.Component{
         )
     }
 }
-
-ReactDOM.render(
-    <ChangePassword/>,
-    document.getElementById('common-body')
-)
+module.exports=ChangePassword

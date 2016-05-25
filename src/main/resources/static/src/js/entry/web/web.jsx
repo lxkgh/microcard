@@ -9,7 +9,9 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div />
+            <div>
+                {this.props.children}
+            </div>
         )
     }
 }
@@ -20,7 +22,16 @@ const rootRoute={
         path: '/',
         component: App,
         childRoutes: [
-            require('./routes/login/index.jsx')
+            require('./routes/changepassword/index.jsx'),
+            require('./routes/changephone/index.jsx'),
+            require('./routes/editcard/index.jsx'),
+            require('./routes/homepage/index.jsx'),
+            require('./routes/login/index.jsx'),
+            require('./routes/mycard/index.jsx'),
+            require('./routes/myinfo/index.jsx'),
+            require('./routes/mysign/index.jsx'),
+            require('./routes/mysociety/index.jsx'),
+            require('./routes/register/index.jsx')
         ]
     }]
 }

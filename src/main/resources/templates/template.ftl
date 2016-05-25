@@ -26,8 +26,6 @@
             box-sizing: border-box;
         }
 
-        * {}
-
         *:before,
         *:after {
             -webkit-box-sizing: border-box;

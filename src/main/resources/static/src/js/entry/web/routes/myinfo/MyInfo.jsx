@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import 'css.Common'
+
 import Topbar from 'topbar'
 import styles from './myInfo.css'
 import cx from 'classnames'
@@ -161,8 +160,4 @@ class MyInfo extends React.Component{
     }
 }
 
-
-ReactDOM.render(
-    <MyInfo/>,
-    document.getElementById('common-body')
-)
+module.exports=MyInfo

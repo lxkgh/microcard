@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import 'css.Common'
+
 import Topbar from 'topbar'
 import styles from './mySociety.css'
 import cx from 'classnames'
@@ -92,8 +91,4 @@ class MySociety extends React.Component{
         )
     }
 }
-
-ReactDOM.render(
-    <MySociety/>,
-    document.getElementById('common-body')
-)
+module.exports=MySociety

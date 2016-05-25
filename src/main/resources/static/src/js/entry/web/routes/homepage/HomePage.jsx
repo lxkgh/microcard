@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import 'css.Common'
+
 import Topbar from 'topbar'
 import Footerbar from 'footerbar'
 import styles from './homePage.css'
@@ -84,8 +83,4 @@ class HomePage extends React.Component{
         )
     }
 }
-
-ReactDOM.render(
-    <HomePage/>,
-    document.getElementById('common-body')
-)
+module.exports=HomePage

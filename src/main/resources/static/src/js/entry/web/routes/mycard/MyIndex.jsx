@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 import Topbar from 'topbar'
 import FooterBar from 'footerbar'
 import MenuItem from 'menuitem'
@@ -88,7 +88,4 @@ class MyIndex extends React.Component{
         )
     }
 }
-ReactDOM.render(
-    <MyIndex/>,
-    document.getElementById('common-body')
-)
+module.exports=MyIndex

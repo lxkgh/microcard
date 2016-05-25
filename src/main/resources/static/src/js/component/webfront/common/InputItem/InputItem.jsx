@@ -54,7 +54,7 @@ class InputItem extends React.Component {
         return (
             <li style={styles.li}>
                 <label style={styles.label}>{this.props.tagName}</label>
-                <InputItem style={styles.InputItem}
+                <input style={styles.InputItem}
                     placeholder={this.props.defaultInfo}
                     type = {this.props.type}
                     value = {this.props.value}

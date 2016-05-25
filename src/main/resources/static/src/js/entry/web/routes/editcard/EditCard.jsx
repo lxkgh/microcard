@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import 'css.Common'
+
 import Topbar from 'topbar'
 import MenuItem from 'menuitem'
 import fileSvgIcons from './editCardSvg.js'
@@ -153,8 +152,4 @@ class EditCard extends React.Component{
         )
     }
 }
-
-ReactDOM.render(
-    <EditCard/>,
-    document.getElementById('common-body')
-)
+module.exports=EditCard

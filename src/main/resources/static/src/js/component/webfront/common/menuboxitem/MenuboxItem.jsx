@@ -9,7 +9,6 @@ class MenuBoxItem extends React.Component {
     render() {
         const {num,itemSvg,size,svgColor,name} = this.props
         let width = 100/num+'%'
-        console.log(width)
         const styles = {
             li:{
                 margin:0,

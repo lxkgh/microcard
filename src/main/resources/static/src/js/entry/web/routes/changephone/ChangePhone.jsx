@@ -1,10 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 import InputItem from 'webfront.InputItem'
 import Topbar from 'topbar'
-import styles from './changePassword.css'
+import styles from './changePhone.css'
 import Button from 'webfront.Button'
-import 'css.Common'
 
 class ChangePhone extends React.Component{
     constructor(props){
@@ -58,8 +57,4 @@ class ChangePhone extends React.Component{
         )
     }
 }
-
-ReactDOM.render(
-    <ChangePhone/>,
-    document.getElementById('common-body')
-)
+module.exports=ChangePhone

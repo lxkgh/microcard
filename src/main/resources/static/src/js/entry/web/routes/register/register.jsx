@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 import 'css.Common'
 import styles from './register.css'
 import Svg from 'SvgIcon'
@@ -41,7 +41,4 @@ class Register extends React.Component {
         )
     }
 }
-ReactDOM.render(
-    <Register />,
-    document.getElementById('common-body')
-)
+module.exports=Register
