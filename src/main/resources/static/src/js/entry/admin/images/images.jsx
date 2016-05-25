@@ -29,7 +29,7 @@ class Images extends React.Component {
                 getPageQuery={`imageUse=${imageUse}`}
                 defaultUrl={`${ImageApiPrefix}`}>
                 <div className="flexbox wrap">
-                    {this.renderImgs(imgs,activeImg)}
+                    {this.renderImgs(imgs,activeImg,imageUse)}
                 </div>
                 <AddModal ref="addModal" onSubmit={(img)=>{this.addImage(img)}}/>
                 <EditModal ref="editModal" onSubmit={(img)=>{this.editImage(img)}}/>
@@ -76,11 +76,17 @@ class Images extends React.Component {
     hideEditModal(){
         this.refs['editModal'].hide()
     }
-    renderImgs(images,activeImg){
+    renderImgs(images,activeImg,imageUse){
+        let size=null
+        if (imageUse=='BACKGROUND') {
+            size=[240,360]
+        }else {
+            size=[150,150]
+        }
         return images.map((img,i)=>{
             return (
                 <Img key={i} src={img.path} active={img.id==activeImg}
-                onClick={()=>{this.onClick(img.id)}}/>
+                onClick={()=>{this.onClick(img.id)}} size={size}/>
             )
         })
     }

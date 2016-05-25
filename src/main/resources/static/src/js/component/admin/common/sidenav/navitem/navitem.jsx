@@ -1,23 +1,16 @@
 import React from 'react'
 
-
-var styles={
-    navitem:{
-        height:'30px',
-        width:'100%',
-        backgroundColor:'#80dcff',
-        marginTop:'-1px',
-        border:'solid 1px #009547'
-    }
-}
+import styles from './navitem.css'
+import cx from 'classnames'
 
 class NavItem extends React.Component {
     constructor(props) {
         super(props)
     }
     render() {
+        const classes=cx('flexbox','items-center',styles.navitem)
         return (
-            <div style={styles.navitem} className="flexbox flex-center items-center">
+            <div className={classes}>
                 {this.props.children}
             </div>
         )

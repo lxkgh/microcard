@@ -25,7 +25,13 @@ class PageTool extends React.Component {
                 url:nextProps.url,
                 query:nextProps.query
             })
-            this.getPage(nextProps.url,this.state.page,this.state.pagesize,nextProps.query)
+        }
+    }
+    componentWillUpdate(nextProps, nextState) {
+        const {page,pagesize,url,query} = this.state
+        if (nextState.page!= page||nextState.pagesize!= pagesize||
+            nextState.url!=url||nextState.query!=query) {
+            this.getPage(nextState.url,nextState.page,nextState.pagesize,nextState.query)
         }
     }
     componentDidMount() {
