@@ -10,7 +10,7 @@ class MenuItem extends React.Component {
     render(){
         const {frontSvg,frontSize,afterSvg,afterSize,frontName,
                 divContent,afterName,frontSvgFill,afterSvgFill,
-                svgBackColor,rx,ry,viewBoxInfo,rectx,recty} = this.props
+                svgBackColor,rx,ry,viewBoxInfo,rectx,recty,onClick} = this.props
         const frontSvgStyle = {
             fill:frontSvgFill,
             marginRight:'5px'
@@ -43,7 +43,8 @@ class MenuItem extends React.Component {
             y:recty
         }
         return(
-            <li style={liStyle}>
+            <li style={liStyle}
+                onClick={onClick}>
                 <div className={cx('flexbox','wrapper','space-between','align-items-center')}
                     style = {divSuitLi}>
                     <div className={cx('flexbox','front-content','items-center')}
@@ -83,7 +84,8 @@ MenuItem.propTypes={
     ry:PropTypes.number,
     viewBoxInfo:PropTypes.string,
     rectx:PropTypes.number,
-    recty:PropTypes.number
+    recty:PropTypes.number,
+    onClick:PropTypes.func
 }
 MenuItem.defaultProps = {
     frontSize:0,
