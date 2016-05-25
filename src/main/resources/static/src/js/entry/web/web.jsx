@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'css.Common'
 import { hashHistory, Router} from 'react-router'
-
+import './web.css'
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -19,7 +19,9 @@ const rootRoute={
     childRoutes: [{
         path: '/',
         component: App,
-        childRoutes: []
+        childRoutes: [
+            require('./routes/login/index.jsx')
+        ]
     }]
 }
 

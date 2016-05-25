@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import styles from './login.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
@@ -105,7 +104,4 @@ class Login extends React.Component {
         )
     }
 }
-ReactDOM.render(
-    <Login/>,
-    document.getElementById('common-body')
-)
+module.exports=Login
