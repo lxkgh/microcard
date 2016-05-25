@@ -1,7 +1,7 @@
 import React,{PropTypes} from 'react'
 
 var styles={
-    input:{
+    InputItem:{
         WebkitAppearance: 'none',
         appearance: 'none',
         outline: 'none',
@@ -42,7 +42,7 @@ var styles={
     }
 }
 
-class Input extends React.Component {
+class InputItem extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -54,7 +54,7 @@ class Input extends React.Component {
         return (
             <li style={styles.li}>
                 <label style={styles.label}>{this.props.tagName}</label>
-                <input style={styles.input}
+                <InputItem style={styles.InputItem}
                     placeholder={this.props.defaultInfo}
                     type = {this.props.type}
                     value = {this.props.value}
@@ -64,7 +64,7 @@ class Input extends React.Component {
         )
     }
 }
-Input.propTypes = {
+InputItem.propTypes = {
     tagName:PropTypes.string,
     type:PropTypes.string,
     button:PropTypes.string,
@@ -72,4 +72,4 @@ Input.propTypes = {
     value:PropTypes.string,
     onChange:PropTypes.func
 }
-export default Input
+export default InputItem

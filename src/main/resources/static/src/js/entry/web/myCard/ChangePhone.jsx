@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Input from 'webfront.Input'
+import InputItem from 'webfront.InputItem'
 import Topbar from 'topbar'
 import styles from './changePassword.css'
 import Button from 'webfront.Button'
@@ -43,11 +43,11 @@ class ChangePhone extends React.Component{
                 <Topbar {...topbarProps}/>
                 <div className={styles.wrapMenuDivStyle}>
                     <form>
-                        <Input {...phoneProps}/>
+                        <InputItem {...phoneProps}/>
                         <div className={styles.newPassword}>
-                            <Input {...loginPwProps}/>
-                            <Input {...newPhoneProps}/>
-                            <Input {...idCodeProps}/>
+                            <InputItem {...loginPwProps}/>
+                            <InputItem {...newPhoneProps}/>
+                            <InputItem {...idCodeProps}/>
                         </div>
                         <div className={styles.btnBox}>
                             <Button {...buttonProps}>{buttonProps.desc}</Button>

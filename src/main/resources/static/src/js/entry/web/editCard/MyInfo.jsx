@@ -4,7 +4,7 @@ import 'css.Common'
 import Topbar from 'topbar'
 import styles from './myInfo.css'
 import cx from 'classnames'
-import Input from 'webfront.Input'
+import InputItem from 'webfront.InputItem'
 import Button from 'webfront.Button'
 
 class MyInfo extends React.Component{
@@ -134,23 +134,23 @@ class MyInfo extends React.Component{
                     <section className="fixed">
                         <h3 className={styles.h3Style}>基本信息</h3>
                         <ul className={cx(styles.ulStyle,'fixed')}>
-                            <Input {...input1props}
+                            <InputItem {...input1props}
                                 onChange={(e)=>{this.changeRealname(e)}}/>
-                            <Input {...input2props}
+                            <InputItem {...input2props}
                                 onChange={(e)=>{this.changeCompany(e)}}/>
-                            <Input {...input3props}
+                            <InputItem {...input3props}
                                 onChange={(e)=>{this.changeJob(e)}}/>
-                            <Input {...input4props}
+                            <InputItem {...input4props}
                                 onChange={(e)=>{this.changeDepartment(e)}}/>
-                            <Input {...input5props}
+                            <InputItem {...input5props}
                                 onChange={(e)=>{this.changeCellphone(e)}}/>
-                            <Input {...input6props}
+                            <InputItem {...input6props}
                                 onChange={(e)=>{this.changePhone(e)}}/>
-                            <Input {...input7props}
+                            <InputItem {...input7props}
                                 onChange={(e)=>{this.changeTax(e)}}/>
-                            <Input {...input8props}
+                            <InputItem {...input8props}
                                 onChange={(e)=>{this.changeAddress(e)}}/>
-                            <Input {...input9props}
+                            <InputItem {...input9props}
                                 onChange={(e)=>{this.changeEmail(e)}}/>
                         </ul>
                         <Button>保存</Button>

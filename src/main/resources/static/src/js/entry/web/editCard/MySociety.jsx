@@ -4,7 +4,7 @@ import 'css.Common'
 import Topbar from 'topbar'
 import styles from './mySociety.css'
 import cx from 'classnames'
-import Input from 'webfront.Input'
+import InputItem from 'webfront.InputItem'
 import Button from 'webfront.Button'
 import Popup from 'webfront.Popup'
 
@@ -75,13 +75,13 @@ class MySociety extends React.Component{
                     <section className="fixed">
                         <h3 className={styles.h3Style}>社交信息</h3>
                         <ul className={cx(styles.ulStyle,'fixed')}>
-                            <Input {...input1props}
+                            <InputItem {...input1props}
                                 onChange={(e)=>{this.changeSubscription(e)}}/>
-                            <Input {...input2props}
+                            <InputItem {...input2props}
                                 onChange={(e)=>{this.changeQQ(e)}}/>
-                            <Input {...input3props}
+                            <InputItem {...input3props}
                                 onChange={(e)=>{this.changeWechat(e)}}/>
-                            <Input {...input4props}
+                            <InputItem {...input4props}
                                 onChange={(e)=>{this.changeSinaMicroBlog(e)}}/>
                         </ul>
                         <Button>保存</Button>

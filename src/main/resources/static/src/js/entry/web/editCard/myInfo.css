@@ -9,23 +9,11 @@
     left: 0;
     top: 0;
     bottom: 0;
-    right: 0;
-    /*overflow-y: auto;
-    overflow-x: hidden;*/
+    right:0;
     overflow: auto;
 }
 .myInfoMenu {
-    /*background-color: #f3f4f7;
-    padding-bottom: 30px;
-    overflow-x: hidden;
-    z-index: 1;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 44px;
-    bottom: 0;
-    /*overflow: auto;*/
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling:touch;
     z-index: 1;
     position: relative;;
     top: 44px;

@@ -3,7 +3,7 @@ import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import 'css.Common'
 import cx from 'classnames'
-// import cx from 'classnames'
+
 class Topbar extends React.Component {
     constructor(props){
         super(props);
@@ -19,7 +19,7 @@ class Topbar extends React.Component {
     }
     render(){
         const  {desc} = this.props
-        const {isShow} = this.state//这样写比较方便
+        const {isShow} = this.state
         const topbarStyle = {
             height: '44px',
             lineHeight: '44px',
@@ -34,8 +34,7 @@ class Topbar extends React.Component {
         }
         const leftAStyle = {
             fontSize: '1.5rem',
-            padding: '0 5px',
-            // display: 'WebkitFlex',
+            padding:'0 5px',
             flexDirection:'row',
             alignItems:'center',
             height: '100%',
@@ -44,8 +43,7 @@ class Topbar extends React.Component {
             cursor: 'pointer'
         }
         const threePointsStyle = {
-            // // display: 'WebkitFlex',
-            marginRight: '10px',
+            marginRight:'10px',
             cursor: 'pointer',
             marginLeft:'30px'
         }

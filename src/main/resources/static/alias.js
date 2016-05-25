@@ -12,7 +12,7 @@ module.exports = {
     'footerbar':'src/js/component/webfront/common/footerbar/FooterBar.jsx',
     'menuitem':'src/js/component/webfront/common/menuitem/MenuItem.jsx',
     'webfront.Button':'src/js/component/webfront/common/button/Button.jsx',
-    'webfront.Input':'src/js/component/webfront/common/Input/Input.jsx',
+    'webfront.InputItem':'src/js/component/webfront/common/InputItem/InputItem.jsx',
     'webfront.MenuBoxItem':'src/js/component/webfront/common/menuboxitem/MenuBoxItem.jsx',
     'webfront.Popup':'src/js/component/webfront/common/popup/Popup.jsx',
 
