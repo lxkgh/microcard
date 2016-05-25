@@ -4,7 +4,6 @@ import styles from './login.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
-import 'src/css/common.css'
 import request from 'superagent'
 class Login extends React.Component {
     constructor(props) {

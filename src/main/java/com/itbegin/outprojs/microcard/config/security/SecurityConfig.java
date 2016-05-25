@@ -21,22 +21,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-			.authorizeRequests()                                                          
-			.antMatchers("/api/admin/**","/add/**","/admin/**").permitAll()                  
-			.antMatchers("/edit/**","/test").hasAnyRole("USER","ADMIN")                                 
-			.anyRequest().authenticated()
-			.and()
-			.formLogin()
-			.loginPage("/login")
-			.loginProcessingUrl("/login")
-			.usernameParameter("username")
-			.passwordParameter("password")
-			.defaultSuccessUrl("/test")
-			.failureUrl("/admin/home")
-			.permitAll()
-			.and()
-			.httpBasic();
+//		http.csrf().disable()
+//			.authorizeRequests()                                                          
+//			.antMatchers("/api/admin/**","/add/**","/admin/**").permitAll()                  
+//			.antMatchers("/edit/**","/test").hasAnyRole("USER","ADMIN")                                 
+//			.anyRequest().authenticated()
+//			.and()
+//			.formLogin()
+//			.loginPage("/login")
+//			.loginProcessingUrl("/login")
+//			.usernameParameter("username")
+//			.passwordParameter("password")
+//			.defaultSuccessUrl("/test")
+//			.failureUrl("/admin/home")
+//			.permitAll()
+//			.and()
+//			.httpBasic();
 	}
 	
 	@Override

@@ -9,12 +9,11 @@ import com.itbegin.outprojs.microcard.utils.PathUtil;
 
 @Controller
 @EnableAutoConfiguration
-public class AdminAction {
-	
-	@RequestMapping(value="/admin")
+public class AppAction {
+	@RequestMapping(value="/app")
 	public String home(Model model){
-		model.addAttribute("CSSes", PathUtil.resolveCSSs("admin"));
-		model.addAttribute("JSs", PathUtil.resolveJSs("vendor","admin"));
+		model.addAttribute("CSSes", PathUtil.resolveCSSs("app"));
+		model.addAttribute("JSs", PathUtil.resolveJSs("vendor","app"));
 		return "template";
 	}
 }
