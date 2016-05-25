@@ -13,7 +13,8 @@ class LeftNav extends React.Component {
         return (
             <SideNav>
                 <NavItem><Link to="users">用户管理</Link></NavItem>
-                <NavItem><Link to="images">图片管理</Link></NavItem>
+                <NavItem><Link to="images/background">背景图片管理</Link></NavItem>
+                <NavItem><Link to="images/icon">图标管理</Link></NavItem>
             </SideNav>
         )
     }

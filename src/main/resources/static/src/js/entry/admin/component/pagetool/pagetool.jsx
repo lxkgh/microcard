@@ -14,12 +14,18 @@ class PageTool extends React.Component {
             totalElems:0,
             pagesize:10,
             datasize:0,
-            url:this.props.url
+            url:this.props.url,
+            query:this.props.query
         }
+        this.refresh=this.refresh.bind(this)
     }
-    componentWillUpdate(nextProps, nextState) {
-        if (nextState.pagesize!=this.state.pagesize||nextState.page!=this.state.page) {
-            this.getPage(nextState.url,nextState.page,nextState.pagesize)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.url!=this.props.url||nextProps.query!=this.props.query) {
+            this.setState({
+                url:nextProps.url,
+                query:nextProps.query
+            })
+            this.getPage(nextProps.url,this.state.page,this.state.pagesize,nextProps.query)
         }
     }
     componentDidMount() {
@@ -52,16 +58,20 @@ class PageTool extends React.Component {
         )
     }
     refresh(){
-        const {url,page,pagesize} = this.state
-        this.getPage(url,page,pagesize)
+        const {url,page,pagesize,query} = this.state
+        this.getPage(url,page,pagesize,query)
     }
     onSelect(pageselect){
         this.setState({
             page: pageselect
         })
     }
-    getPage(url,page,pagesize){
-        request.get(`${url}?page=${page}&pagesize=${pagesize}`)
+    getPage(url,page,pagesize,query){
+        let getUrl=`${url}?page=${page}&pagesize=${pagesize}`
+        if (query!='') {
+            getUrl+=`&${query}`
+        }
+        request.get(getUrl)
         .end((err,res)=>{
             if (!err) {
                 const data=JSON.parse(res.text)
@@ -89,7 +99,8 @@ class PageTool extends React.Component {
 
 PageTool.propTypes={
     setData:PropTypes.func.isRequired,
-    url:PropTypes.string.isRequired
+    url:PropTypes.string.isRequired,
+    query:PropTypes.string
 }
 
 export default PageTool

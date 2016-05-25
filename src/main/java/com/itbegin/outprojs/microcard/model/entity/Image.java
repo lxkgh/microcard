@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.itbegin.outprojs.microcard.model.enums.FileType;
+import com.itbegin.outprojs.microcard.model.enums.ImageUse;
 
 @Document
 public class Image implements Serializable {
@@ -20,6 +21,7 @@ public class Image implements Serializable {
 	private String path;//图片相对路经
 	private String name;
 	private FileType type;
+	private ImageUse imageUse;
 	
 	@Transient
 	private String data;
@@ -53,5 +55,11 @@ public class Image implements Serializable {
 	}
 	public void setData(String data) {
 		this.data = data;
+	}
+	public ImageUse getImageUse() {
+		return imageUse;
+	}
+	public void setImageUse(ImageUse imageUse) {
+		this.imageUse = imageUse;
 	}
 }

@@ -34,7 +34,9 @@ ReactDOM.render((
     <Router history={hashHistory}>
         <Route path="/" component={AdminAPP}>
             <Route path="users" component={Users} />
-            <Route path="images" component={Images} />
+            <Route path="images/background" key="BACKGROUND" imageUse="BACKGROUND"
+                component={Images} />
+            <Route path="images/icon" key="ICON" imageUse="ICON" component={Images} />
         </Route>
     </Router>
 ),document.getElementById('common-body'))

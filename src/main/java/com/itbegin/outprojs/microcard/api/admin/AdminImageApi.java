@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itbegin.outprojs.microcard.dao.ImageRepositoryInterface;
 import com.itbegin.outprojs.microcard.model.entity.Image;
+import com.itbegin.outprojs.microcard.model.enums.ImageUse;
 import com.itbegin.outprojs.microcard.model.exceptions.EmptyKeyException;
 import com.itbegin.outprojs.microcard.model.exceptions.NotFoundException;
 import com.itbegin.outprojs.microcard.model.json.ApiResult;
@@ -33,15 +34,15 @@ public class AdminImageApi {
 	private ImageRepositoryInterface imageRepositoryInterface;
 	
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ApiResult getPage(@Param("page") int page,@Param("pagesize") int pagesize){
+	public ApiResult getPage(int page,int pagesize,ImageUse imageUse){
 		try {
-			Page<Image> userpage=imageRepositoryInterface.findAll(new PageRequest(page, pagesize));
+			Page<Image> imagePage=imageRepositoryInterface.findByImageUse(imageUse,new PageRequest(page, pagesize));
 			Map<String,Object> datas=new HashMap<String,Object>();
-			datas.put("totalPages",userpage.getTotalPages());
-			datas.put("totalElems",userpage.getTotalElements());
-			datas.put("datasize", userpage.getNumberOfElements());
-			datas.put("data",userpage.getContent());
-			return new ApiResult(true,userpage.getTotalPages(),"获取图片成功",datas);
+			datas.put("totalPages",imagePage.getTotalPages());
+			datas.put("totalElems",imagePage.getTotalElements());
+			datas.put("datasize", imagePage.getNumberOfElements());
+			datas.put("data",imagePage.getContent());
+			return new ApiResult(true,imagePage.getTotalPages(),"获取图片成功",datas);
 		} catch (Exception e) {
 			return new ApiResult(false, 0, "获取图片失败", null);
 		}

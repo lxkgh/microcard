@@ -1,6 +1,4 @@
-import React from 'react'
-
-import request from 'superagent'
+import React,{PropTypes} from 'react'
 
 import {ImageApiPrefix} from '../config.jsx'
 
@@ -23,10 +21,12 @@ class Images extends React.Component {
     }
     render() {
         const {imgs,activeImg} = this.state
+        const {imageUse} = this.props.route
         return (
             <BaseContent ref="baseContent" buttons={this.buttons}
                 setData={(data)=>{this.setImgs(data)}}
                 getPageUrl={`${ImageApiPrefix}/page`}
+                getPageQuery={`imageUse=${imageUse}`}
                 defaultUrl={`${ImageApiPrefix}`}>
                 <div className="flexbox wrap">
                     {this.renderImgs(imgs,activeImg)}
@@ -48,56 +48,21 @@ class Images extends React.Component {
     }
     getImage(handleFn){
         const {activeImg} = this.state
-        if (activeImg=='') {
-            return
-        }
-        request.get(`${ImageApiPrefix}?id=${activeImg}`)
-        .end((err,res)=>{
-            if (!err) {
-                const data = JSON.parse(res.text)
-                if (data.success) {
-                    handleFn(data.data)
-                }
-            }
+        if (activeImg=='') {return}
+        this.refs['baseContent'].get(`id=${activeImg}`,(data)=>{
+            handleFn(data.data)
         })
     }
     addImage(img){
-        request.post(`${ImageApiPrefix}`)
-        .send(img)
-        .set('Accept', 'application/json')
-        .end((err,res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    this.refresh()
-                }
-            }
-        })
+        img.imageUse=this.props.route.imageUse
+        this.refs['baseContent'].add(img,()=>{this.refresh()})
     }
     editImage(img){
-        request.put(`${ImageApiPrefix}`)
-        .send(img)
-        .set('Accept', 'application/json')
-        .end((err,res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    this.refresh()
-                }
-            }
-        })
+        this.refs['baseContent'].edit(img,()=>{this.refresh()})
     }
     deleteImage(){
         const {activeImg} = this.state
-        request.delete(`${ImageApiPrefix}?id=${activeImg}`)
-        .end((err,res)=>{
-            if (!err) {
-                const data = JSON.parse(res.text)
-                if (data.success) {
-                    this.refresh()
-                }
-            }
-        })
+        this.refs['baseContent'].delete(`id=${activeImg}`,()=>{this.refresh()})
     }
     showAddModal(){
         this.refs['addModal'].show()
@@ -124,5 +89,8 @@ class Images extends React.Component {
             activeImg: imgId
         })
     }
+}
+Images.propTypes={
+    route:PropTypes.object.isRequired
 }
 export default Images

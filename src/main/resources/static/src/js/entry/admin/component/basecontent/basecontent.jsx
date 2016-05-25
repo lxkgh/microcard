@@ -11,13 +11,13 @@ class BaseContent extends React.Component {
         this.add=this.add.bind(this)
     }
     render() {
-        const {buttons,children,setData,getPageUrl} = this.props
+        const {buttons,children,setData,getPageUrl,getPageQuery} = this.props
         return (
             <Content>
                 <BaseColumn buttons={buttons}/>
                 {children}
                 <PageTool ref="pageTool" setData={setData}
-                    url={getPageUrl}/>
+                    url={getPageUrl} query={getPageQuery}/>
             </Content>
         )
     }
@@ -130,7 +130,8 @@ BaseContent.defaultProps={
     getUrl:'',
     addUrl:'',
     editUrl:'',
-    deleteUrl:''
+    deleteUrl:'',
+    getPageQuery:''
 }
 
 BaseContent.propTypes={
@@ -138,6 +139,7 @@ BaseContent.propTypes={
     setData:PropTypes.func,
     defaultUrl:PropTypes.string,
     getPageUrl:PropTypes.string,
+    getPageQuery:PropTypes.string,
     getUrl:PropTypes.string,
     addUrl:PropTypes.string,
     editUrl:PropTypes.string,

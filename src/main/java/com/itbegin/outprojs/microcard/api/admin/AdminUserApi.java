@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itbegin.outprojs.microcard.dao.UserRepositoryInterface;
 import com.itbegin.outprojs.microcard.model.entity.User;
+import com.itbegin.outprojs.microcard.model.exceptions.EmptyKeyException;
+import com.itbegin.outprojs.microcard.model.exceptions.NotFoundException;
 import com.itbegin.outprojs.microcard.model.json.ApiResult;
+import com.itbegin.outprojs.microcard.utils.StrUtil;
 
 @RestController
 @RequestMapping(value="/api/admin/user")
@@ -24,10 +27,20 @@ public class AdminUserApi {
 	@RequestMapping(method = RequestMethod.GET)
 	public ApiResult getUser(String username){
 		try {
+			if (StrUtil.isEmpty(username)) {
+				throw new EmptyKeyException(0, "用户名不能为空");
+			}
 			User u = userRepositoryInterface.findByUsername(username);
+			if (u==null) {
+				throw new NotFoundException(1, "用户不存在");
+			}
 			return new ApiResult(true, 0, "获取用户成功", u);
-		} catch (Exception e) {
-			return new ApiResult(false, 0, "获取用户失败", null);
+		}catch(EmptyKeyException ek) {
+			return new ApiResult(false, ek.getState(),ek.getDesc(), null);
+		}catch (NotFoundException nf) {
+			return new ApiResult(false, nf.getState(),nf.getDesc(), null);
+		}catch (Exception e) {
+			return new ApiResult(false, 2, "获取用户失败", null);
 		}
 		
 	}
@@ -39,7 +52,7 @@ public class AdminUserApi {
 			}
 			User uu=userRepositoryInterface.save(u);
 			return new ApiResult(true, 0, "添加用户成功", uu);
-		} catch (Exception e) {
+		}catch (Exception e) {
 			return new ApiResult(false, 0, "添加用户失败", null);
 		}
 	}
