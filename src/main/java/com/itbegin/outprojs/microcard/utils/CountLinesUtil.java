@@ -84,8 +84,8 @@ public class CountLinesUtil {
     }
 	public static void main(String[] args) {
 		try {
-//			Map<String, Integer> map=CountLinesUtil.lineCounterOfDir("/Users/caoyongzheng/javaApps/microcard",new MyIOFileFilter(false,".java") );
-			Map<String, Integer> map=CountLinesUtil.lineCounterOfDir("/Users/caoyongzheng/javaApps/microcard/src/main/resources/static/src",new MyIOFileFilter(false,"") );
+			Map<String, Integer> map=CountLinesUtil.lineCounterOfDir("/Users/caoyongzheng/javaApps/microcard",new MyIOFileFilter(false,".java") );
+//			Map<String, Integer> map=CountLinesUtil.lineCounterOfDir("/Users/caoyongzheng/javaApps/microcard/src/main/resources/static/src",new MyIOFileFilter(false,"") );
 			System.out.println("totalLines:"+map.get("totalLines"));
 			System.out.println("commentsLines:"+map.get("commentsLines"));
 			System.out.println("spaceLines:"+map.get("spaceLines"));
