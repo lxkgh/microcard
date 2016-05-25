@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { hashHistory, Router, Route} from 'react-router'
+import { hashHistory, Router} from 'react-router'
 
 import 'css.Common'
 
 import LeftNav from './component/leftnav/leftnav.jsx'
-import Users from './users/users.jsx'
-import Images from './images/images.jsx'
+// import Users from './users/users.jsx'
+// import Images from './images/images.jsx'
 
 const styles={
     adminAPP:{
@@ -29,14 +29,20 @@ class AdminAPP extends React.Component {
         )
     }
 }
+const rootRoute={
+    component:'div',
+    childRoutes: [{
+        path: '/',
+        component: AdminAPP,
+        childRoutes: [
+            require('./users/index.jsx'),
+            require('./images/bkgindex.jsx'),
+            require('./images//iconindex.jsx')
+        ]
+    }]
+}
 
-ReactDOM.render((
-    <Router history={hashHistory}>
-        <Route path="/" component={AdminAPP}>
-            <Route path="users" component={Users} />
-            <Route path="images/background" key="BACKGROUND" imageUse="BACKGROUND"
-                component={Images} />
-            <Route path="images/icon" key="ICON" imageUse="ICON" component={Images} />
-        </Route>
-    </Router>
-),document.getElementById('common-body'))
+ReactDOM.render(
+  <Router history={hashHistory} routes={rootRoute} />,
+  document.getElementById('common-body')
+)

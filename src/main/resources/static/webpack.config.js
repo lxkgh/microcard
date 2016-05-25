@@ -15,8 +15,9 @@ var config = {
     },
     output: {
         path: '../../../../target/classes/assets/',
-        publicPath: '/assets/',
-        filename: './js/[name].js',
+        publicPath: '/',
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[name].js',
         sourceMapFilename: '[file].map'
     },
     module: {

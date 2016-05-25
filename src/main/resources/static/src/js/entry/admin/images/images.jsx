@@ -99,4 +99,4 @@ class Images extends React.Component {
 Images.propTypes={
     route:PropTypes.object.isRequired
 }
-export default Images
+module.exports=Images

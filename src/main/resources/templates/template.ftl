@@ -43,7 +43,7 @@
             padding: 0;
         }
 
-        #common-body {
+        #common-body,#common-body>div {
             width: 100%;
             height: 100%;
         }
