@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+.wrapDivStyle {
+    z-index: 1;
+    position: relative;;
+    top: 44px;
+    bottom: 0;
+    overflow: auto;
+    max-width:600px;
+    background-color: #f0f1f3;
+    margin: auto;
+    height: 800px;
+}
+.menuDivStyle {
+    display: block;
+    min-height: 1%;
+}
+.section1 {
+    background: #fff;
+    padding: 0 0 0 15px;
+    border-top: solid 1px #d9d9d9;
+    border-bottom: solid 1px #d9d9d9;
+    margin-top: 10px;
+}

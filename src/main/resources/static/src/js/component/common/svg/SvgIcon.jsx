@@ -7,10 +7,12 @@ class SvgIcon extends React.Component {
     }
     render() {
         const {paths,size,position,direction,realIconSize,
-            style,className,onClick}=this.props
+            style,className,viewBoxInfo,onClick}=this.props
         return (
             <svg style={style} className={className}
+                viewBox={viewBoxInfo}
                 width={size[0]} height={size[1]} onClick={onClick}>
+                {this.props.children}
                 <g transform={this.getTransform(position,direction,size,realIconSize)}>
                     {
                         paths.map((path,i)=>{
@@ -45,6 +47,7 @@ SvgIcon.propTypes={
     size:PropTypes.arrayOf(PropTypes.number),
     position:PropTypes.arrayOf(PropTypes.number),
     direction:PropTypes.arrayOf(PropTypes.number),
-    realIconSize:PropTypes.arrayOf(PropTypes.number)
+    realIconSize:PropTypes.arrayOf(PropTypes.number),
+    viewBoxInfo:PropTypes.string
 }
 export default SvgIcon

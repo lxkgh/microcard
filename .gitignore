@@ -4,4 +4,5 @@
 assets/
 node_modules/
 target/
+.springBeans
 dump.rdb
