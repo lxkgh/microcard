@@ -1,21 +1,33 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import 'css.Common'
 import styles from './register.css'
-import Svg from 'SvgIcon'
-import svgIcons from 'svgIcons'
-import cx from 'classnames'
+import Carousel from 'Carousel'
+import img1 from './微名片.png'
+import img2 from './图二.png'
+import img3 from './图三.png'
+
 class Register extends React.Component {
     constructor(props){
         super(props);
     }
+    clickLogin(){
+        this.context.router.push('/login')
+    }
     render(){
+        const logoPic = {
+            imgs:[img1,img2,img3],
+            height:'100%',
+            width:'100%'
+        }
+        console.log(logoPic);
         return (
             <div className = {styles.RegisterCont}>
                 <div className = {styles.Wrap}>
-                    <Svg paths ={[svgIcons.mobile]}
-                    size ={[128,128]} className={cx(styles.mobileSvg,styles.svg)}/>
-                    <button className={styles.loginBtn}>登入</button>
+                <Carousel {...logoPic}>
+                    <button className={styles.loginBtn}
+                            onClick={()=>{this.clickLogin()}}>登录</button>
+                </Carousel>
                 </div>
                 <div className={styles.wrapbox}>
                     <form>
@@ -40,5 +52,8 @@ class Register extends React.Component {
             </div>
         )
     }
+}
+Register.contextTypes = {
+    router:PropTypes.object
 }
 module.exports=Register

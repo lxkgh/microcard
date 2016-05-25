@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import Topbar from 'topbar'
 import MenuItem from 'menuitem'
@@ -10,6 +10,15 @@ import cx from 'classnames'
 class EditCard extends React.Component{
     constructor(props){
         super(props);
+    }
+    clickMyInfo(){
+        this.context.router.push('/myinfo')
+    }
+    clickMySociety(){
+        this.context.router.push('/mysociety')
+    }
+    clickMySign(){
+        this.context.router.push('/mysign')
     }
     render(){
         const MenuItem1Props ={
@@ -132,9 +141,12 @@ class EditCard extends React.Component{
                 <div className={styles.wrapDivStyle}>
                     <div className={cx(styles.menuDivStyle,'fixed')}>
                         <section className={cx(styles.section1,'fixed')}>
-                            <MenuItem {...MenuItem1Props}/>
-                            <MenuItem {...MenuItem2Props}/>
-                            <MenuItem {...MenuItem3Props}/>
+                            <MenuItem {...MenuItem1Props}
+                                onClick={()=>{this.clickMyInfo()}}/>
+                            <MenuItem {...MenuItem2Props}
+                                onClick={()=>{this.clickMySociety()}}/>
+                            <MenuItem {...MenuItem3Props}
+                                onClick={()=>{this.clickMySign()}}/>
                             <MenuItem {...MenuItem4Props}/>
                         </section>
                         <section className={cx(styles.section1,'fixed')}>
@@ -151,5 +163,8 @@ class EditCard extends React.Component{
             </div>
         )
     }
+}
+EditCard.contextTypes = {
+    router:PropTypes.object
 }
 module.exports=EditCard

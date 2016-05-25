@@ -7,7 +7,7 @@ class MenuBoxItem extends React.Component {
         super(props)
     }
     render() {
-        const {num,itemSvg,size,svgColor,name} = this.props
+        const {num,itemSvg,size,svgColor,name,onClick} = this.props
         let width = 100/num+'%'
         const styles = {
             li:{
@@ -38,7 +38,8 @@ class MenuBoxItem extends React.Component {
             }
         }
         return (
-            <li style={styles.li}>
+            <li style={styles.li}
+                onClick={onClick}>
                 <div style={styles.div}>
                     <Svg paths={[itemSvg]}
                         size={[size,size]}
@@ -54,6 +55,7 @@ MenuBoxItem.propTypes = {
     itemSvg:PropTypes.string,
     size:PropTypes.number,
     svgColor:PropTypes.string,
-    name:PropTypes.string
+    name:PropTypes.string,
+    onClick:PropTypes.func
 }
 export default MenuBoxItem

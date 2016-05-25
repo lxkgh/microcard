@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import 'css.Common'
@@ -22,6 +22,7 @@ class FooterBar extends React.Component{
         })
     }
     handleHome(){
+        this.context.router.push('/homepage')
         this.setState({
             isClickHome:!this.state.isClickHome
         })
@@ -30,11 +31,13 @@ class FooterBar extends React.Component{
         this.setState({
             isClickMine:!this.state.isClickMine
         })
+        this.context.router.push('/mycard')
     }
     render(){
         const {isClickMsg,isClickHome,isClickMine} = this.state
         const ulStyle = {
-            width: '100%'
+            width: '100%',
+            height:'100%'
         }
         let fillMsg = '#7d7d7d'
         let fillHome = '#7d7d7d'
@@ -68,7 +71,7 @@ class FooterBar extends React.Component{
             textAlign: 'center',
             position: 'relative',
             paddingTop: '3px',
-            width: '20%'
+            width: '10%'
 
         }
         const divStyle = {
@@ -138,8 +141,8 @@ class FooterBar extends React.Component{
         return(
             <div style ={wrapdivStyle}>
                 <ul style ={ulStyle} className={cx('flexbox','space-around')}>
-                    <li style ={liStyle}>
-                        <div style ={divStyle} onClick={this.handleMsg}>
+                    <li style ={liStyle} onClick={this.handleMsg}>
+                        <div style ={divStyle} >
                             <Svg paths={[svgIcons.message]} size={[32,32]}
                                 style = {message}/>
                             <p style={pMsgStyle}>消息</p>
@@ -153,8 +156,8 @@ class FooterBar extends React.Component{
                             <p style={pMidStyle}>我的丰享</p>
                         </div>
                     </li>
-                    <li style ={liStyle}>
-                        <div style ={divStyle} onClick={this.handleMine}>
+                    <li style ={liStyle} onClick={this.handleMine}>
+                        <div style ={divStyle}>
                             <Svg paths={[svgIcons.mine]} size={[32,32]}
                                 style ={mine}/>
                             <p style={pMineStyle}>我的</p>
@@ -164,5 +167,8 @@ class FooterBar extends React.Component{
             </div>
         )
     }
+}
+FooterBar.contextTypes = {
+    router:PropTypes.object
 }
 export default FooterBar

@@ -12,11 +12,18 @@ class Topbar extends React.Component {
         }
         this.handleMenuClick = this.handleMenuClick.bind(this);
     }
+    clickBack(){
+        this.context.router.goBack()
+    }
+    clickExit(){
+        this.context.router.push('/login')
+    }
     handleMenuClick(){
         this.setState({
             isShow:!this.state.isShow
         })
     }
+
     render(){
         const  {desc} = this.props
         const {isShow} = this.state
@@ -80,7 +87,8 @@ class Topbar extends React.Component {
         return(
             <div>
                 <div className ={cx('flexbox','space-between')} style = {topbarStyle}>
-                    <a style ={leftAStyle } className={cx('flexbox','align-items-center')}>
+                    <a style ={leftAStyle } className={cx('flexbox','align-items-center')}
+                        onClick={()=>{this.clickBack()}}>
                         <Svg paths={[svgIcons.leftArrow]} size ={[32,32]}
                             style = {{fontSize: '2rem',fill: '#6f6f6f'}}/>返回</a>
                     <div>
@@ -110,7 +118,7 @@ class Topbar extends React.Component {
                             </span>
                             <div style ={btnStyle}>消息</div>
                         </li>
-                        <li>
+                        <li onClick={()=>{this.clickExit()}}>
                             <span style = {svgSpanStyle}>
                                 <Svg paths={[svgIcons.exit]} size={[32,32]}
                                     style = {{fill:'#a1a1a1'}}/>
@@ -125,5 +133,8 @@ class Topbar extends React.Component {
 }
 Topbar.propTypes= {
     desc:PropTypes.string
+}
+Topbar.contextTypes = {
+    router:PropTypes.object
 }
 export default Topbar

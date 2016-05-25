@@ -36,6 +36,7 @@ class Carousel extends React.Component {
                 </ReactCSSTransitionGroup>
                 <Selecter size={imgs.length} active={active}
                     onSelect={(i)=>{this.changeActive(i)}}/>
+                {this.props.children}
             </div>
         )
     }
