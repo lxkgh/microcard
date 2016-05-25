@@ -2,40 +2,26 @@ var webpack = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var path = require('path')
 var precss = require('precss')
-<<<<<<< HEAD
 var autoprefixer = require('autoprefixer')
 var alias = require('./alias.js')
 var noParseAlias = require('./noparseAlias.js')
+
 var config = {
     context: __dirname,
     entry: {
         vendor: ["react", "react-dom"],
-        index: 'src/js/entry/index/entry.jsx',
+        index: 'src/js/entry/web/index/entry.jsx',
         admin: 'src/js/entry/admin/admin.jsx',
-        app: 'src/js/entry/web/web.jsx'
-=======
-var autoprefixer = require('autoprefixer')        
-var alias=require('./alias.js')
-var noParseAlias=require('./noparseAlias.js')
-
-var config={
-    context:__dirname,
-    entry:{
-        vendor:["react","react-dom"],
-        index:'src/js/entry/web/index/entry.jsx',
-        admin:'src/js/entry/admin/admin.jsx',
         app: 'src/js/entry/web/web.jsx',
-        login:'src/js/entry/web/login/login.jsx',
-        register:'src/js/entry/web/register/register.jsx',
-        myIndex :'src/js/entry/web/myCard/MyIndex.jsx',
-        ChangePassword:'src/js/entry/web/myCard/ChangePassword.jsx',
-        ChangePhone:'src/js/entry/web/myCard/ChangePhone.jsx',
-        HomePage:'src/js/entry/web/homePage/HomePage.jsx',
-        EditCard:'src/js/entry/web/editCard/EditCard.jsx',
-        myInfo:'src/js/entry/web/editCard/MyInfo.jsx',
-        MySociety:'src/js/entry/web/editCard/MySociety.jsx',
-        MySign:'src/js/entry/web/editCard/MySign.jsx',
->>>>>>> a87fa7296ba9526390fc31ec116658ea255cf5c8
+        register: 'src/js/entry/web/register/register.jsx',
+        myIndex: 'src/js/entry/web/myCard/MyIndex.jsx',
+        ChangePassword: 'src/js/entry/web/myCard/ChangePassword.jsx',
+        ChangePhone: 'src/js/entry/web/myCard/ChangePhone.jsx',
+        HomePage: 'src/js/entry/web/homePage/HomePage.jsx',
+        EditCard: 'src/js/entry/web/editCard/EditCard.jsx',
+        myInfo: 'src/js/entry/web/editCard/MyInfo.jsx',
+        MySociety: 'src/js/entry/web/editCard/MySociety.jsx',
+        MySign: 'src/js/entry/web/editCard/MySign.jsx',
     },
     output: {
         path: '../../../../target/classes/assets/',
