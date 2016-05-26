@@ -6,8 +6,7 @@ module.exports={
         })
     },
     childRoutes: [
-        require('./home/index.jsx'),
-        require('./mycard/index.jsx'),
+        require('./views/index.jsx'),
         require('./editcard/index.jsx'),
         require('./editinfo/index.jsx'),
         require('./editsign/index.jsx'),

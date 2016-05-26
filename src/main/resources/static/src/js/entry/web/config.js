@@ -7,8 +7,8 @@ const ROUTES = {
     editsign: '/mypages/editsign',
     editsociety: '/mypages/editsociety',
     edittitle:'/mypages/edittitle',
-    home: '/mypages/home',
-    mycard: '/mypages/mycard',
+    home: '/mypages/views/home',
+    mycard: '/mypages/views/mycard',
     register: '/register'
 }
 export default ROUTES

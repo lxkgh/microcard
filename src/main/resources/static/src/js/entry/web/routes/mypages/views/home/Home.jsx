@@ -1,6 +1,5 @@
 import React,{PropTypes} from 'react'
 
-import Footerbar from 'footerbar'
 import styles from './Home.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
@@ -65,38 +64,35 @@ class HomePage extends React.Component{
             width:'100%'
         }
         return(
-            <div>
-                <div className={styles.wrapDivStyle}>
-                    <section className={cx(styles.item,styles.shadow)}>
-                        <div className={styles.iconfont}>
-                            <Svg paths={[svgIcons.mine]}
-                                size={[0,0]}
-                                position={[3,3]}
-                                style={{portrait}}/>
-                            <img src={defaultPortait}
-                                className={styles.headImg}/>
-                        </div>
-                        <div className={styles.info}>
-                            <h1>Molly</h1>
-                            <h3 className={styles.h3}>运营经理</h3>
-                        </div>
-                    </section>
-                    <div className={styles.crousel}>
-                        <Carousel {...CarouselPic}/>
+            <div className={styles.wrapDivStyle}>
+                <section className={cx(styles.item,styles.shadow)}>
+                    <div className={styles.iconfont}>
+                        <Svg paths={[svgIcons.mine]}
+                            size={[0,0]}
+                            position={[3,3]}
+                            style={{portrait}}/>
+                        <img src={defaultPortait}
+                            className={styles.headImg}/>
                     </div>
-                    <div className={styles.menuBox}>
-                        <ul className={styles.menuBoxUl}>
-                            <MenuBoxItem {...MenuBoxItem1Props}
-                                onClick={()=>{this.clickEditcard()}}/>
-                            <MenuBoxItem {...MenuBoxItem2Props}
-                                onClick={()=>{this.clickMyCard()}}/>
-                            <MenuBoxItem {...MenuBoxItem3Props}
-                                onClick={()=>{this.clickMore()}}/>
-                            <MenuBoxItem {...MenuBoxItem4Props}/>
-                        </ul>
+                    <div className={styles.info}>
+                        <h1>Molly</h1>
+                        <h3 className={styles.h3}>运营经理</h3>
                     </div>
+                </section>
+                <div className={styles.crousel}>
+                    <Carousel {...CarouselPic}/>
                 </div>
-                <Footerbar />
+                <div className={styles.menuBox}>
+                    <ul className={styles.menuBoxUl}>
+                        <MenuBoxItem {...MenuBoxItem1Props}
+                            onClick={()=>{this.clickEditcard()}}/>
+                        <MenuBoxItem {...MenuBoxItem2Props}
+                            onClick={()=>{this.clickMyCard()}}/>
+                        <MenuBoxItem {...MenuBoxItem3Props}
+                            onClick={()=>{this.clickMore()}}/>
+                        <MenuBoxItem {...MenuBoxItem4Props}/>
+                    </ul>
+                </div>
             </div>
         )
     }

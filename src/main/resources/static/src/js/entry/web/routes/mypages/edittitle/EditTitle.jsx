@@ -10,7 +10,6 @@ class EditTitle extends React.Component{
 
         }
     }
-
     changeSign(e){
         this.setState({
             sign:e.target.value

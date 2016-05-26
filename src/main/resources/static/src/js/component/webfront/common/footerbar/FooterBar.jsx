@@ -1,41 +1,26 @@
 import React,{PropTypes} from 'react'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
-import 'css.Common'
+import {withRouter} from 'react-router'
 import cx from 'classnames'
 import ROUTES from 'web.Config'
 
 class FooterBar extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            isClickMsg:false,
-            isClickHome:false,
-            isClickMine:false
-        }
         this.handleMsg = this.handleMsg.bind(this);
         this.handleHome = this.handleHome.bind(this);
         this.handleMine = this.handleMine.bind(this);
     }
-    handleMsg(){
-        this.setState({
-            isClickMsg:!this.state.isClickMsg
-        })
-    }
+    handleMsg(){}
     handleHome(){
-        this.context.router.push(ROUTES.home)
-        this.setState({
-            isClickHome:!this.state.isClickHome
-        })
+        this.props.router.push(ROUTES.home)
     }
     handleMine(){
-        this.setState({
-            isClickMine:!this.state.isClickMine
-        })
-        this.context.router.push(ROUTES.mycard)
+        this.props.router.push(ROUTES.mycard)
     }
     render(){
-        const {isClickMsg,isClickHome,isClickMine} = this.state
+        const {activeUrl} = this.props
         const ulStyle = {
             width: '100%',
             height:'100%'
@@ -46,15 +31,15 @@ class FooterBar extends React.Component{
         let transformMsg = 'scale(1,1)'
         let transformHome = 'scale(1,1)'
         let transformMine = 'scale(1,1)'
-        if(isClickMsg){
+        if(activeUrl==ROUTES.msg){
             fillMsg = '#1f8ff3'
             transformMsg = 'scale(1.2,1.2)'
         }
-        if(isClickHome){
+        if(activeUrl==ROUTES.home){
             fillHome = '#1f8ff3'
             transformHome = 'scale(1.2,1.2)'
         }
-        if(isClickMine){
+        if(activeUrl==ROUTES.mycard){
             fillMine = '#1f8ff3'
             transformMine = 'scale(1.2,1.2)'
         }
@@ -169,7 +154,7 @@ class FooterBar extends React.Component{
         )
     }
 }
-FooterBar.contextTypes = {
-    router:PropTypes.object
+FooterBar.propTypes={
+    activeUrl:PropTypes.string
 }
-export default FooterBar
+module.exports=withRouter(FooterBar)
