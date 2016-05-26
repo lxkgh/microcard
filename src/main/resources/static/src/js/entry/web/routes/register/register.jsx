@@ -20,7 +20,6 @@ class Register extends React.Component {
             height:'100%',
             width:'100%'
         }
-        console.log(logoPic);
         return (
             <div className = {styles.RegisterCont}>
                 <div className = {styles.Wrap}>

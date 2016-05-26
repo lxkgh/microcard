@@ -22,6 +22,9 @@ class Carousel extends React.Component {
     componentDidMount() {
         this.startCarousel()
     }
+    componentWillUnmount() {
+        this.stopCarousel()
+    }
     render() {
         const {imgs,time,width,height} = this.props
         const {active} = this.state
