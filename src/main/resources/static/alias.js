@@ -15,6 +15,7 @@ module.exports = {
     'webfront.InputItem':'src/js/component/webfront/common/InputItem/InputItem.jsx',
     'webfront.MenuBoxItem':'src/js/component/webfront/common/menuboxitem/MenuBoxItem.jsx',
     'webfront.Popup':'src/js/component/webfront/common/popup/Popup.jsx',
+    'webfront.QRcodeBar':'src/js/component/webfront/common/QRcodeBar/QRcodeBar.jsx',
 
     'admin.Button': 'src/js/component/admin/common/button/button.jsx',
     'admin.Content': 'src/js/component/admin/common/content/content.jsx',

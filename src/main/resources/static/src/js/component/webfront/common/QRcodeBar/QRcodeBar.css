@@ -1,0 +1,20 @@
+.wrapDivStyle {
+    background: #fff;
+    border-bottom: solid 1px #e9e9e9;
+    padding: 0 10px;
+}
+.infoDivStyle {
+    padding: 12px 0;
+}
+.QRcodeNameStyle {
+    font-size: 1.4rem;
+    color: #2f2f2f;
+    line-height: 1.3;
+    margin-bottom: 5px;
+}
+.QRLinkTitleStyle {
+    background: transparent;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.2);
+    color: #4f4f4f;
+}

@@ -32,7 +32,8 @@ const rootRoute={
             require('./routes/myinfo/index.jsx'),
             require('./routes/mysign/index.jsx'),
             require('./routes/mysociety/index.jsx'),
-            require('./routes/register/index.jsx')
+            require('./routes/register/index.jsx'),
+            require('./routes/mysettitle/index.jsx')
         ]
     }]
 }
