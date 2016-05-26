@@ -44,6 +44,11 @@ class MyIndex extends React.Component{
             afterSvg:svgIcons.rightArrow,
             afterSize:16
         }
+        const helpCenterProps = {
+            frontName:'帮助中心',
+            afterSvg:svgIcons.rightArrow,
+            afterSize:16
+        }
         const wrapMenuDivStyle = {
             top:'44px',
             position:'relative',
@@ -89,6 +94,9 @@ class MyIndex extends React.Component{
                     </ul>
                     <ul className= {styles.normalUl}>
                         <MenuItem {...aboutUsProps}/>
+                    </ul>
+                    <ul className= {styles.normalUl}>
+                        <MenuItem {...helpCenterProps}/>
                     </ul>
                     <div className= {styles.buttonDiv}>
                         <Button {...buttonProps}>{buttonProps.desc}</Button>
