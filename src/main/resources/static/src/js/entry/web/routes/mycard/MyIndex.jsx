@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import Topbar from 'topbar'
 import FooterBar from 'footerbar'
@@ -13,6 +13,13 @@ class MyIndex extends React.Component{
     constructor(props){
         super(props);
     }
+    clickChangePassword(){
+        this.context.router.push('/changepassword')
+    }
+    clickChangePhone(){
+        this.context.router.push('/changephone')
+    }
+
     render(){
         const MyPhoneProps = {
             frontName:'13819191919',
@@ -70,11 +77,13 @@ class MyIndex extends React.Component{
                     </section>
                     <h2 className ={styles.h2Style}>已绑定手机号</h2>
                     <ul>
-                        <MenuItem {...MyPhoneProps}/>
+                        <MenuItem {...MyPhoneProps}
+                            onClick={()=>{this.clickChangePhone()}}/>
                     </ul>
                     <h2 className= {styles.h2Style}>安全设置</h2>
                     <ul>
-                        <MenuItem {...changePasswordProps}/>
+                        <MenuItem {...changePasswordProps}
+                            onClick={()=>{this.clickChangePassword()}}/>
                     </ul>
                     <ul className= {styles.normalUl}>
                         <MenuItem {...aboutUsProps}/>
@@ -87,5 +96,8 @@ class MyIndex extends React.Component{
             </div>
         )
     }
+}
+MyIndex.contextTypes = {
+    router:PropTypes.object
 }
 module.exports=MyIndex

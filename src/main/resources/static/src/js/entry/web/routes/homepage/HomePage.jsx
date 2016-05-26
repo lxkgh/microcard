@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import Topbar from 'topbar'
 import Footerbar from 'footerbar'
@@ -8,9 +8,24 @@ import svgIcons from 'svgIcons'
 import cx from 'classnames'
 import MenuBoxItem from 'webfront.MenuBoxItem'
 import fileSvgIcons from './homePageSvg.js'
+import defaultPortait from './头像默认.png'
+import img1 from './主页轮播1.jpg'
+import img2 from './主页轮播2.jpg'
+import img3 from './主页轮播3.jpg'
+import Carousel from 'Carousel'
+
 class HomePage extends React.Component{
     constructor(props){
         super(props);
+    }
+    clickEditcard(){
+        this.context.router.push('/editcard')
+    }
+    clickMyCard(){
+        this.context.router.push('/mycard')
+    }
+    clickMore(){
+
     }
     render(){
         const topbarProps = {
@@ -47,6 +62,11 @@ class HomePage extends React.Component{
             svgColor:'#ea8010',
             name:'地图导航'
         }
+        const CarouselPic = {
+            imgs:[img1,img2,img3],
+            height:'100%',
+            width:'100%'
+        }
         return(
             <div>
                 <Topbar {...topbarProps}/>
@@ -57,7 +77,7 @@ class HomePage extends React.Component{
                                 size={[0,0]}
                                 position={[3,3]}
                                 style={{portrait}}/>
-                            <img src="http://img4.imgtn.bdimg.com/it/u=85317439,938828283&fm=23&gp=0.jpg"
+                            <img src={defaultPortait}
                                 className={styles.headImg}/>
                         </div>
                         <div className={styles.info}>
@@ -66,14 +86,16 @@ class HomePage extends React.Component{
                         </div>
                     </section>
                     <div className={styles.crousel}>
-                        <img src="http://img1.imgtn.bdimg.com/it/u=1950598071,2605647260&fm=23&gp=0.jpg"
-                            className={styles.img}/>
+                        <Carousel {...CarouselPic}/>
                     </div>
                     <div className={styles.menuBox}>
                         <ul className={styles.menuBoxUl}>
-                            <MenuBoxItem {...MenuBoxItem1Props}/>
-                            <MenuBoxItem {...MenuBoxItem2Props}/>
-                            <MenuBoxItem {...MenuBoxItem3Props}/>
+                            <MenuBoxItem {...MenuBoxItem1Props}
+                                onClick={()=>{this.clickEditcard()}}/>
+                            <MenuBoxItem {...MenuBoxItem2Props}
+                                onClick={()=>{this.clickMyCard()}}/>
+                            <MenuBoxItem {...MenuBoxItem3Props}
+                                onClick={()=>{this.clickMore()}}/>
                             <MenuBoxItem {...MenuBoxItem4Props}/>
                         </ul>
                     </div>
@@ -82,5 +104,8 @@ class HomePage extends React.Component{
             </div>
         )
     }
+}
+HomePage.contextTypes = {
+    router:PropTypes.object
 }
 module.exports=HomePage

@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 import styles from './login.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
 import request from 'superagent'
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -29,6 +30,7 @@ class Login extends React.Component {
         })
     }
     doSubmit(){
+        this.context.router.push('/homepage')
         const user={
             username:this.state.username,
             password:this.state.password
@@ -44,6 +46,9 @@ class Login extends React.Component {
               }
           })
     }
+    clickRegister(){
+        this.context.router.push('/register')
+    }
     render() {
         return (
             <div className={styles.myCont}>
@@ -51,7 +56,7 @@ class Login extends React.Component {
                     <div className={styles.loginHd}>
                         <Svg paths ={[svgIcons.microcard]}
                         size ={[128,128]} className={cx(styles.microcardSvg,styles.svg)}/>
-                        <h2>巴拉巴拉</h2>
+                        <h2>丰享名片</h2>
                     </div>
                     <div className={styles.loginCont}>
                         <form onChange={this.submitForm}>
@@ -96,12 +101,19 @@ class Login extends React.Component {
                         <div className={styles.rgtDiv}>
                             <input className={styles.rgtBtn}
                                         type= "button"
-                                        value="注册"/>
+                                        value="注册"
+                                        onClick={()=>{this.clickRegister()}}/>
                         </div>
                     </div>
                 </section>
             </div>
         )
     }
+}
+Login.contextTypes = {
+    router:PropTypes.object
+}
+Login.propTypes={
+    history:PropTypes.object
 }
 module.exports=Login
