@@ -4,6 +4,7 @@ import styles from './EditInfo.css'
 import cx from 'classnames'
 import InputItem from 'webfront.InputItem'
 import Button from 'webfront.Button'
+import IdcardItem from 'webfront.IdcardItem'
 
 class EditInfo extends React.Component{
     constructor(props){
@@ -14,8 +15,6 @@ class EditInfo extends React.Component{
             job:'',
             department:'',
             cellphone:'',
-            phone:'',
-            tax:'',
             address:'',
             email:''
         }
@@ -45,16 +44,11 @@ class EditInfo extends React.Component{
             cellphone:e.target.value
         })
     }
-    changePhone(e){
-        this.setState({
-            phone:e.target.value
-        })
-    }
-    changeTax(e){
-        this.setState({
-            tax:e.target.value
-        })
-    }
+    // changePhone(e){
+    //     this.setState({
+    //         phone:e.target.value
+    //     })
+    // }
     changeAddress(e){
         this.setState({
             address:e.target.value
@@ -66,8 +60,7 @@ class EditInfo extends React.Component{
         })
     }
     render(){
-        const {realname,company,job,department,cellphone,
-            phone,tax,address,email} = this.state
+        const {realname,company,job,department,cellphone,address,email} = this.state
         const input1props = {
             tagName:'姓名',
             type:'text',
@@ -99,24 +92,12 @@ class EditInfo extends React.Component{
             value:cellphone
         }
         const input6props = {
-            tagName:'座机',
-            type:'text',
-            defaultInfo:'请输入座机号码',
-            value:phone
-        }
-        const input7props = {
-            tagName:'传真',
-            type:'text',
-            defaultInfo:'请输入传真号码',
-            value:tax
-        }
-        const input8props = {
             tagName:'地址',
             type:'text',
             defaultInfo:'请输入您的地址',
             value:address
         }
-        const input9props = {
+        const input7props = {
             tagName:'邮箱',
             type:'text',
             defaultInfo:'请输入您的邮箱',
@@ -128,6 +109,7 @@ class EditInfo extends React.Component{
                     <section className="fixed">
                         <h3 className={styles.h3Style}>基本信息</h3>
                         <ul className={cx(styles.ulStyle,'fixed')}>
+                            <IdcardItem />
                             <InputItem {...input1props}
                                 onChange={(e)=>{this.changeRealname(e)}}/>
                             <InputItem {...input2props}
@@ -139,12 +121,8 @@ class EditInfo extends React.Component{
                             <InputItem {...input5props}
                                 onChange={(e)=>{this.changeCellphone(e)}}/>
                             <InputItem {...input6props}
-                                onChange={(e)=>{this.changePhone(e)}}/>
-                            <InputItem {...input7props}
-                                onChange={(e)=>{this.changeTax(e)}}/>
-                            <InputItem {...input8props}
                                 onChange={(e)=>{this.changeAddress(e)}}/>
-                            <InputItem {...input9props}
+                            <InputItem {...input7props}
                                 onChange={(e)=>{this.changeEmail(e)}}/>
                         </ul>
                         <Button>保存</Button>
