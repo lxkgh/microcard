@@ -1,15 +1,10 @@
-* {
-    box-sizing: border-box;
-    -moz-box-sizing:border-box; /* Firefox */
-    -webkit-box-sizing:border-box; /* Safari */
-}
 .wrapDivStyle {
     z-index: 1;
-    position: relative;;
+    position: relative;
     top: 44px;
     bottom: 0;
     overflow: auto;
-    max-width:600px;
+    max-width: 600px;
     background-color: #f0f1f3;
     margin: auto;
     height: 800px;
