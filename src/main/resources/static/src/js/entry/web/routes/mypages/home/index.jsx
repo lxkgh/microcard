@@ -1,8 +1,8 @@
 module.exports={
-    path:'myinfo',
+    path:'home',
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('./MyInfo.jsx'))
+            cb(null, require('./Home.jsx'))
         })
     }
 }

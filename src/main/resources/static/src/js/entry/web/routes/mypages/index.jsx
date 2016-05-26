@@ -6,13 +6,14 @@ module.exports={
         })
     },
     childRoutes: [
-        require('./homepage/index.jsx'),
-        require('./editcard/index.jsx'),
+        require('./home/index.jsx'),
         require('./mycard/index.jsx'),
+        require('./editcard/index.jsx'),
         require('./editinfo/index.jsx'),
         require('./editsign/index.jsx'),
         require('./editsociety/index.jsx'),
         require('./editphone/index.jsx'),
-        require('./editpassword/index.jsx')
+        require('./editpassword/index.jsx'),
+        require('./edittitle/index.jsx')
     ]
 }

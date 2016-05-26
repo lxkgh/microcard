@@ -23,17 +23,9 @@ const rootRoute={
         component: App,
         indexRoute: { onEnter: (nextState, replace) => replace('/login') },
         childRoutes: [
-            require('./routes/changepassword/index.jsx'),
-            require('./routes/changephone/index.jsx'),
-            require('./routes/editcard/index.jsx'),
-            require('./routes/homepage/index.jsx'),
             require('./routes/login/index.jsx'),
-            require('./routes/mycard/index.jsx'),
-            require('./routes/myinfo/index.jsx'),
-            require('./routes/mysign/index.jsx'),
-            require('./routes/mysociety/index.jsx'),
-            require('./routes/register/index.jsx'),
-            require('./routes/mysettitle/index.jsx')
+            require('./routes/mypages/index.jsx'),
+            require('./routes/register/index.jsx')
         ]
     }]
 }

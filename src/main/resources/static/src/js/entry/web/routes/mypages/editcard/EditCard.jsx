@@ -4,19 +4,22 @@ import fileSvgIcons from './editCardSvg.js'
 import svgIcons from 'svgIcons'
 import styles from './editCard.css'
 import cx from 'classnames'
-
+import ROUTES from 'web.Config'
 class EditCard extends React.Component{
     constructor(props){
         super(props);
     }
     clickMyInfo(){
-        this.context.router.push('/mypages/editinfo')
+        this.context.router.push(ROUTES.editinfo)
     }
     clickMySociety(){
-        this.context.router.push('/mypages/editsociety')
+        this.context.router.push(ROUTES.editsociety)
     }
     clickMySign(){
-        this.context.router.push('/mypages/editsign')
+        this.context.router.push(ROUTES.editsign)
+    }
+    clickEditTitle(){
+        this.context.router.push(ROUTES.edittitle)
     }
     render(){
         const MenuItem1Props ={
@@ -144,7 +147,8 @@ class EditCard extends React.Component{
                                 onClick={()=>{this.clickMySociety()}}/>
                             <MenuItem {...MenuItem3Props}
                                 onClick={()=>{this.clickMySign()}}/>
-                            <MenuItem {...MenuItem4Props}/>
+                            <MenuItem {...MenuItem4Props}
+                                onClick={()=>{this.clickEditTitle()}}/>
                         </section>
                         <section className={cx(styles.section1,'fixed')}>
                             <MenuItem {...MenuItem5Props}/>

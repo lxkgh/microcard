@@ -23,4 +23,6 @@ module.exports = {
     'admin.SideNav': 'src/js/component/admin/common/sidenav/sidenav.jsx',
     'admin.NavItem': 'src/js/component/admin/common/sidenav/navitem/navitem.jsx',
     'admin.Table': 'src/js/component/admin/common/table/table.jsx',
+
+    'web.Config':'src/js/entry/web/config.js',
 };

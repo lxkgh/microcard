@@ -8,15 +8,16 @@ import styles from './MyCard.css'
 import Button from 'webfront.Button'
 import 'css.Common'
 import fileSvgIcons from './myIndexSvg.js'
+import ROUTES from 'web.Config'
 class MyIndex extends React.Component{
     constructor(props){
         super(props);
     }
     clickChangePassword(){
-        this.context.router.push('/mypages/editpassword')
+        this.context.router.push(ROUTES.editpassword)
     }
     clickChangePhone(){
-        this.context.router.push('/mypages/editphone')
+        this.context.router.push(ROUTES.editphone)
     }
 
     render(){

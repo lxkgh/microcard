@@ -2,15 +2,17 @@ import React,{PropTypes} from 'react'
 
 import Topbar from 'topbar'
 
+import ROUTES from 'web.Config'
+
 const TopbarTitle={
-    ['/mypages/homepage']:'名片主页',
-    ['/mypages/editcard']:'编辑名片',
-    ['/mypages/mycard']:'我的名片',
-    ['/mypages/editphone']:'修改绑定手机',
-    ['/mypages/editpassword']:'修改登录密码',
-    ['/mypages/editinfo']:'修改个人基本信息',
-    ['/mypages/editsociety']:'修改个人社交信息',
-    ['/mypages/editsign']:'修改个人签名'
+    [ROUTES.home]:'名片主页',
+    [ROUTES.mycard]:'我的名片',
+    [ROUTES.editcard]:'编辑名片',
+    [ROUTES.editinfo]:'修改个人基本信息',
+    [ROUTES.editsign]:'修改个人签名',
+    [ROUTES.editsociety]:'修改个人社交信息',
+    [ROUTES.editphone]:'修改绑定手机',
+    [ROUTES.editpassword]:'修改登录密码'
 }
 
 class MyPages extends React.Component {

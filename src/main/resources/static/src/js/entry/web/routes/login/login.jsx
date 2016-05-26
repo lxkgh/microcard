@@ -4,6 +4,7 @@ import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
 import request from 'superagent'
+import ROUTES from 'web.Config'
 
 class Login extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class Login extends React.Component {
         })
     }
     doSubmit(){
-        this.context.router.push('/homepage')
+        this.context.router.push(ROUTES.home)
         const user={
             username:this.state.username,
             password:this.state.password
@@ -47,7 +48,7 @@ class Login extends React.Component {
           })
     }
     clickRegister(){
-        this.context.router.push('/register')
+        this.context.router.push(ROUTES.register)
     }
     render() {
         return (

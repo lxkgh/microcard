@@ -3,7 +3,7 @@ import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import 'css.Common'
 import cx from 'classnames'
-
+import ROUTES from 'web.Config'
 class Topbar extends React.Component {
     constructor(props){
         super(props);
@@ -16,7 +16,7 @@ class Topbar extends React.Component {
         this.context.router.goBack()
     }
     clickExit(){
-        this.context.router.push('/login')
+        this.context.router.push(ROUTES.login)
     }
     handleMenuClick(){
         this.setState({

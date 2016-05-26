@@ -1,36 +1,33 @@
 import React,{PropTypes} from 'react'
 
-import Topbar from 'topbar'
 import Footerbar from 'footerbar'
-import styles from './homePage.css'
+import styles from './Home.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
 import MenuBoxItem from 'webfront.MenuBoxItem'
-import fileSvgIcons from './homePageSvg.js'
+import fileSvgIcons from './HomeSvg.js'
 import defaultPortait from './头像默认.png'
 import img1 from './主页轮播1.jpg'
 import img2 from './主页轮播2.jpg'
 import img3 from './主页轮播3.jpg'
 import Carousel from 'Carousel'
+import ROUTES from 'web.Config'
 
 class HomePage extends React.Component{
     constructor(props){
         super(props);
     }
     clickEditcard(){
-        this.context.router.push('/editcard')
+        this.context.router.push(ROUTES.editcard)
     }
     clickMyCard(){
-        this.context.router.push('/mycard')
+        this.context.router.push(ROUTES.mycard)
     }
     clickMore(){
 
     }
     render(){
-        const topbarProps = {
-            desc:'名片主页'
-        }
         const portrait = {
             fill:'d3d9dd'
         }
@@ -69,7 +66,6 @@ class HomePage extends React.Component{
         }
         return(
             <div>
-                <Topbar {...topbarProps}/>
                 <div className={styles.wrapDivStyle}>
                     <section className={cx(styles.item,styles.shadow)}>
                         <div className={styles.iconfont}>

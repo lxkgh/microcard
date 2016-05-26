@@ -3,6 +3,7 @@ import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import 'css.Common'
 import cx from 'classnames'
+import ROUTES from 'web.Config'
 
 class FooterBar extends React.Component{
     constructor(props){
@@ -22,7 +23,7 @@ class FooterBar extends React.Component{
         })
     }
     handleHome(){
-        this.context.router.push('/homepage')
+        this.context.router.push(ROUTES.home)
         this.setState({
             isClickHome:!this.state.isClickHome
         })
@@ -31,7 +32,7 @@ class FooterBar extends React.Component{
         this.setState({
             isClickMine:!this.state.isClickMine
         })
-        this.context.router.push('/mycard')
+        this.context.router.push(ROUTES.mycard)
     }
     render(){
         const {isClickMsg,isClickHome,isClickMine} = this.state

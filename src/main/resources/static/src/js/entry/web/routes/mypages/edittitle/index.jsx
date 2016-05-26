@@ -1,8 +1,8 @@
 module.exports={
-    path:'editcard',
+    path:'edittitle',
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('./EditCard.jsx'))
+            cb(null, require('./EditTitle.jsx'))
         })
     }
 }

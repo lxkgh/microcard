@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Topbar from 'topbar'
-import styles from './MySetTitle.css'
+import styles from './EditTitle.css'
 
-class MySetTitle extends React.Component{
+class EditTitle extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -47,4 +47,4 @@ class MySetTitle extends React.Component{
         )
     }
 }
-module.exports=MySetTitle
+module.exports=EditTitle
