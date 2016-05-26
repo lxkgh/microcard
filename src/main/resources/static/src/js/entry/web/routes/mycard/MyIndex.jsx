@@ -27,7 +27,9 @@ class MyIndex extends React.Component{
             frontSize:16,
             afterSvg:svgIcons.rightArrow,
             afterSize:16,
-            afterName:'修改'
+            afterName:'修改',
+            rectWidth:'',
+            rectHeight:''
         }
         const topbarProps = {
             desc:'我的'
