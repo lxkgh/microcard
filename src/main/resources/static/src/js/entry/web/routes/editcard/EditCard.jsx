@@ -6,19 +6,23 @@ import fileSvgIcons from './editCardSvg.js'
 import svgIcons from 'svgIcons'
 import styles from './editCard.css'
 import cx from 'classnames'
+import {withRouter} from 'react-router'
 
 class EditCard extends React.Component{
     constructor(props){
         super(props);
     }
     clickMyInfo(){
-        this.context.router.push('/myinfo')
+        this.props.router.push('/myinfo')
     }
     clickMySociety(){
-        this.context.router.push('/mysociety')
+        this.props.router.push('/mysociety')
     }
     clickMySign(){
-        this.context.router.push('/mysign')
+        this.props.router.push('/mysign')
+    }
+    clickMySetTitle(){
+        this.props.router.push('/mysettitle')
     }
     render(){
         const MenuItem1Props ={
@@ -147,7 +151,8 @@ class EditCard extends React.Component{
                                 onClick={()=>{this.clickMySociety()}}/>
                             <MenuItem {...MenuItem3Props}
                                 onClick={()=>{this.clickMySign()}}/>
-                            <MenuItem {...MenuItem4Props}/>
+                            <MenuItem {...MenuItem4Props}
+                                onClick={()=>{this.clickMySetTitle()}}/>
                         </section>
                         <section className={cx(styles.section1,'fixed')}>
                             <MenuItem {...MenuItem5Props}/>
@@ -164,7 +169,7 @@ class EditCard extends React.Component{
         )
     }
 }
-EditCard.contextTypes = {
-    router:PropTypes.object
+EditCard.propTypes = {
+    router: PropTypes.object
 }
-module.exports=EditCard
+module.exports=withRouter(EditCard)

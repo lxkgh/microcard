@@ -10,7 +10,8 @@ class MenuItem extends React.Component {
     render(){
         const {frontSvg,frontSize,afterSvg,afterSize,frontName,
                 divContent,afterName,frontSvgFill,afterSvgFill,
-                svgBackColor,rx,ry,viewBoxInfo,rectx,recty,onClick} = this.props
+                svgBackColor,rx,ry,viewBoxInfo,rectx,recty,
+                rectWidth,rectHeight,onClick} = this.props
         const frontSvgStyle = {
             fill:frontSvgFill,
             marginRight:'5px'
@@ -33,8 +34,8 @@ class MenuItem extends React.Component {
             width:'100%'
         }
         const rectStyle = {
-            width:'100%',
-            height:'100%',
+            width:rectWidth,
+            height:rectHeight,
             stroke:'none',
             fill:svgBackColor,
             rx:rx,
@@ -85,10 +86,14 @@ MenuItem.propTypes={
     viewBoxInfo:PropTypes.string,
     rectx:PropTypes.number,
     recty:PropTypes.number,
-    onClick:PropTypes.func
+    onClick:PropTypes.func,
+    rectWidth:PropTypes.string,
+    rectHeight:PropTypes.string
 }
 MenuItem.defaultProps = {
     frontSize:0,
-    afterSize:0
+    afterSize:0,
+    rectWidth:'100%',
+    rectHeight:'100%'
 }
 export default MenuItem
