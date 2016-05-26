@@ -6,8 +6,6 @@ import { hashHistory, Router} from 'react-router'
 import 'css.Common'
 
 import LeftNav from './component/leftnav/leftnav.jsx'
-// import Users from './users/users.jsx'
-// import Images from './images/images.jsx'
 
 const styles={
     adminAPP:{
@@ -34,10 +32,11 @@ const rootRoute={
     childRoutes: [{
         path: '/',
         component: AdminAPP,
+        indexRoute: { onEnter: (nextState, replace) => replace('/users') },
         childRoutes: [
             require('./users/index.jsx'),
             require('./images/bkgindex.jsx'),
-            require('./images//iconindex.jsx')
+            require('./images/iconindex.jsx')
         ]
     }]
 }

@@ -21,6 +21,7 @@ const rootRoute={
     childRoutes: [{
         path: '/',
         component: App,
+        indexRoute: { onEnter: (nextState, replace) => replace('/login') },
         childRoutes: [
             require('./routes/changepassword/index.jsx'),
             require('./routes/changephone/index.jsx'),

@@ -10,6 +10,11 @@ import com.itbegin.outprojs.microcard.utils.PathUtil;
 @Controller
 @EnableAutoConfiguration
 public class AppAction {
+	@RequestMapping(value="/")
+	public String home(){
+		return "redirect:/app";
+	}
+	
 	@RequestMapping(value="/app")
 	public String home(Model model){
 		model.addAttribute("CSSes", PathUtil.resolveCSSs("app"));
