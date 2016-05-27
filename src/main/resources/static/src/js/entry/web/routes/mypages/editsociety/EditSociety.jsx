@@ -10,17 +10,11 @@ class EditSociety extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            subscription:'',
             qq:'',
             wechat:'',
-            sinaMicroBlog:''
+            showQQ:false,
+            showWebchat:false
         }
-    }
-
-    changeSubscription(e){
-        this.setState({
-            subscription:e.target.value
-        })
     }
     changeQQ(e){
         this.setState({
@@ -32,19 +26,11 @@ class EditSociety extends React.Component{
             wechat:e.target.value
         })
     }
-    changeSinaMicroBlog(e){
-        this.setState({
-            sinaMicroBlog:e.target.value
-        })
-    }
     render(){
-        const {subscription,qq,wechat,sinaMicroBlog} = this.state
-        const input1props = {
-            tagName:'微信公众号',
-            type:'text',
-            defaultInfo:'请输入您的微信公众号',
-            value:subscription
+        const topbarProps = {
+            desc:'修改个人社交信息'
         }
+        const {qq,wechat} = this.state
         const input2props = {
             tagName:'QQ',
             type:'text',
@@ -54,14 +40,22 @@ class EditSociety extends React.Component{
         const input3props = {
             tagName:'微信号',
             type:'text',
-            defaultInfo:'请输入您的微信公众号',
+            defaultInfo:'请输入您的微信号',
             value:wechat
         }
-        const input4props = {
-            tagName:'新浪微博',
-            type:'text',
-            defaultInfo:'请输入您的新浪微博',
-            value:sinaMicroBlog
+        const codeBar2props = {
+            QRcodeName:'QQ二维码',
+            QRLink:'',
+            QRLinkTitle:'如何获取QQ号二维码',
+            QRcodeSvg:fileSvgIcons.QRcode,
+            svgSize:32
+        }
+        const codeBar3props = {
+            QRcodeName:'微信二维码',
+            QRLink:'',
+            QRLinkTitle:'如何获取微信号二维码',
+            QRcodeSvg:fileSvgIcons.QRcode,
+            svgSize:32
         }
         return(
             <div className= {styles.wrapDivStyle}>
@@ -69,14 +63,11 @@ class EditSociety extends React.Component{
                     <section className="fixed">
                         <h3 className={styles.h3Style}>社交信息</h3>
                         <ul className={cx(styles.ulStyle,'fixed')}>
-                            <InputItem {...input1props}
-                                onChange={(e)=>{this.changeSubscription(e)}}/>
                             <InputItem {...input2props}
                                 onChange={(e)=>{this.changeQQ(e)}}/>
                             <InputItem {...input3props}
                                 onChange={(e)=>{this.changeWechat(e)}}/>
-                            <InputItem {...input4props}
-                                onChange={(e)=>{this.changeSinaMicroBlog(e)}}/>
+                            {this.state.showWebchat?<QRcodeBar {...codeBar3props}/>:null}
                         </ul>
                         <Button>保存</Button>
                     </section>
