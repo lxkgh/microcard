@@ -1,11 +1,11 @@
 import React from 'react'
-
+import QRcodeBar from 'webfront.QRcodeBar'
 import styles from './EditSociety.css'
 import cx from 'classnames'
 import InputItem from 'webfront.InputItem'
 import Button from 'webfront.Button'
 import Popup from 'webfront.Popup'
-
+import fileSvgIcons from './EditSocietySvg.js'
 class EditSociety extends React.Component{
     constructor(props){
         super(props);
@@ -18,18 +18,17 @@ class EditSociety extends React.Component{
     }
     changeQQ(e){
         this.setState({
-            qq:e.target.value
+            qq:e.target.value,
+            showQQ:e.target.value
         })
     }
     changeWechat(e){
         this.setState({
-            wechat:e.target.value
+            wechat:e.target.value,
+            showWebchat:e.target.value
         })
     }
     render(){
-        const topbarProps = {
-            desc:'修改个人社交信息'
-        }
         const {qq,wechat} = this.state
         const input2props = {
             tagName:'QQ',
@@ -65,6 +64,7 @@ class EditSociety extends React.Component{
                         <ul className={cx(styles.ulStyle,'fixed')}>
                             <InputItem {...input2props}
                                 onChange={(e)=>{this.changeQQ(e)}}/>
+                            {this.state.showQQ?<QRcodeBar {...codeBar2props}/>:null}
                             <InputItem {...input3props}
                                 onChange={(e)=>{this.changeWechat(e)}}/>
                             {this.state.showWebchat?<QRcodeBar {...codeBar3props}/>:null}

@@ -25,7 +25,9 @@ class MyIndex extends React.Component{
             frontSize:16,
             afterSvg:svgIcons.rightArrow,
             afterSize:16,
-            afterName:'修改'
+            afterName:'修改',
+            rectHeight:'',
+            rectWidth:''
         }
         const changePasswordProps = {
             frontName:'登录密码修改',
