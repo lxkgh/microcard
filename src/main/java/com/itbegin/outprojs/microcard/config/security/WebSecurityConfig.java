@@ -10,34 +10,40 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecUserDetailsService secUserDetailsService;
-	
-	
+	@Autowired
+	private MyAuthSuccessHandler myAuthSuccessHandler;
+	@Autowired
+	private MyAuthFailureHandler myAuthFailureHandler;
+	@Autowired
+	private MyLogoutSuccessHandler myLogoutSuccessHandler;
+    
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(secUserDetailsService);
 	}
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/**").permitAll();
-//		http.csrf().disable()
-//			.authorizeRequests()                                                          
-//			.antMatchers("/api/admin/**","/add/**","/admin/**").permitAll()                  
-//			.antMatchers("/edit/**","/test").hasAnyRole("USER","ADMIN")                                 
-//			.anyRequest().authenticated()
-//			.and()
-//			.formLogin()
-//			.loginPage("/login")
-//			.loginProcessingUrl("/login")
-//			.usernameParameter("username")
-//			.passwordParameter("password")
-//			.defaultSuccessUrl("/test")
-//			.failureUrl("/admin/home")
-//			.permitAll()
-//			.and()
-//			.httpBasic();
+		
+		http.csrf().disable().exceptionHandling().accessDeniedPage("/admin")
+		.and()
+		.authorizeRequests()
+		.antMatchers("/api/**","/app").permitAll()
+		.anyRequest().authenticated()
+		.and()
+		.formLogin()
+		.usernameParameter("username")
+		.passwordParameter("password")
+		.loginPage("/app").loginProcessingUrl("/login")
+		.successHandler(myAuthSuccessHandler)
+		.failureHandler(myAuthFailureHandler)
+		.permitAll()
+		.and().logout()
+		.logoutUrl("/logout")
+		.logoutSuccessHandler(myLogoutSuccessHandler)
+        .permitAll();
 	}
 	
 	@Override

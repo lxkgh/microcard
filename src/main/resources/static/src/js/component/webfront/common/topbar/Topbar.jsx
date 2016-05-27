@@ -1,9 +1,9 @@
 import React,{PropTypes} from 'react'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
-import 'css.Common'
+import request from 'superagent'
 import cx from 'classnames'
-import ROUTES from 'web.Config'
+// import ROUTES from 'web.Config'
 class Topbar extends React.Component {
     constructor(props){
         super(props);
@@ -16,7 +16,14 @@ class Topbar extends React.Component {
         this.context.router.goBack()
     }
     clickExit(){
-        this.context.router.push(ROUTES.login)
+        request.get('/logout')
+        .end((err,res)=>{
+            if (!err) {
+                const data = JSON.parse(res.text)
+                console.log(data)
+            }
+        })
+        // this.context.router.push(ROUTES.login)
     }
     handleMenuClick(){
         this.setState({

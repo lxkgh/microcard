@@ -31,18 +31,20 @@ class Login extends React.Component {
         })
     }
     doSubmit(){
-        this.context.router.push(ROUTES.home)
+        // this.context.router.push(ROUTES.home)
         const user={
             username:this.state.username,
             password:this.state.password
         }
         request.post('/login')
           .send(user)
+          .set('Content-Type','application/x-www-form-urlencoded')
           .end((err,res)=>{
               if (!err) {
                   const data=JSON.parse(res.text)
+                  console.log(data);
                   if (data.success) {
-                      window.location=window.location
+                    //   window.location=window.location
                   }
               }
           })
