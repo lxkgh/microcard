@@ -26,4 +26,7 @@ module.exports = {
     'admin.Table': 'src/js/component/admin/common/table/table.jsx',
 
     'web.Config':'src/js/entry/web/config.js',
+    'web.Auth':'src/js/entry/web/auth.jsx',
+
+    'Auth':'src/lib/auth.js'
 };

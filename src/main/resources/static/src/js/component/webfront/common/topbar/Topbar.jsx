@@ -3,29 +3,31 @@ import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import request from 'superagent'
 import cx from 'classnames'
-// import ROUTES from 'web.Config'
+import ROUTES from 'web.Config'
+import Auth from 'Auth'
+import {withRouter} from 'react-router'
+
 class Topbar extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             isShow:true
         }
-        this.handleMenuClick = this.handleMenuClick.bind(this);
     }
     clickBack(){
-        this.context.router.goBack()
+        this.props.router.goBack()
     }
     clickExit(){
         request.get('/logout')
-        .end((err,res)=>{
-            if (!err) {
-                const data = JSON.parse(res.text)
-                console.log(data)
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            if (data.success) {
+                Auth.logout()
+                this.props.router.push(ROUTES.login)
             }
         })
-        // this.context.router.push(ROUTES.login)
     }
-    handleMenuClick(){
+    handleMenuClick=()=>{
         this.setState({
             isShow:!this.state.isShow
         })
@@ -141,7 +143,4 @@ class Topbar extends React.Component {
 Topbar.propTypes= {
     desc:PropTypes.string
 }
-Topbar.contextTypes = {
-    router:PropTypes.object
-}
-export default Topbar
+export default withRouter(Topbar)

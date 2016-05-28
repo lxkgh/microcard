@@ -1,6 +1,6 @@
-import React,{PropTypes} from 'react'
+import React from 'react'
 
-import 'css.Common'
+import {withRouter} from 'react-router'
 import styles from './register.css'
 import Carousel from 'Carousel'
 import img1 from './微名片.png'
@@ -12,7 +12,7 @@ class Register extends React.Component {
         super(props);
     }
     clickLogin(){
-        this.context.router.push('/login')
+        this.props.router.push('/login')
     }
     render(){
         const logoPic = {
@@ -52,7 +52,4 @@ class Register extends React.Component {
         )
     }
 }
-Register.contextTypes = {
-    router:PropTypes.object
-}
-module.exports=Register
+module.exports=withRouter(Register)

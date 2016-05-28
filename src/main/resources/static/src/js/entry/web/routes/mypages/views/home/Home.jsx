@@ -12,10 +12,9 @@ import img2 from './主页轮播2.jpg'
 import img3 from './主页轮播3.jpg'
 import Carousel from 'Carousel'
 import ROUTES from 'web.Config'
-
 class HomePage extends React.Component{
     constructor(props){
-        super(props);
+        super(props)
     }
     clickEditcard(){
         this.context.router.push(ROUTES.editcard)

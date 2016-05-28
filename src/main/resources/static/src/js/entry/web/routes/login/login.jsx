@@ -1,11 +1,12 @@
-import React,{PropTypes} from 'react'
+import React from 'react'
 import styles from './login.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
 import request from 'superagent'
 import ROUTES from 'web.Config'
-
+import {withRouter} from 'react-router'
+import Auth from 'Auth'
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -31,7 +32,6 @@ class Login extends React.Component {
         })
     }
     doSubmit(){
-        // this.context.router.push(ROUTES.home)
         const user={
             username:this.state.username,
             password:this.state.password
@@ -39,18 +39,15 @@ class Login extends React.Component {
         request.post('/login')
           .send(user)
           .set('Content-Type','application/x-www-form-urlencoded')
-          .end((err,res)=>{
-              if (!err) {
-                  const data=JSON.parse(res.text)
-                  console.log(data);
-                  if (data.success) {
-                    //   window.location=window.location
-                  }
+          .then((res)=>{
+              const data=JSON.parse(res.text)
+              if (data.success) {
+                  Auth.login(()=>{this.props.router.push(ROUTES.home)},null)
               }
           })
     }
     clickRegister(){
-        this.context.router.push(ROUTES.register)
+        this.props.router.push(ROUTES.register)
     }
     render() {
         return (
@@ -113,10 +110,5 @@ class Login extends React.Component {
         )
     }
 }
-Login.contextTypes = {
-    router:PropTypes.object
-}
-Login.propTypes={
-    history:PropTypes.object
-}
-module.exports=Login
+
+module.exports=withRouter(Login)
