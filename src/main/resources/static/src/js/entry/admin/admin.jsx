@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import { hashHistory, Router} from 'react-router'
 import 'css.Common'
 import ROUTES from 'admin.Config'
-
+import Auth from 'Auth'
+Auth.allowedAuthorities = ['ROLE_ADMIN']
 const styles={
     adminAPP:{
         height:'100%',
@@ -28,8 +29,9 @@ const rootRoute={
     childRoutes: [{
         path: '/',
         component: AdminAPP,
-        indexRoute: { onEnter: (nextState, replace) => replace(ROUTES.users) },
+        indexRoute: { onEnter: (nextState, replace) => replace(ROUTES.login) },
         childRoutes: [
+            require('./routes/Login/index.jsx'),
             require('./routes/manager/index.jsx')
         ]
     }]

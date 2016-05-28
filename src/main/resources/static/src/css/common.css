@@ -16,19 +16,17 @@
 .flexbox.column {
     flex-direction: column;
 }
-
 .flexbox.wrap {
     flex-wrap: wrap;
 }
 .flexbox.row {
     flex-direction: row;
 }
-.flexbox.space-between{
+.flexbox.space-between {
     justify-content: space-between;
 }
 .flexbox.space-around {
     justify-content: space-around;
-
 }
 .flexbox .flex {
     flex: 1;
@@ -57,7 +55,6 @@ body {
     color: #4f4f4f;
     background-color: white;
     overflow: hidden;
-    -webkit-overflow-scrolling: touch;
 }
 button, input, select, textarea {
     font-family: "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
@@ -93,18 +90,40 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     color: #bbb;
 }
-    button {
-        cursor: pointer;
-    }
-    button, input, select, textarea {
-        font-family: "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif; }
-    h1, h2, h3, h4, h5, h6, p, figure, form, blockquote { margin: 0; }
-    ul, ol, li, dl, dd { margin: 0; padding: 0; }
-    ul, ol { list-style: none outside none; }
-    h1, h2, h3 { font-weight: normal; }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.6rem; }
-    h3 { font-size: 1.4rem; }
-    input::-moz-placeholder, textarea::-moz-placeholder { color: #bbb; }
-    input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #bbb; }
-    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #bbb; }
+button {
+    cursor: pointer;
+}
+button, input, select, textarea {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote {
+    margin: 0;
+}
+ul, ol, li, dl, dd {
+    margin: 0;
+    padding: 0;
+}
+ul, ol {
+    list-style: none outside none;
+}
+h1, h2, h3 {
+    font-weight: normal;
+}
+h1 {
+    font-size: 1.8rem;
+}
+h2 {
+    font-size: 1.6rem;
+}
+h3 {
+    font-size: 1.4rem;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #bbb;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #bbb;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #bbb;
+}

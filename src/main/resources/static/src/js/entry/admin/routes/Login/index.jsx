@@ -1,10 +1,10 @@
 import adminAuth from 'admin.Auth'
-module.exports={
-    path: 'users',
+module.exports = {
+    path:'/login',
     onEnter:adminAuth,
-    getComponent(nextState, cb) {
+    getComponent(nextState,cb){
         require.ensure([], (require) => {
-            cb(null, require('./users.jsx'))
+            cb(null, require('./Login.jsx'))
         })
     }
 }

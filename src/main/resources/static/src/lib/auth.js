@@ -29,6 +29,7 @@ let login = function(handleFn){
 
 let logout = function(cb){
   setToken('')
+  setAuthorities('')
 }
 
 let isLogged = function(){
