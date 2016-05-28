@@ -4,6 +4,7 @@ import Content from 'admin.Content'
 import request from 'superagent'
 import BaseColumn from '../crudcolumn/crudcolumn.jsx'
 import PageTool from '../pagetool/pagetool.jsx'
+
 class BaseContent extends React.Component {
     constructor(props) {
         super(props)

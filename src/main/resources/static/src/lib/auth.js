@@ -16,14 +16,18 @@ let setAuthorities=function(value){
     sessionStorage.setItem('authorities',JSON.stringify(value))
 }
 
-let login = function(handleFn){
+let login = function(handleFn,errFn){
   if (isLogged()) {
     return
   }
   verifyUser((res) => {
       setToken(res.token)
       setAuthorities(res.currentAuthorities)
-      if (handleFn&&isLogged()) handleFn(res)
+      if (isLogged()) {
+          if (handleFn) handleFn(res)
+      }else if(errFn){
+          errFn(res)
+      }
   })
 }
 

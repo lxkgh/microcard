@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from './input.css'
+import styles from './Input.css'
 
 class Input extends React.Component {
     constructor(props) {

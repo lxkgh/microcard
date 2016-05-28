@@ -4,6 +4,7 @@ import styles from './Login.css'
 import Input from 'Input'
 import Button from 'Button'
 import Auth from 'Auth'
+import Tip from 'Tip'
 import {withRouter} from 'react-router'
 import ROUTES from 'admin.Config'
 class Login extends React.Component {
@@ -66,7 +67,12 @@ class Login extends React.Component {
         .then((res)=>{
             const data = JSON.parse(res.text)
             if (data.success) {
-                Auth.login(()=>{this.props.router.push(ROUTES.users)})
+                Auth.login(
+                    ()=>{this.props.router.push(ROUTES.users)},
+                    ()=>{Tip.showDanger('该账号不是管理员帐号！')}
+                )
+            }else {
+                Tip.showDanger('登陆失败，请确保账户、密码正确！')
             }
         })
     }

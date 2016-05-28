@@ -8,6 +8,8 @@ import BaseTable from '../../../component/basetable/basetable.jsx'
 import AddModal from './AddModal.jsx'
 import EditModal from './EditModal.jsx'
 
+import Tip from 'Tip'
+
 class Users extends React.Component {
     constructor(props) {
         super(props)
@@ -27,7 +29,6 @@ class Users extends React.Component {
             body:this.state.users,
             id:'username'
         }
-        this.refresh=this.refresh.bind(this)
     }
     render() {
         return (
@@ -64,21 +65,45 @@ class Users extends React.Component {
             users:data
         })
     }
-    refresh(){
+    refresh=()=>{
         this.hideAddModal()
         this.hideEditModal()
         this.refs['content'].refresh()
     }
     addUser(user){
-        this.refs['content'].add(user,this.refresh)
+        this.refs['content'].add(
+            user,
+            (data)=>{
+                Tip.showSuccess(data.desc)
+                this.refresh()
+            },
+            (data)=>{
+                Tip.showDanger(data.desc)
+            }
+        )
     }
     updateUser(user){
-        this.refs['content'].edit(user,()=>{this.refresh()})
+        this.refs['content'].edit(
+            user,
+            (data)=>{
+                Tip.showSuccess(data.desc)
+                this.refresh()
+            },
+            (data)=>{
+                Tip.showDanger(data.desc)
+            }
+        )
     }
     delete(){
         this.refs['content'].delete(
             `username=${this.refs['baseTable'].getActiveId()}`,
-            ()=>{this.refresh()}
+            (data)=>{
+                Tip.showSuccess(data.desc)
+                this.refresh()
+            },
+            (data)=>{
+                Tip.showDanger(data.desc)
+            }
         )
     }
 }

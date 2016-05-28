@@ -8,6 +8,8 @@ import Img from './img/img.jsx'
 import AddModal from './modal/AddModal.jsx'
 import EditModal from './modal/EditModal.jsx'
 
+import Tip from 'Tip'
+
 class Images extends React.Component {
     constructor(props) {
         super(props)
@@ -55,14 +57,41 @@ class Images extends React.Component {
     }
     addImage(img){
         img.imageUse=this.props.route.imageUse
-        this.refs['baseContent'].add(img,()=>{this.refresh()})
+        this.refs['baseContent'].add(
+            img,
+            (data)=>{
+                Tip.showSuccess(data.desc)
+                this.refresh()
+            },
+            (data)=>{
+                Tip.showDanger(data.desc)
+            }
+        )
     }
     editImage(img){
-        this.refs['baseContent'].edit(img,()=>{this.refresh()})
+        this.refs['baseContent'].edit(
+            img,
+            (data)=>{
+                Tip.showSuccess(data.desc)
+                this.refresh()
+            },
+            (data)=>{
+                Tip.showDanger(data.desc)
+            }
+        )
     }
     deleteImage(){
         const {activeImg} = this.state
-        this.refs['baseContent'].delete(`id=${activeImg}`,()=>{this.refresh()})
+        this.refs['baseContent'].delete(
+            `id=${activeImg}`,
+            (data)=>{
+                Tip.showSuccess(data.desc)
+                this.refresh()
+            },
+            (data)=>{
+                Tip.showDanger(data.desc)
+            }
+        )
     }
     showAddModal(){
         this.refs['addModal'].show()
