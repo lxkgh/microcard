@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import cx from 'classnames'
 import styles from './Cover.css'
@@ -20,12 +20,18 @@ class Cover extends React.Component {
             </div>
         )
     }
-    onClick(e){
-        if(e.currentTarget==e.target){
+    onClick=(e)=>{
+        if(e.currentTarget==e.target&&this.props.autoHide){
             this.setState({
                 show:false
             })
         }
     }
+}
+Cover.defaultProps={
+    autoHide:true
+}
+Cover.propTypes={
+    autoHide:PropTypes.bool
 }
 export default Cover

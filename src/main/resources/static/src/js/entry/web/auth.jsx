@@ -5,16 +5,16 @@ module.exports=(nextState, replace)=>{
     if (!Auth.isLogged()) {
         if (currentPage!=ROUTES.login&&currentPage!=ROUTES.register) {
             replace({
-                pathname: ROUTES.login
-                // state: { nextPathname: currentPage }
+                pathname: ROUTES.login,
+                state: { nextPathname: currentPage }
             })
         }
         return
     }
     if(currentPage==ROUTES.login||currentPage==ROUTES.register){
         replace({
-            pathname: ROUTES.home
-            // state: { nextPathname:currentPage }
+            pathname: ROUTES.home,
+            state: { nextPathname:currentPage }
         })
     }
 }

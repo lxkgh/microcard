@@ -7,6 +7,7 @@ import request from 'superagent'
 import ROUTES from 'web.Config'
 import {withRouter} from 'react-router'
 import Auth from 'Auth'
+import messenger from 'web.Messenger'
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -31,7 +32,8 @@ class Login extends React.Component {
             password: e.target.value
         })
     }
-    doSubmit(){
+    doSubmit(e){
+        e.preventDefault()
         const user={
             username:this.state.username,
             password:this.state.password
@@ -39,10 +41,16 @@ class Login extends React.Component {
         request.post('/login')
           .send(user)
           .set('Content-Type','application/x-www-form-urlencoded')
-          .then((res)=>{
+          .end((err,res)=>{
+              if (err) {
+                  messenger.show()
+                  return
+              }
               const data=JSON.parse(res.text)
               if (data.success) {
                   Auth.login(()=>{this.props.router.push(ROUTES.home)},null)
+              }else {
+                  messenger.show()
               }
           })
     }
