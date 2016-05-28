@@ -19,15 +19,17 @@ module.exports = {
     'webfront.QRcodeBar':'src/js/component/webfront/common/qrcodeBar/QRcodeBar.jsx',
     'webfront.IdcardItem':'src/js/component/webfront/common/idcarditem/IdcardItem.jsx',
 
+    'admin.Auth':'src/js/entry/admin/auth.jsx',
     'admin.Button': 'src/js/component/admin/common/button/button.jsx',
     'admin.Content': 'src/js/component/admin/common/content/content.jsx',
+    'admin.Config':'src/js/entry/admin/config.jsx',
     'admin.Column': 'src/js/component/admin/common/column/column.jsx',
     'admin.SideNav': 'src/js/component/admin/common/sidenav/sidenav.jsx',
     'admin.NavItem': 'src/js/component/admin/common/sidenav/navitem/navitem.jsx',
     'admin.Table': 'src/js/component/admin/common/table/table.jsx',
 
-    'admin.Config':'src/js/entry/admin/config.jsx',
-    'admin.Auth':'src/js/entry/admin/auth.jsx',
+
+
 
     'web.Config':'src/js/entry/web/config.js',
     'web.Auth':'src/js/entry/web/auth.jsx',

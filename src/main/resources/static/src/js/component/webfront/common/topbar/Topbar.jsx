@@ -1,7 +1,6 @@
 import React,{PropTypes} from 'react'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
-import request from 'superagent'
 import cx from 'classnames'
 import ROUTES from 'web.Config'
 import Auth from 'Auth'
@@ -18,14 +17,9 @@ class Topbar extends React.Component {
         this.props.router.goBack()
     }
     clickExit(){
-        request.get('/logout')
-        .then((res)=>{
-            const data = JSON.parse(res.text)
-            if (data.success) {
-                Auth.logout()
-                this.props.router.push(ROUTES.login)
-            }
-        })
+        Auth.logout(
+            ()=>{this.props.router.push(ROUTES.login)}
+        )
     }
     handleMenuClick=()=>{
         this.setState({

@@ -22,5 +22,4 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
 			throws IOException, ServletException {
 		ResponseUtil.writeJSON(response, new ApiResult(true, 0, "登出成功", null));
 	}
-
 }

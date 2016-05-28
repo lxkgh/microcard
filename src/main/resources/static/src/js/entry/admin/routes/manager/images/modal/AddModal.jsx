@@ -7,6 +7,8 @@ import Input from 'Input'
 import Col from '../../../../component/col/col.jsx'
 import Label from 'Label'
 
+import Tip from 'Tip'
+
 class AddModal extends React.Component {
     constructor(props) {
         super(props)
@@ -51,9 +53,16 @@ class AddModal extends React.Component {
     }
     handleSubmit(e,onSubmit) {
         e.preventDefault()
+        let type
+        if (this.state.type.split('/')[1]) {
+            type=this.state.type.split('/')[1].toUpperCase()
+        }else {
+            Tip.showWarning('文件类型不能识别，请确保文件类型正确！')
+            return
+        }
         const data={
             data:this.state.image,
-            type:this.state.type.split('/')[1].toUpperCase(),
+            type:type,
             name:this.state.name
         }
         onSubmit(data)

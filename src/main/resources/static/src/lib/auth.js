@@ -31,9 +31,19 @@ let login = function(handleFn,errFn){
   })
 }
 
-let logout = function(cb){
-  setToken('')
-  setAuthorities('')
+let logout = function(successHandle,failureHandle){
+    request.get('/logout')
+    .then((res)=>{
+        const data = JSON.parse(res.text)
+        if (data.success) {
+            setToken('')
+            setAuthorities('')
+            if(successHandle) successHandle(data)
+        }else {
+            if(failureHandle) failureHandle(data)
+        }
+    })
+
 }
 
 let isLogged = function(){

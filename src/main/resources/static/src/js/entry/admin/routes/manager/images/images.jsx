@@ -19,6 +19,7 @@ class Images extends React.Component {
             {desc:'刷新',onClick:()=>{this.refresh()}},
             {desc:'删除',onClick:()=>{this.deleteImage()}}
         ]
+        this.isAdding = false
         this.state={imgs:[],activeImg:''}
     }
     render() {
@@ -56,17 +57,24 @@ class Images extends React.Component {
         })
     }
     addImage(img){
-        img.imageUse=this.props.route.imageUse
-        this.refs['baseContent'].add(
-            img,
-            (data)=>{
-                Tip.showSuccess(data.desc)
-                this.refresh()
-            },
-            (data)=>{
-                Tip.showDanger(data.desc)
-            }
-        )
+        if (!this.isAdding) {
+            this.isAdding = true
+            img.imageUse=this.props.route.imageUse
+            this.refs['baseContent'].add(
+                img,
+                (data)=>{
+                    Tip.showSuccess(data.desc)
+                    this.refresh()
+                    this.isAdding = false
+                },
+                (data)=>{
+                    Tip.showDanger(data.desc)
+                    this.isAdding = false
+                }
+            )
+        }else {
+            Tip.showWarning('正在上传图片中...！')
+        }
     }
     editImage(img){
         this.refs['baseContent'].edit(

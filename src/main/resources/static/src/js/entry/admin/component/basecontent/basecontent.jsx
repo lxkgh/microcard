@@ -32,14 +32,12 @@ class BaseContent extends React.Component {
             return
         }
         request.get(`${url}?${query}`)
-        .end((err,res)=>{
-            if (!err) {
-                const data = JSON.parse(res.text)
-                if (data.success&&handleFn) {
-                    handleFn(data)
-                }else if (!data.success&&errHandleFn) {
-                    errHandleFn(data)
-                }
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            if (data.success&&handleFn) {
+                handleFn(data)
+            }else if (!data.success&&errHandleFn) {
+                errHandleFn(data)
             }
         })
     }
@@ -52,18 +50,16 @@ class BaseContent extends React.Component {
         request.post(url)
         .send(obj)
         .set('Accept', 'application/json')
-        .end((err, res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    if (handleFn) {
-                        handleFn(data)
-                    }else {
-                        this.refresh()
-                    }
-                }else if(errHandleFn){
-                    errHandleFn(data)
+        .then((res)=>{
+            const data=JSON.parse(res.text)
+            if (data.success) {
+                if (handleFn) {
+                    handleFn(data)
+                }else {
+                    this.refresh()
                 }
+            }else if(errHandleFn){
+                errHandleFn(data)
             }
         })
     }
@@ -75,18 +71,16 @@ class BaseContent extends React.Component {
         }
         request.put(`${url}`)
         .send(obj)
-        .end((err,res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    if (handleFn) {
-                        handleFn(data)
-                    }else {
-                        this.refresh()
-                    }
-                }else if(errHandleFn){
-                    errHandleFn(data)
+        .then((res)=>{
+            const data=JSON.parse(res.text)
+            if (data.success) {
+                if (handleFn) {
+                    handleFn(data)
+                }else {
+                    this.refresh()
                 }
+            }else if(errHandleFn){
+                errHandleFn(data)
             }
         })
     }
@@ -97,18 +91,16 @@ class BaseContent extends React.Component {
             return
         }
         request.delete(`${url}?${query}`)
-        .end((err,res)=>{
-            if (!err) {
-                const data=JSON.parse(res.text)
-                if (data.success) {
-                    if (handleFn) {
-                        handleFn(data)
-                    }else {
-                        this.refresh()
-                    }
-                }else if(errHandleFn){
-                    errHandleFn(data)
+        .then((res)=>{
+            const data=JSON.parse(res.text)
+            if (data.success) {
+                if (handleFn) {
+                    handleFn(data)
+                }else {
+                    this.refresh()
                 }
+            }else if(errHandleFn){
+                errHandleFn(data)
             }
         })
     }

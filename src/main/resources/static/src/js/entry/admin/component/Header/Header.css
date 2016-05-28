@@ -1,0 +1,20 @@
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: #2e2e2e;
+    border-color: #080808;
+    position: relative;
+    color: #838383;
+}
+.item {
+    height: 100%;
+    float: right;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+}
+.item:hover {
+    color: #ffffff;
+}
