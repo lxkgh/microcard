@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {withRouter} from 'react-router'
-import styles from './register.css'
+import styles from './Register.css'
 import Carousel from 'Carousel'
 import img1 from './微名片.png'
 import img2 from './图二.png'

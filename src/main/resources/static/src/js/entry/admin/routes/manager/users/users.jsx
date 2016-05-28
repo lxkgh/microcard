@@ -1,9 +1,9 @@
 import React from 'react'
 
-import {UserApiPrefix} from '../config.jsx'
+import {UserApiPrefix} from 'admin.Config'
 
-import BaseContent from '../component/basecontent/basecontent.jsx'
-import BaseTable from '../component/basetable/basetable.jsx'
+import BaseContent from '../../../component/basecontent/basecontent.jsx'
+import BaseTable from '../../../component/basetable/basetable.jsx'
 
 import AddModal from './AddModal.jsx'
 import EditModal from './EditModal.jsx'

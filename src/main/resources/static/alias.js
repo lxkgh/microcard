@@ -25,6 +25,8 @@ module.exports = {
     'admin.NavItem': 'src/js/component/admin/common/sidenav/navitem/navitem.jsx',
     'admin.Table': 'src/js/component/admin/common/table/table.jsx',
 
+    'admin.Config':'src/js/entry/admin/config.jsx',
+
     'web.Config':'src/js/entry/web/config.js',
     'web.Auth':'src/js/entry/web/auth.jsx',
 

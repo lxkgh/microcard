@@ -1,6 +1,6 @@
 import React from 'react'
-
 import cx from 'classnames'
+import styles from './content.css'
 
 class Content extends React.Component {
     constructor(props) {
@@ -9,11 +9,7 @@ class Content extends React.Component {
     render() {
         const {children,className} = this.props
         return (
-            <div className={cx(className,'flex')}
-                style={{
-                    padding:'20px',
-                    overflow:'auto'
-                }}>
+            <div className={cx(styles.content,className)}>
                 {this.renderChildren(children)}
             </div>
         )

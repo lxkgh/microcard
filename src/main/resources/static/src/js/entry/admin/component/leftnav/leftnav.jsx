@@ -6,6 +6,7 @@ import SideNav from 'admin.SideNav'
 import NavItem from 'admin.NavItem'
 
 import styles from './leftnav.css'
+import ROUTES from 'admin.Config'
 
 const ACTIVE={
     color: '#23527c',
@@ -19,11 +20,11 @@ class LeftNav extends React.Component {
     render() {
         return (
             <SideNav>
-                <NavItem><Link to="users" className={styles.link}
+                <NavItem><Link to={ROUTES.users} className={styles.link}
                     activeStyle={ACTIVE}>用户管理</Link></NavItem>
-                <NavItem><Link to="images/background"
+                <NavItem><Link to={ROUTES.backgroundImages}
                     className={styles.link} activeStyle={ACTIVE}>背景图片管理</Link></NavItem>
-                <NavItem><Link to="images/icon" className={styles.link}
+                <NavItem><Link to={ROUTES.iconImages} className={styles.link}
                     activeStyle={ACTIVE}>图标管理</Link></NavItem>
             </SideNav>
         )

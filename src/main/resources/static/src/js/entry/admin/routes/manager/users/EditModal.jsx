@@ -5,20 +5,24 @@ import Dialog from 'Dialog'
 import Button from 'Button'
 import Input from 'Input'
 import Label from 'Label'
-import Col from '../component/col/col.jsx'
-import WarnMsg from '../component/warnmsg/warnmsg.jsx'
+import Col from '../../../component/col/col.jsx'
 import Select from 'Select'
 
 import UserRole from 'UserRole'
 
-class AddModal extends React.Component {
+class EditModal extends React.Component {
     constructor(props) {
         super(props)
-        this.state=this.initState()
+        this.state={
+            username:'',
+            realname:'',
+            role:UserRole[0].key
+        }
+        this.show=this.show.bind(this)
     }
     render() {
+        const {username,realname,role} = this.state
         const {onSubmit} = this.props
-        const {username,realname,password,role,msg} = this.state
         return (
             <Cover ref="cover">
                 <Dialog width="40%">
@@ -26,14 +30,12 @@ class AddModal extends React.Component {
                         <h4>新增用户</h4>
                     </Dialog.Header>
                     <Dialog.Body>
-                        <WarnMsg msg={msg} style={{marginLeft:Col.md2,width:Col.md10}} />
                         <div>
                             <Col col={2}>
                                 <Label>用户名</Label>
                             </Col>
                             <Col col={10}>
-                                <Input value={username}
-                                    onChange={(e)=>{this.changeUsername(e)}}/>
+                                <Input value={username} disabled/>
                             </Col>
                         </div>
                         <div>
@@ -44,16 +46,6 @@ class AddModal extends React.Component {
                                 <Input value={realname} onChange={(e)=>{this.changeRealname(e)}}/>
                             </Col>
                         </div>
-                        <div>
-                            <Col col={2}>
-                                <Label col={2}>密码</Label>
-                            </Col>
-                            <Col col={10}>
-                                <Input value={password} onChange={(e)=>{this.changePassword(e)}}/>
-                            </Col>
-                        </div>
-
-
                         <div>
                             <Col col={2}>
                                 <Label>角色</Label>
@@ -80,20 +72,15 @@ class AddModal extends React.Component {
         })
         return userroleDom
     }
-    initState(){
-        return {
-            username:'',
-            realname:'',
-            password:'123456',
-            role:UserRole[0].key,
-            msg:''
-        }
-    }
-    show(){
+    show(user){
         this.refs['cover'].setState({
             show:true
         })
-        this.setState(this.initState())
+        this.setState({
+            username:user.username,
+            realname:user.realname,
+            role:user.role
+        })
     }
     hide(){
         this.refs['cover'].setState({
@@ -104,36 +91,14 @@ class AddModal extends React.Component {
         const user={
             username:this.state.username,
             realname:this.state.realname,
-            password:this.state.password,
             role:this.state.role
 
         }
-        if (this.verifyForm(user)) {
-            onSubmit(user)
-        }
-    }
-    verifyForm(user){
-        if (!user.username) {
-            this.setState({
-                msg:'用户名不能为空'
-            })
-            return false
-        }
-        return true
-    }
-    changeUsername(e){
-        this.setState({
-            username:e.target.value
-        })
+        onSubmit(user)
     }
     changeRealname(e){
         this.setState({
             realname:e.target.value
-        })
-    }
-    changePassword(e){
-        this.setState({
-            password:e.target.value
         })
     }
     changeRole(e){
@@ -142,7 +107,9 @@ class AddModal extends React.Component {
         })
     }
 }
-AddModal.propTypes={
+
+EditModal.propTypes={
     onSubmit:PropTypes.func.isRequired
 }
-export default AddModal
+
+export default EditModal

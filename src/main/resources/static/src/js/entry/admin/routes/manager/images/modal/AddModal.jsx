@@ -4,30 +4,36 @@ import Cover from 'Cover'
 import Dialog from 'Dialog'
 import Button from 'Button'
 import Input from 'Input'
-import Col from '../../component/col/col.jsx'
+import Col from '../../../../component/col/col.jsx'
 import Label from 'Label'
 
-class EditModal extends React.Component {
+class AddModal extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            image:{
-                name:''
-            }
+            image: null,
+            type:null,
+            name:''
         }
         this.show=this.show.bind(this)
         this.hide=this.hide.bind(this)
     }
     render() {
         const {onSubmit} = this.props
-        const {name} = this.state.image
+        const {name} = this.state
         return (
             <Cover ref="cover">
                 <Dialog width="40%">
                     <Dialog.Header>
-                        <h4>修改图片</h4>
+                        <h4>新增图片</h4>
                     </Dialog.Header>
                     <Dialog.Body>
+                        <Col col={2}>
+                            <Label>选择图片</Label>
+                        </Col>
+                        <Col col={10}>
+                            <input type="file" onChange={(e)=>{this.handleFile(e)}}/>
+                        </Col>
                         <Col col={2}>
                             <Label>图片名称</Label>
                         </Col>
@@ -45,20 +51,32 @@ class EditModal extends React.Component {
     }
     handleSubmit(e,onSubmit) {
         e.preventDefault()
-        onSubmit(this.state.image)
+        const data={
+            data:this.state.image,
+            type:this.state.type.split('/')[1].toUpperCase(),
+            name:this.state.name
+        }
+        onSubmit(data)
+    }
+    handleFile(e){
+        let file = e.target.files[0]
+        let reader = new FileReader()
+        if (file===undefined) {
+            this.setState({image: null,type:null})
+            return
+        }
+        reader.onload = (upload) => {
+            this.setState({image: upload.target.result,type:file.type})
+        }
+        reader.readAsDataURL(file)
     }
     handleName(e){
         const value=e.target.value
-        let image=this.state.image
-        image.name=value
-        this.setState({image:image})
+        this.setState({name:value})
     }
-    show(image){
+    show(){
         this.refs['cover'].setState({
             show:true
-        })
-        this.setState({
-            image:image
         })
     }
     hide(){
@@ -67,7 +85,7 @@ class EditModal extends React.Component {
         })
     }
 }
-EditModal.propTypes={
+AddModal.propTypes={
     onSubmit:PropTypes.func.isRequired
 }
-export default EditModal
+export default AddModal

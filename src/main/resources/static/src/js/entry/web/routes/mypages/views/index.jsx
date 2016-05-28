@@ -8,7 +8,7 @@ module.exports={
     },
     indexRoute: { onEnter: (nextState, replace) => replace(ROUTES.home) },
     childRoutes:[
-        require('./home/index.jsx'),
-        require('./mycard/index.jsx')
+        require('./Home/index.jsx'),
+        require('./MyCard/index.jsx')
     ]
 }

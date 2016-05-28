@@ -7,12 +7,12 @@ module.exports={
     },
     childRoutes: [
         require('./views/index.jsx'),
-        require('./editcard/index.jsx'),
-        require('./editinfo/index.jsx'),
-        require('./editsign/index.jsx'),
-        require('./editsociety/index.jsx'),
-        require('./editphone/index.jsx'),
-        require('./editpassword/index.jsx'),
-        require('./edittitle/index.jsx')
+        require('./EditCard/index.jsx'),
+        require('./EditInfo/index.jsx'),
+        require('./EditSign/index.jsx'),
+        require('./EditSociety/index.jsx'),
+        require('./EditPhone/index.jsx'),
+        require('./EditPassword/index.jsx'),
+        require('./EditTitle/index.jsx')
     ]
 }

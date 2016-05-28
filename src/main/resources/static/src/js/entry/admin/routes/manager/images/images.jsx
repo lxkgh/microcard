@@ -1,8 +1,8 @@
 import React,{PropTypes} from 'react'
 
-import {ImageApiPrefix} from '../config.jsx'
+import {ImageApiPrefix} from 'admin.Config'
 
-import BaseContent from '../component/basecontent/basecontent.jsx'
+import BaseContent from '../../../component/basecontent/basecontent.jsx'
 import Img from './img/img.jsx'
 
 import AddModal from './modal/AddModal.jsx'

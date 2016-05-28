@@ -31,9 +31,9 @@ const rootRoute={
             replace(ROUTES.home)
         }},
         childRoutes: [
-            require('./routes/login/index.jsx'),
+            require('./routes/Login/index.jsx'),
             require('./routes/mypages/index.jsx'),
-            require('./routes/register/index.jsx')
+            require('./routes/Register/index.jsx')
         ]
     }]
 }

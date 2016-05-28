@@ -4,7 +4,7 @@ module.exports={
     onEnter:webAuth,
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('./login.jsx'))
+            cb(null, require('./Login.jsx'))
         })
     }
 }

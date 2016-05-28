@@ -1,11 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import { hashHistory, Router} from 'react-router'
-
 import 'css.Common'
-
-import LeftNav from './component/leftnav/leftnav.jsx'
+import ROUTES from 'admin.Config'
 
 const styles={
     adminAPP:{
@@ -20,8 +17,7 @@ class AdminAPP extends React.Component {
     }
     render() {
         return (
-            <div style={styles.adminAPP} className="flexbox">
-                <LeftNav/>
+            <div style={styles.adminAPP}>
                 {this.props.children}
             </div>
         )
@@ -32,11 +28,9 @@ const rootRoute={
     childRoutes: [{
         path: '/',
         component: AdminAPP,
-        indexRoute: { onEnter: (nextState, replace) => replace('/users') },
+        indexRoute: { onEnter: (nextState, replace) => replace(ROUTES.users) },
         childRoutes: [
-            require('./users/index.jsx'),
-            require('./images/bkgindex.jsx'),
-            require('./images/iconindex.jsx')
+            require('./routes/manager/index.jsx')
         ]
     }]
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './login.css'
+import styles from './Login.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
