@@ -1,5 +1,8 @@
 package com.itbegin.outprojs.microcard.api;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +20,9 @@ public class AuthApi {
 		if (StrUtil.isEmpty(username)) {
 			return new ApiResult(false, 0, "用户还没登录", null);
 		}
-		return new ApiResult(true, 0, "用户已登录", MySecurityContext.getUserDetails().getAuthorities());
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("userId", MySecurityContext.getUserId());
+		map.put("authorities", MySecurityContext.getUserDetails().getAuthorities());
+		return new ApiResult(true, 0, "用户已登录",map );
 	}
 }

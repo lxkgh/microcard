@@ -11,4 +11,9 @@ const ROUTES = {
     mycard: '/mypages/views/mycard',
     register: '/register'
 }
+
+export const Prefixs={
+    usercard:'/api/usercard'
+}
+
 export default ROUTES

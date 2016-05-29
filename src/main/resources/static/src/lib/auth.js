@@ -1,11 +1,11 @@
 import request from 'superagent'
 
-let getToken = function(){
-  return sessionStorage.getItem('token')
+let getUserId = function(){
+  return sessionStorage.getItem('userId')
 }
 
-let setToken=function(value){
-    sessionStorage.setItem('token',value)
+let setUserId=function(value){
+    sessionStorage.setItem('userId',value)
 }
 
 let getAuthorities= function(){
@@ -21,7 +21,7 @@ let login = function(handleFn,errFn){
     return
   }
   verifyUser((res) => {
-      setToken(res.token)
+      setUserId(res.userId)
       setAuthorities(res.currentAuthorities)
       if (isLogged()) {
           if (handleFn) handleFn(res)
@@ -36,7 +36,7 @@ let logout = function(successHandle,failureHandle){
     .then((res)=>{
         const data = JSON.parse(res.text)
         if (data.success) {
-            setToken('')
+            setUserId('')
             setAuthorities('')
             if(successHandle) successHandle(data)
         }else {
@@ -47,12 +47,12 @@ let logout = function(successHandle,failureHandle){
 }
 
 let isLogged = function(){
-    return isTokenExist()&&isAuthorited()
+    return isUserIdExist()&&isAuthorited()
 }
 
-let isTokenExist = function(){
-    const token=getToken()
-    const isLogged=token==null||token=="undefined"||token==undefined||token==''
+let isUserIdExist = function(){
+    const userId=getUserId()
+    const isLogged=userId==null||userId=="undefined"||userId==undefined||userId==''
     return !isLogged
 }
 
@@ -74,9 +74,9 @@ let isAuthorited = function(){
 const Auth={
   login:login,
 
-  getToken: getToken,
+  getUserId: getUserId,
 
-  setToken:setToken,
+  setUserId:setUserId,
 
   logout: logout,
 
@@ -92,11 +92,12 @@ function verifyUser(cb) {
         let data=JSON.parse(res.text)
         if (data.success) {
             cb({
-              token: Math.random().toString(36).substring(7),
-              currentAuthorities:data.data
+              userId:data.data['userId'],
+              currentAuthorities:data.data['authorities']
             })
         }else {
             cb({
+                userId:'',
                 currentAuthorities:[]
             })
         }

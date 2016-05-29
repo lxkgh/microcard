@@ -5,23 +5,26 @@ import cx from 'classnames'
 import InputItem from 'webfront.InputItem'
 import Button from 'webfront.Button'
 import IdcardItem from 'webfront.IdcardItem'
-
+import request from 'superagent'
+import Auth from 'Auth'
+import {Prefixs} from 'web.Config'
+import messenger from 'web.Messenger'
 class EditInfo extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            realname:'',
+            name:'',
             company:'',
             job:'',
             department:'',
-            cellphone:'',
+            phone:'',
             address:'',
             email:''
         }
     }
-    changeRealname(e){
+    changeName(e){
         this.setState({
-            realname:e.target.value
+            name:e.target.value
         })
     }
     changeCompany(e){
@@ -39,16 +42,11 @@ class EditInfo extends React.Component{
             department:e.target.value
         })
     }
-    changeCellphone(e){
+    changePhone(e){
         this.setState({
-            cellphone:e.target.value
+            phone:e.target.value
         })
     }
-    // changePhone(e){
-    //     this.setState({
-    //         phone:e.target.value
-    //     })
-    // }
     changeAddress(e){
         this.setState({
             address:e.target.value
@@ -59,13 +57,16 @@ class EditInfo extends React.Component{
             email:e.target.value
         })
     }
+    componentDidMount() {
+        this.getUserCard()
+    }
     render(){
-        const {realname,company,job,department,cellphone,address,email} = this.state
+        const {name,company,job,department,phone,address,email} = this.state
         const input1props = {
             tagName:'姓名',
             type:'text',
             defaultInfo:'请输入姓名',
-            value:realname
+            value:name
         }
         const input2props = {
             tagName:'公司',
@@ -89,7 +90,7 @@ class EditInfo extends React.Component{
             tagName:'手机',
             type:'text',
             defaultInfo:'请输入手机号码',
-            value:cellphone
+            value:phone
         }
         const input6props = {
             tagName:'地址',
@@ -111,7 +112,7 @@ class EditInfo extends React.Component{
                         <ul className={cx(styles.ulStyle,'fixed')}>
                             <IdcardItem />
                             <InputItem {...input1props}
-                                onChange={(e)=>{this.changeRealname(e)}}/>
+                                onChange={(e)=>{this.changeName(e)}}/>
                             <InputItem {...input2props}
                                 onChange={(e)=>{this.changeCompany(e)}}/>
                             <InputItem {...input3props}
@@ -119,17 +120,61 @@ class EditInfo extends React.Component{
                             <InputItem {...input4props}
                                 onChange={(e)=>{this.changeDepartment(e)}}/>
                             <InputItem {...input5props}
-                                onChange={(e)=>{this.changeCellphone(e)}}/>
+                                onChange={(e)=>{this.changePhone(e)}}/>
                             <InputItem {...input6props}
                                 onChange={(e)=>{this.changeAddress(e)}}/>
                             <InputItem {...input7props}
                                 onChange={(e)=>{this.changeEmail(e)}}/>
                         </ul>
-                        <Button>保存</Button>
+                        <Button onClick={this.handleSubmit}>保存</Button>
                     </section>
                 </div>
             </div>
         )
+    }
+    getUserCard=()=>{
+        request.get(`${Prefixs.usercard}?userId=${Auth.getUserId()}`)
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            if (data.success) {
+                this.setState({
+                    name:data.data.name,
+                    company:data.data.company,
+                    job:data.data.job,
+                    department:data.data.department,
+                    phone:data.data.phone,
+                    address:data.data.address,
+                    email:data.data.email
+                })
+            }else {
+                messenger.showMsg({
+                    msg:'获取名片信息失败！'
+                })
+            }
+        })
+    }
+    handleSubmit=()=>{
+        request.put(`${Prefixs.usercard}/baseinfo`)
+        .send(this.state)
+        .end((err,res)=>{
+            if (err) {
+                messenger.showMsg({
+                    msg:err.message
+                })
+                return
+            }
+            const data = JSON.parse(res.text)
+            if (data.success) {
+                messenger.showMsg({
+                    msg:'修改个人信息成功'
+                })
+            }else {
+                messenger.showMsg({
+                    msg:'修改个人信息失败'
+                })
+            }
+            this.getUserCard()
+        })
     }
 }
 

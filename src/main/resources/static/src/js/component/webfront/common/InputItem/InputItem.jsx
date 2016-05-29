@@ -45,11 +45,7 @@ var styles={
 class InputItem extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            value:''
-        }
     }
-
     render() {
         return (
             <li style={styles.li}>
@@ -63,6 +59,9 @@ class InputItem extends React.Component {
             </li>
         )
     }
+}
+InputItem.defaultProps={
+    value:''
 }
 InputItem.propTypes = {
     tagName:PropTypes.string,

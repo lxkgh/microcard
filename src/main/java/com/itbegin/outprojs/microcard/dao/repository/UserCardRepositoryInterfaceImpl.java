@@ -21,7 +21,7 @@ public class UserCardRepositoryInterfaceImpl implements
 		Update update = new Update();
 		update.set("name", uc.getName());
 		update.set("company", uc.getCompany());
-		update.set("jop", uc.getJop());
+		update.set("job", uc.getJob());
 		update.set("department", uc.getDepartment());
 		update.set("phone", uc.getPhone());
 		update.set("address", uc.getAddress());

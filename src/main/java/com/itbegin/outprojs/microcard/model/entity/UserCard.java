@@ -19,7 +19,7 @@ public class UserCard implements Serializable {
 	
 	private String name;//名称
 	private String company;//公司
-	private String jop;//职业
+	private String job;//职业
 	private String department;//所在部门
 	private String phone;//联系电话
 	private String address;//地址
@@ -64,11 +64,11 @@ public class UserCard implements Serializable {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	public String getJop() {
-		return jop;
+	public String getJob() {
+		return job;
 	}
-	public void setJop(String jop) {
-		this.jop = jop;
+	public void setJob(String job) {
+		this.job = job;
 	}
 	public String getDepartment() {
 		return department;

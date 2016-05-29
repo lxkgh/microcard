@@ -1,5 +1,4 @@
 import React,{PropTypes} from 'react'
-
 import styles from './Home.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
@@ -11,10 +10,17 @@ import img1 from './主页轮播1.jpg'
 import img2 from './主页轮播2.jpg'
 import img3 from './主页轮播3.jpg'
 import Carousel from 'Carousel'
-import ROUTES from 'web.Config'
+import ROUTES,{Prefixs} from 'web.Config'
+import request from 'superagent'
+import Auth from 'Auth'
+import messenger from 'web.Messenger'
 class HomePage extends React.Component{
     constructor(props){
         super(props)
+        this.state={
+            name:'',
+            job:''
+        }
     }
     clickEditcard(){
         this.context.router.push(ROUTES.editcard)
@@ -24,6 +30,9 @@ class HomePage extends React.Component{
     }
     clickMore(){
 
+    }
+    componentDidMount() {
+        this.getUserCard()
     }
     render(){
         const portrait = {
@@ -62,6 +71,7 @@ class HomePage extends React.Component{
             height:'100%',
             width:'100%'
         }
+        const {name,job} = this.state
         return(
             <div className={styles.wrapDivStyle}>
                 <section className={cx(styles.item,styles.shadow)}>
@@ -74,8 +84,8 @@ class HomePage extends React.Component{
                             className={styles.headImg}/>
                     </div>
                     <div className={styles.info}>
-                        <h1>Molly</h1>
-                        <h3 className={styles.h3}>运营经理</h3>
+                        <h1>{name}</h1>
+                        <h3 className={styles.h3}>{job}</h3>
                     </div>
                 </section>
                 <div className={styles.crousel}>
@@ -94,6 +104,22 @@ class HomePage extends React.Component{
                 </div>
             </div>
         )
+    }
+    getUserCard=()=>{
+        request.get(`${Prefixs.usercard}?userId=${Auth.getUserId()}`)
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            if (data.success) {
+                this.setState({
+                    name:data.data.name,
+                    job:data.data.job
+                })
+            }else {
+                messenger.showMsg({
+                    msg:'获取名片信息失败！'
+                })
+            }
+        })
     }
 }
 HomePage.contextTypes = {
