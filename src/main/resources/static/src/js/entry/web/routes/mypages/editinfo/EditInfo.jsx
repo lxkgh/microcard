@@ -164,15 +164,9 @@ class EditInfo extends React.Component{
                 return
             }
             const data = JSON.parse(res.text)
-            if (data.success) {
-                messenger.showMsg({
-                    msg:'修改个人信息成功'
-                })
-            }else {
-                messenger.showMsg({
-                    msg:'修改个人信息失败'
-                })
-            }
+            messenger.showMsg({
+                msg:data.desc
+            })
             this.getUserCard()
         })
     }

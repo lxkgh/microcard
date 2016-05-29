@@ -11,16 +11,16 @@
     padding: 0 10px;
 }
 .content {
-        -webkit-overflow-scrolling: touch;
-        z-index: 1;
-        position: relative;
-        top: 44px;
-        bottom: 0;
-        overflow: auto;
-        max-width: 600px;
-        background-color: #f0f1f3;
-        margin: auto;
-        height: 800px;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1;
+    position: relative;
+    top: 44px;
+    bottom: 0;
+    overflow: auto;
+    max-width: 600px;
+    background-color: #f0f1f3;
+    margin: auto;
+    height: 800px;
 }
 .sectionStyle {
     background-color: #fff;
@@ -47,16 +47,6 @@
     font-size: 1.2rem;
     color: #999;
     margin-top: 5px;
-}
-.nutshell {
-    margin: 10px 0 0 0;
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #e5e5e5;
-    font-size: 1.4rem;
-    line-height: 24px;
-    color: #5f6267;
-    resize: none;
 }
 .pbtn {
     padding-top: 10px;

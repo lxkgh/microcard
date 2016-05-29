@@ -6,30 +6,33 @@ import InputItem from 'webfront.InputItem'
 import Button from 'webfront.Button'
 import Popup from 'webfront.Popup'
 import fileSvgIcons from './EditSocietySvg.js'
+import request from 'superagent'
+import Auth from 'Auth'
+import {Prefixs} from 'web.Config'
+import messenger from 'web.Messenger'
 class EditSociety extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             qq:'',
-            wechat:'',
-            showQQ:false,
-            showWebchat:false
+            weChat:''
         }
     }
     changeQQ(e){
         this.setState({
-            qq:e.target.value,
-            showQQ:e.target.value
+            qq:e.target.value
         })
     }
     changeWechat(e){
         this.setState({
-            wechat:e.target.value,
-            showWebchat:e.target.value
+            weChat:e.target.value
         })
     }
+    componentDidMount() {
+        this.getUserCard()
+    }
     render(){
-        const {qq,wechat} = this.state
+        const {qq,weChat} = this.state
         const input2props = {
             tagName:'QQ',
             type:'text',
@@ -40,7 +43,7 @@ class EditSociety extends React.Component{
             tagName:'微信号',
             type:'text',
             defaultInfo:'请输入您的微信号',
-            value:wechat
+            value:weChat
         }
         const codeBar2props = {
             QRcodeName:'QQ二维码',
@@ -64,17 +67,50 @@ class EditSociety extends React.Component{
                         <ul className={cx(styles.ulStyle,'fixed')}>
                             <InputItem {...input2props}
                                 onChange={(e)=>{this.changeQQ(e)}}/>
-                            {this.state.showQQ?<QRcodeBar {...codeBar2props}/>:null}
+                            {qq?<QRcodeBar {...codeBar2props}/>:null}
                             <InputItem {...input3props}
                                 onChange={(e)=>{this.changeWechat(e)}}/>
-                            {this.state.showWebchat?<QRcodeBar {...codeBar3props}/>:null}
+                            {weChat?<QRcodeBar {...codeBar3props}/>:null}
                         </ul>
-                        <Button>保存</Button>
+                        <Button onClick={this.handleSubmit}>保存</Button>
                     </section>
                 </div>
                 <Popup />
             </div>
         )
+    }
+    handleSubmit=()=>{
+        request.put(`${Prefixs.usercard}/societyinfo`)
+        .send(this.state)
+        .end((err,res)=>{
+            if (err) {
+                messenger.showMsg({
+                    msg:err.message
+                })
+                return
+            }
+            const data = JSON.parse(res.text)
+            messenger.showMsg({
+                msg:data.desc
+            })
+            this.getUserCard()
+        })
+    }
+    getUserCard=()=>{
+        request.get(`${Prefixs.usercard}?userId=${Auth.getUserId()}`)
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            if (data.success) {
+                this.setState({
+                    qq:data.data.qq,
+                    weChat:data.data.weChat
+                })
+            }else {
+                messenger.showMsg({
+                    msg:'获取社交信息失败！'
+                })
+            }
+        })
     }
 }
 module.exports=EditSociety

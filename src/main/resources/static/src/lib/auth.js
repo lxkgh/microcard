@@ -8,21 +8,13 @@ let setUserId=function(value){
     sessionStorage.setItem('userId',value)
 }
 
-let getAuthorities= function(){
-  return JSON.parse(sessionStorage.getItem('authorities'))
-}
-
-let setAuthorities=function(value){
-    sessionStorage.setItem('authorities',JSON.stringify(value))
-}
-
 let login = function(handleFn,errFn){
   if (isLogged()) {
     return
   }
   verifyUser((res) => {
       setUserId(res.userId)
-      setAuthorities(res.currentAuthorities)
+      Auth.authorities=res.currentAuthorities
       if (isLogged()) {
           if (handleFn) handleFn(res)
       }else if(errFn){
@@ -37,7 +29,7 @@ let logout = function(successHandle,failureHandle){
         const data = JSON.parse(res.text)
         if (data.success) {
             setUserId('')
-            setAuthorities('')
+            Auth.authorities=[]
             if(successHandle) successHandle(data)
         }else {
             if(failureHandle) failureHandle(data)
@@ -60,7 +52,10 @@ let isAuthorited = function(){
     if (Auth.allowedAuthorities.length==0) {
         return true
     }
-    let currentAuthorities = getAuthorities()
+    let currentAuthorities = Auth.authorities
+    if (currentAuthorities.length==0) {
+        return false
+    }
     for (let i = 0; i < Auth.allowedAuthorities.length; i++) {
         for (let j = 0; j < currentAuthorities.length; j++) {
             if (Auth.allowedAuthorities[i]==currentAuthorities[j].authority) {
@@ -82,7 +77,9 @@ const Auth={
 
   isLogged: isLogged,
 
-  allowedAuthorities:[]
+  allowedAuthorities:[],
+
+  authorities:[]
 }
 
 module.exports = Auth
