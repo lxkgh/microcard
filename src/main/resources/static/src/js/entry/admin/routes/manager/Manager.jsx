@@ -2,7 +2,9 @@ import React from 'react'
 
 import LeftNav from '../../component/leftnav/leftnav.jsx'
 
-import styles from './Manages.css'
+import styles from './Manager.css'
+
+import Header from 'admin.Header'
 
 class Manages extends React.Component {
     constructor(props) {
@@ -11,8 +13,11 @@ class Manages extends React.Component {
     render() {
         return (
             <div className={styles.manages}>
-                <LeftNav/>
-                {this.props.children}
+                <Header/>
+                <div className={styles.body}>
+                    <LeftNav/>
+                    {this.props.children}
+                </div>
             </div>
         )
     }

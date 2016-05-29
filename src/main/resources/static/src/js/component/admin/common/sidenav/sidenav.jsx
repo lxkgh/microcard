@@ -3,7 +3,6 @@ import React from 'react'
 const styles={
     sidenav:{
         width:'20%',
-        height:'100%',
         backgroundColor:'#f0f0f0'
     }
 }

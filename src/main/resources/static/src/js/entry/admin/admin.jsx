@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { hashHistory, Router} from 'react-router'
 import 'css.Common'
-import Header from './component/Header/Header.jsx'
 import ROUTES from 'admin.Config'
 import Auth from 'Auth'
 Auth.allowedAuthorities = ['ROLE_ADMIN']
@@ -20,7 +19,6 @@ class AdminAPP extends React.Component {
     render() {
         return (
             <div style={styles.adminAPP}>
-                <Header/>
                 {this.props.children}
             </div>
         )

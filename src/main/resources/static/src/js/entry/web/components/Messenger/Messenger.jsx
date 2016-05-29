@@ -1,52 +1,44 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import Cover from 'Cover'
-
 import styles from './Messenger.css'
+import Cover from 'Cover'
+import PopConfirm from './components/PopConfirm.jsx'
+import Msg from './components/Msg.jsx'
 
 class Messenger extends React.Component {
     constructor(props) {
         super(props)
-        this.state=this.initState()
+        this.state={
+            popup:null
+        }
     }
     render() {
-        const {header,body,buttons} = this.state
+        const {popup} = this.state
         return (
             <Cover ref="cover" autoHide={false} className={styles.cover}>
-                <div className={styles.popup}>
-                    <div className={styles.header}>{header}</div>
-                    <div className={styles.body}>{body}</div>
-                    <div className={styles.footer}>
-                        {
-                            buttons.map((btn,i)=>{
-                                return <div key={i} onClick={btn.onClick}>{btn.desc}</div>
-                            })
-                        }
-                    </div>
-                </div>
+                {popup}
             </Cover>
         )
     }
-    initState=()=>{
-        return {
-            header:'',
-            body:'内容',
-            buttons:[
-                {
-                    desc:'确定',
-                    onClick:this.hide
-                }
-            ]
-        }
-    }
-    show=(options)=>{
-        this.setState(options);
+    showPopConfirm=(options)=>{
         this.refs['cover'].setState({show:true})
+        this.setState({
+            popup:<PopConfirm {...options}/>
+        })
+    }
+    showMsg=(options)=>{
+        let time = 1500
+        if (options) {
+            time = options.time || time
+        }
+        this.refs['cover'].setState({show:true})
+        this.setState({
+            popup:<Msg {...options}/>
+        })
+        setTimeout(this.hide,time)
     }
     hide=()=>{
         this.refs['cover'].setState({show:false})
-        this.setState(this.initState())
     }
 }
 

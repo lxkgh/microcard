@@ -38,19 +38,31 @@ class Login extends React.Component {
             username:this.state.username,
             password:this.state.password
         }
+        if (!user.username) {
+            messenger.showMsg({msg:'请填写账号！'})
+            return
+        }
+        if (!user.password) {
+            messenger.showMsg({msg:'请填写密码！'})
+            return
+        }
         request.post('/login')
           .send(user)
           .set('Content-Type','application/x-www-form-urlencoded')
-          .end((err,res)=>{
-              if (err) {
-                  messenger.show()
-                  return
-              }
+          .then((res)=>{
               const data=JSON.parse(res.text)
               if (data.success) {
                   Auth.login(()=>{this.props.router.push(ROUTES.home)},null)
-              }else {
-                  messenger.show()
+              } else {
+                  messenger.showPopConfirm({
+                      body:data.desc,
+                      buttons:[
+                          {
+                              desc:'确认',
+                              onClick:messenger.hide
+                          }
+                      ]
+                  })
               }
           })
     }

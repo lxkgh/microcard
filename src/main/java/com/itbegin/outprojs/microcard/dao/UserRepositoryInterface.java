@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.itbegin.outprojs.microcard.dao.repository.UserRepositoryInterfaceCustom;
 import com.itbegin.outprojs.microcard.model.entity.User;
+import com.itbegin.outprojs.microcard.model.enums.UserRole;
 
 public interface UserRepositoryInterface extends MongoRepository<User, String>,
 		UserRepositoryInterfaceCustom {
@@ -12,4 +13,5 @@ public interface UserRepositoryInterface extends MongoRepository<User, String>,
 	
 	void deleteByUsername(String username);
 	
+	long countByRoleLike(UserRole role);
 }

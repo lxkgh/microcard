@@ -24,6 +24,7 @@ module.exports = {
     'admin.Content': 'src/js/component/admin/common/content/content.jsx',
     'admin.Config':'src/js/entry/admin/config.jsx',
     'admin.Column': 'src/js/component/admin/common/column/column.jsx',
+    'admin.Header':'src/js/entry/admin/component/Header/Header.jsx',
     'admin.SideNav': 'src/js/component/admin/common/sidenav/sidenav.jsx',
     'admin.NavItem': 'src/js/component/admin/common/sidenav/navitem/navitem.jsx',
     'admin.Table': 'src/js/component/admin/common/table/table.jsx',

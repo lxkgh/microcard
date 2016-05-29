@@ -2,7 +2,7 @@ module.exports={
     path:'manager',
     getComponent(nextState,cb){
         require.ensure([], (require) => {
-            cb(null, require('./Manages.jsx'))
+            cb(null, require('./Manager.jsx'))
         })
     },
     childRoutes:[
