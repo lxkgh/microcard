@@ -18,4 +18,9 @@ public class MySecurityContext {
 		SecUserDetails user = getUserDetails();
 		return (user!=null)?user.getUsername():null;
 	}
+	
+	public static String getUserId(){
+		SecUserDetails user = getUserDetails();
+		return (user!=null)?user.getUser().getId():null;
+	}
 }

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itbegin.outprojs.microcard.dao.UserCardRepositoryInterface;
 import com.itbegin.outprojs.microcard.dao.UserRepositoryInterface;
 import com.itbegin.outprojs.microcard.model.entity.User;
+import com.itbegin.outprojs.microcard.model.entity.UserCard;
 import com.itbegin.outprojs.microcard.model.exceptions.EmptyKeyException;
 import com.itbegin.outprojs.microcard.model.exceptions.NotFoundException;
 import com.itbegin.outprojs.microcard.model.json.ApiResult;
@@ -23,6 +25,8 @@ import com.itbegin.outprojs.microcard.utils.StrUtil;
 public class AdminUserApi {
 	@Autowired
 	private UserRepositoryInterface userRepositoryInterface;
+	@Autowired
+	private UserCardRepositoryInterface userCardRepositoryInterface;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ApiResult getUser(String username){
@@ -51,6 +55,9 @@ public class AdminUserApi {
 				u.setPassword("123456");
 			}
 			User uu=userRepositoryInterface.save(u);
+			UserCard uc=new UserCard();
+			uc.setUserId(uu.getId());
+			userCardRepositoryInterface.save(uc);
 			return new ApiResult(true, 0, "添加用户成功", uu);
 		}catch (Exception e) {
 			return new ApiResult(false, 0, "添加用户失败", null);
@@ -68,9 +75,10 @@ public class AdminUserApi {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
-	public ApiResult deleteUser(String username){
+	public ApiResult deleteUser(String id){
 		try {
-			userRepositoryInterface.deleteByUsername(username);
+			userRepositoryInterface.delete(id);
+			userCardRepositoryInterface.deleteByUserId(id);
 			return new ApiResult(true, 0, "删除用户成功", null);
 		} catch (Exception e) {
 			return new ApiResult(false, 0, "删除用户失败", null);

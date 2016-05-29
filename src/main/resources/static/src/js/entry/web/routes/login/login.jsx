@@ -55,6 +55,7 @@ class Login extends React.Component {
                   Auth.login(()=>{this.props.router.push(ROUTES.home)},null)
               } else {
                   messenger.showPopConfirm({
+                      header:'登录失败',
                       body:data.desc,
                       buttons:[
                           {

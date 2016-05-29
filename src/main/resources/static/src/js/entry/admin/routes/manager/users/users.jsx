@@ -27,7 +27,7 @@ class Users extends React.Component {
             percents:['40%','40%','20%'],
             keys:['username','realname','role'],
             body:this.state.users,
-            id:'username'
+            id:'id'
         }
     }
     render() {
@@ -96,7 +96,7 @@ class Users extends React.Component {
     }
     delete(){
         this.refs['content'].delete(
-            `username=${this.refs['baseTable'].getActiveId()}`,
+            `id=${this.refs['baseTable'].getActiveId()}`,
             (data)=>{
                 Tip.showSuccess(data.desc)
                 this.refresh()

@@ -21,8 +21,8 @@ public class InitApi {
 		long number=userRepositoryInterface.countByRoleLike(UserRole.ROLE_ADMIN);
 		if (number==0) {
 			User u=new User();
-			u.setUsername("superuser");
-			u.setRealname("superuser");
+			u.setUsername("user");
+			u.setRealname("user");
 			u.setPassword("123456");
 			u.setRole(UserRole.ROLE_ADMIN);
 			userRepositoryInterface.save(u);

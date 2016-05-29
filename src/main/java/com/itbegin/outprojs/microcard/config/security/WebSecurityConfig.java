@@ -2,11 +2,14 @@ package com.itbegin.outprojs.microcard.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import com.itbegin.outprojs.microcard.model.enums.UserRole;
 
 @Configuration
 @EnableWebSecurity
@@ -26,11 +29,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		
 		http.csrf().disable().exceptionHandling().accessDeniedPage("/admin")
 		.and()
 		.authorizeRequests()
-		.antMatchers("/api/**","/app","/admin").permitAll()
+		.antMatchers(HttpMethod.GET,"/app","/admin",
+				"/api/init/*",
+				"/api/auth/*",
+				"/api/usercard")
+		.permitAll()
+		.antMatchers("/api/admin/**").hasAuthority(UserRole.ROLE_ADMIN.toString())
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
