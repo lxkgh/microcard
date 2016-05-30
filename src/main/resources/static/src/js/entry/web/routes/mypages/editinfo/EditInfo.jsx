@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {checkIdCard} from 'ValidatorUtil'
 import styles from './EditInfo.css'
 import cx from 'classnames'
 import InputItem from 'webfront.InputItem'
@@ -14,6 +14,7 @@ class EditInfo extends React.Component{
         super(props);
         this.state={
             name:'',
+            idcard:'',
             company:'',
             job:'',
             department:'',
@@ -25,6 +26,11 @@ class EditInfo extends React.Component{
     changeName(e){
         this.setState({
             name:e.target.value
+        })
+    }
+    changeIdCard(e){
+        this.setState({
+            idcard:e.target.value
         })
     }
     changeCompany(e){
@@ -61,7 +67,7 @@ class EditInfo extends React.Component{
         this.getUserCard()
     }
     render(){
-        const {name,company,job,department,phone,address,email} = this.state
+        const {name,company,job,department,phone,address,email,idcard} = this.state
         const input1props = {
             tagName:'姓名',
             type:'text',
@@ -104,15 +110,27 @@ class EditInfo extends React.Component{
             defaultInfo:'请输入您的邮箱',
             value:email
         }
+        const toggleButtonProps = {
+            name:'不显示',
+            nameChecked:'显示'
+        }
+        const idItemProps = {
+            tagName:'身份证号*',
+            type:'text',
+            defaultInfo:'请输入您的身份证号(必填)',
+            value:idcard
+        }
         return(
             <div className= {styles.wrapDivStyle}>
                 <div className= {styles.myInfoMenu}>
                     <section className="fixed">
                         <h3 className={styles.h3Style}>基本信息</h3>
                         <ul className={cx(styles.ulStyle,'fixed')}>
-                            <IdcardItem />
                             <InputItem {...input1props}
                                 onChange={(e)=>{this.changeName(e)}}/>
+                            <IdcardItem toggleButtonProps={toggleButtonProps}
+                                {...idItemProps}
+                                onChange={(e)=>{this.changeIdCard(e)}}/>
                             <InputItem {...input2props}
                                 onChange={(e)=>{this.changeCompany(e)}}/>
                             <InputItem {...input3props}
@@ -139,6 +157,7 @@ class EditInfo extends React.Component{
             if (data.success) {
                 this.setState({
                     name:data.data.name,
+                    idcard:data.data.idcard,
                     company:data.data.company,
                     job:data.data.job,
                     department:data.data.department,
@@ -154,6 +173,13 @@ class EditInfo extends React.Component{
         })
     }
     handleSubmit=()=>{
+
+        if(!checkIdCard(this.state.idcard)){
+            messenger.showMsg({
+                msg:'请输入正确的身份证号'
+            })
+            return
+        }
         request.put(`${Prefixs.usercard}/baseinfo`)
         .send(this.state)
         .end((err,res)=>{

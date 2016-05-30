@@ -5,6 +5,7 @@ import svgIcons from 'svgIcons'
 import styles from './EditCard.css'
 import cx from 'classnames'
 import ROUTES from 'web.Config'
+import messenger from 'web.Messenger'
 class EditCard extends React.Component{
     constructor(props){
         super(props);
@@ -20,6 +21,31 @@ class EditCard extends React.Component{
     }
     clickEditTitle(){
         this.context.router.push(ROUTES.edittitle)
+    }
+    clickEditTheme(){
+        messenger.showMsg({
+            msg:'该功能暂时未开放'
+        })
+    }
+    clickEditBackground(){
+        messenger.showMsg({
+            msg:'该功能暂时未开放'
+        })
+    }
+    clickEditMusic(){
+        messenger.showMsg({
+            msg:'该功能暂时未开放'
+        })
+    }
+    clickEditRank(){
+        messenger.showMsg({
+            msg:'该功能暂时未开放'
+        })
+    }
+    clickEditProduct(){
+        messenger.showMsg({
+            msg:'该功能暂时未开放'
+        })
     }
     render(){
         const MenuItem1Props ={
@@ -151,13 +177,18 @@ class EditCard extends React.Component{
                                 onClick={()=>{this.clickEditTitle()}}/>
                         </section>
                         <section className={cx(styles.section1,'fixed')}>
-                            <MenuItem {...MenuItem5Props}/>
-                            <MenuItem {...MenuItem6Props}/>
-                            <MenuItem {...MenuItem7Props}/>
+                            <MenuItem {...MenuItem5Props}
+                                onClick={()=>{this.clickEditTheme()}}/>
+                            <MenuItem {...MenuItem6Props}
+                                onClick={()=>{this.clickEditBackground()}}/>
+                            <MenuItem {...MenuItem7Props}
+                                onClick={()=>{this.clickEditMusic()}}/>
                         </section>
                         <section className={cx(styles.section1,'fixed')}>
-                            <MenuItem {...MenuItem8Props}/>
-                            <MenuItem {...MenuItem9Props}/>
+                            <MenuItem {...MenuItem8Props}
+                                onClick={()=>{this.clickEditRank()}}/>
+                            <MenuItem {...MenuItem9Props}
+                                onClick={()=>{this.clickEditProduct()}}/>
                         </section>
                     </div>
                 </div>

@@ -18,6 +18,8 @@ module.exports = {
     'webfront.Popup':'src/js/component/webfront/common/popup/Popup.jsx',
     'webfront.QRcodeBar':'src/js/component/webfront/common/qrcodeBar/QRcodeBar.jsx',
     'webfront.IdcardItem':'src/js/component/webfront/common/idcarditem/IdcardItem.jsx',
+    'webfront.SwitchButton':'src/js/component/webfront/common/switchbutton/SwitchButton.jsx',
+
 
     'admin.Auth':'src/js/entry/admin/auth.jsx',
     'admin.Button': 'src/js/component/admin/common/button/button.jsx',
@@ -36,7 +38,9 @@ module.exports = {
     'web.Auth':'src/js/entry/web/auth.jsx',
     'web.Messenger':'src/js/entry/web/components/Messenger/Messenger.jsx',
 
+
     //=============================lib==========================//
-    'Auth':'src/lib/auth.js',
-    'ErrHandles':'src/lib/ErrHandles.jsx'
+    'ErrHandles':'src/lib/ErrHandles.jsx',
+    'ValidatorUtil':'src/lib/utils/validator/validator.js',
+    'Auth':'src/lib/auth.js'
 };

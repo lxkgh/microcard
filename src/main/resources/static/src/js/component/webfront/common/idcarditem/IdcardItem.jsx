@@ -1,6 +1,7 @@
 import React,{PropTypes} from 'react'
 import styles from './IdcardItem.css'
-
+import SwitchButton from 'webfront.SwitchButton'
+import cx from 'classnames'
 class IdcardItem extends React.Component {
     constructor(props) {
         super(props)
@@ -8,22 +9,17 @@ class IdcardItem extends React.Component {
             value:''
         }
     }
-
     render() {
+        const {switchButtonProps} = this.props
         return (
-            <li className={styles.li}>
+            <li className={cx(styles.li,'flexbox','items-center')}>
                 <label className={styles.label}>{this.props.tagName}</label>
                 <input className={styles.InputItem}
                     placeholder={this.props.defaultInfo}
                     type = {this.props.type}
                     value = {this.props.value}
                     onChange = {this.props.onChange}/>
-                <div  className={styles.btnDiv}>
-                    <label className={styles.wrapLabelStyle}>
-                        <input className={styles.btn}
-                            type="checkbox"/>
-                    </label>
-                </div>
+                <SwitchButton {...switchButtonProps}/>
             </li>
         )
     }
@@ -34,6 +30,7 @@ IdcardItem.propTypes = {
     button:PropTypes.string,
     defaultInfo:PropTypes.string,
     value:PropTypes.string,
-    onChange:PropTypes.func
+    onChange:PropTypes.func,
+    switchButtonProps:PropTypes.object
 }
 export default IdcardItem
