@@ -36,8 +36,9 @@ const rootRoute={
         ]
     }]
 }
-
-ReactDOM.render(
-  <Router history={hashHistory} routes={rootRoute} />,
-  document.getElementById('common-body')
-)
+Auth.login(null,null,()=>{
+    ReactDOM.render(
+      <Router history={hashHistory} routes={rootRoute} />,
+      document.getElementById('common-body')
+    )
+})

@@ -10,9 +10,6 @@ class App extends React.Component {
     constructor(props) {
         super(props)
     }
-    componentWillMount(){
-        Auth.login(()=>{this.props.router.push(ROUTES.home)})
-    }
     render=()=>{
         return (
             <div style={{width:'100%',height:'100%'}}>
@@ -37,8 +34,9 @@ const rootRoute={
         ]
     }]
 }
-
-ReactDOM.render(
-  <Router history={hashHistory} routes={rootRoute} />,
-  document.getElementById('common-body')
-)
+Auth.login(null,null,()=>{
+    ReactDOM.render(
+      <Router history={hashHistory} routes={rootRoute} />,
+      document.getElementById('common-body')
+    )
+})

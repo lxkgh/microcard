@@ -8,18 +8,21 @@ let setUserId=function(value){
     sessionStorage.setItem('userId',value)
 }
 
-let login = function(handleFn,errFn){
+let login = function(handleFn,errFn,finallyFn){
   if (isLogged()) {
+    if (handleFn) handleFn()
+    if (finallyFn) finallyFn()
     return
   }
   verifyUser((res) => {
       setUserId(res.userId)
       Auth.authorities=res.currentAuthorities
       if (isLogged()) {
-          if (handleFn) handleFn(res)
+          if (handleFn) handleFn()
       }else if(errFn){
-          errFn(res)
+          errFn()
       }
+      if (finallyFn) finallyFn()
   })
 }
 
