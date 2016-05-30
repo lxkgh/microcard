@@ -33,9 +33,9 @@ public class UserRepositoryInterfaceImpl implements
 	}
 
 	@Override
-	public void updatePassword(String userId,String password) {
+	public void updatePassword(String id,String password) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("id").is(userId));
+		query.addCriteria(Criteria.where("id").is(id));
 		Update update = new Update();
 		update.set("password", password);
 		mongoOperations.updateFirst(query, update, User.class);

@@ -16,17 +16,16 @@ class MyIndex extends React.Component{
         super(props)
         this.state={
             name:'',
-            job:'',
-            phone:''
+            job:''
         }
     }
     componentDidMount() {
         this.getUserCard()
     }
     render(){
-        const {name,job,phone} = this.state
+        const {name,job} = this.state
         const MyPhoneProps = {
-            frontName:phone,
+            frontName:Auth.username,
             frontSvg:fileSvgIcons.phone,
             frontSize:16,
             afterSvg:svgIcons.rightArrow,
@@ -103,8 +102,7 @@ class MyIndex extends React.Component{
             if (data.success) {
                 this.setState({
                     name:data.data.name,
-                    job:data.data.job,
-                    phone:data.data.phone
+                    job:data.data.job
                 })
             }else {
                 messenger.showMsg({
