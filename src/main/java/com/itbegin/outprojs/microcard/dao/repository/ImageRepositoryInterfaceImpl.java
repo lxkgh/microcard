@@ -21,5 +21,14 @@ public class ImageRepositoryInterfaceImpl implements
 		update.set("name", name);
 		mongoOperations.updateFirst(query, update, Image.class);
 	}
-
+	
+	@Override
+	public void updateTypeAndPath(String id, Image image) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("id").is(id));
+		Update update = new Update();
+		update.set("type", image.getType());
+		update.set("path", image.getPath());
+		mongoOperations.updateFirst(query, update, Image.class);
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
+import com.itbegin.outprojs.microcard.model.entity.Image;
 import com.itbegin.outprojs.microcard.model.entity.UserCard;
 
 public class UserCardRepositoryInterfaceImpl implements
@@ -58,6 +59,15 @@ public class UserCardRepositoryInterfaceImpl implements
 		Update update = new Update();
 		update.set("shareTitle", uc.getShareTitle());
 		update.set("shareAbstract", uc.getShareAbstract());
+		mongoOperations.updateFirst(query, update, UserCard.class);
+	}
+	
+	@Override
+	public void updateUserIcon(String userId, Image image) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("userId").is(userId));
+		Update update = new Update();
+		update.set("userIcon", image);
 		mongoOperations.updateFirst(query, update, UserCard.class);
 	}
 

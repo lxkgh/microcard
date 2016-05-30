@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -14,6 +15,8 @@ public class UserCard implements Serializable {
 	private String id;
 	@Indexed(unique=true)
 	private String userId;//用户id,不是username
+	@DBRef
+	private Image userIcon;
 	
 	//=====================基本信息=======================//
 	
@@ -29,9 +32,11 @@ public class UserCard implements Serializable {
 	
 	//=====================社交信息======================//
 	private String qq;//QQ
-	private String qqQRCode;//QQ二维码
+	@DBRef
+	private Image qqQRCode;//QQ二维码
 	private String weChat;//微信
-	private String weChatQRCode;//微信二维码
+	@DBRef
+	private Image weChatQRCode;//微信二维码
 	
 	//=====================我的签名======================//
 	private String signature;//我的签名
@@ -101,10 +106,10 @@ public class UserCard implements Serializable {
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
-	public String getQqQRCode() {
+	public Image getQqQRCode() {
 		return qqQRCode;
 	}
-	public void setQqQRCode(String qqQRCode) {
+	public void setQqQRCode(Image qqQRCode) {
 		this.qqQRCode = qqQRCode;
 	}
 	public String getWeChat() {
@@ -113,10 +118,10 @@ public class UserCard implements Serializable {
 	public void setWeChat(String weChat) {
 		this.weChat = weChat;
 	}
-	public String getWeChatQRCode() {
+	public Image getWeChatQRCode() {
 		return weChatQRCode;
 	}
-	public void setWeChatQRCode(String weChatQRCode) {
+	public void setWeChatQRCode(Image weChatQRCode) {
 		this.weChatQRCode = weChatQRCode;
 	}
 	public String getSignature() {
@@ -142,5 +147,11 @@ public class UserCard implements Serializable {
 	}
 	public void setIdcard(String idcard) {
 		this.idcard = idcard;
+	}
+	public Image getUserIcon() {
+		return userIcon;
+	}
+	public void setUserIcon(Image userIcon) {
+		this.userIcon = userIcon;
 	}
 }

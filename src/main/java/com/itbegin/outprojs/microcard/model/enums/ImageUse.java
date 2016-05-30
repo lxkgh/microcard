@@ -1,7 +1,7 @@
 package com.itbegin.outprojs.microcard.model.enums;
 
 public enum ImageUse {
-	BACKGROUND("背景图片"),ICON("图标");
+	BACKGROUND("背景图片"),ICON("图标"),USER("用户图片");
 	private String viewName;
 
 	private ImageUse(String viewName) {

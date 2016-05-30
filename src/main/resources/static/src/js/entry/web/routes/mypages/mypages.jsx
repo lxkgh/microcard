@@ -12,7 +12,8 @@ const TopbarTitle={
     [ROUTES.editsign]:'修改个人签名',
     [ROUTES.editsociety]:'修改个人社交信息',
     [ROUTES.editphone]:'修改绑定手机',
-    [ROUTES.editpassword]:'修改登录密码'
+    [ROUTES.editpassword]:'修改登录密码',
+    [ROUTES.edittitle]:'修改名片标题'
 }
 
 class MyPages extends React.Component {

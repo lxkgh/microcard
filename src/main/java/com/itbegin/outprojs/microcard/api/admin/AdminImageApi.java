@@ -83,7 +83,7 @@ public class AdminImageApi {
 			
 			return new ApiResult(true, 0, "添加图片成功",null);
 		} catch (IOException e) {
-			imageRepositoryInterface.deleteByPath(hashImage);
+			imageRepositoryInterface.deleteByPath(PathUtil.getImgRelPath(hashImage, image.getType()));
 			return new ApiResult(false, 0, "保存图片失败",null);
 		} catch (DuplicateKeyException e) {
 			return new ApiResult(false, 1, "图片已存在",null);
@@ -113,7 +113,6 @@ public class AdminImageApi {
 			FileUtils.forceDelete(new File(PathUtil.getImgAbsPath(img.getPath())));
 			return new ApiResult(true, 0, "删除图片成功",null);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return new ApiResult(false, 1, "删除图片失败",null);
 		}
 	}
