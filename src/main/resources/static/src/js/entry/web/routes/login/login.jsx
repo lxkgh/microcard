@@ -3,7 +3,6 @@ import styles from './Login.css'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
 import cx from 'classnames'
-import request from 'superagent'
 import ROUTES from 'web.Config'
 import {withRouter} from 'react-router'
 import Auth from 'Auth'
@@ -46,26 +45,29 @@ class Login extends React.Component {
             messenger.showMsg({msg:'请填写密码！'})
             return
         }
-        request.post('/login')
-          .send(user)
-          .set('Content-Type','application/x-www-form-urlencoded')
-          .then((res)=>{
-              const data=JSON.parse(res.text)
-              if (data.success) {
-                  Auth.login(()=>{this.props.router.push(ROUTES.home)},null)
-              } else {
-                  messenger.showPopConfirm({
-                      header:'登录失败',
-                      body:data.desc,
-                      buttons:[
-                          {
-                              desc:'确认',
-                              onClick:messenger.hide
-                          }
-                      ]
-                  })
-              }
-          })
+        Auth.loginServer(
+            user,
+            ()=>{
+                Auth.loginClient(()=>{this.props.router.push(ROUTES.home)},null)
+            },
+            (data)=>{
+                messenger.showPopConfirm({
+                    header:'登录失败',
+                    body:data.desc,
+                    buttons:[
+                        {
+                            desc:'确认',
+                            onClick:messenger.hide
+                        }
+                    ]
+                })
+            },
+            (err)=>{
+                messenger.showMsg({
+                    msg:err.message
+                })
+            }
+        )
     }
     clickRegister(){
         this.props.router.push(ROUTES.register)

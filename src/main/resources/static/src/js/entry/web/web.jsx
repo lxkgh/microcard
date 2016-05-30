@@ -34,7 +34,7 @@ const rootRoute={
         ]
     }]
 }
-Auth.login(null,null,()=>{
+Auth.loginClient(null,null,()=>{
     ReactDOM.render(
       <Router history={hashHistory} routes={rootRoute} />,
       document.getElementById('common-body')

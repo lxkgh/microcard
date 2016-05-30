@@ -17,7 +17,7 @@ class Topbar extends React.Component {
         this.props.router.goBack()
     }
     clickExit(){
-        Auth.logout(
+        Auth.logoutServer(
             ()=>{this.props.router.push(ROUTES.login)}
         )
     }

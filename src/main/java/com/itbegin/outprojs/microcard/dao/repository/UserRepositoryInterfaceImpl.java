@@ -31,4 +31,13 @@ public class UserRepositoryInterfaceImpl implements
 		update.set("role", u.getRole());
 		mongoOperations.updateFirst(query, update, User.class);
 	}
+
+	@Override
+	public void updatePassword(String userId,String password) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("id").is(userId));
+		Update update = new Update();
+		update.set("password", password);
+		mongoOperations.updateFirst(query, update, User.class);
+	}
 }

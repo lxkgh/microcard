@@ -13,6 +13,7 @@ const ROUTES = {
 }
 
 export const Prefixs={
+    user:'/api/user',
     usercard:'/api/usercard'
 }
 

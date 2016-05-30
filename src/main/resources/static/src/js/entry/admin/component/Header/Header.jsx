@@ -20,7 +20,7 @@ class Header extends React.Component {
         )
     }
     logout=()=>{
-        Auth.logout(()=>{
+        Auth.logoutServer(()=>{
             this.props.router.push(ROUTES.login)
         })
     }

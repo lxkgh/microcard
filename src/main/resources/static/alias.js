@@ -36,5 +36,7 @@ module.exports = {
     'web.Auth':'src/js/entry/web/auth.jsx',
     'web.Messenger':'src/js/entry/web/components/Messenger/Messenger.jsx',
 
-    'Auth':'src/lib/auth.js'
+    //=============================lib==========================//
+    'Auth':'src/lib/auth.js',
+    'ErrHandles':'src/lib/ErrHandles.jsx'
 };

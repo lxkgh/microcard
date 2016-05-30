@@ -1,4 +1,4 @@
-import React,{PropTypes} from 'react'
+import React from 'react'
 import MenuItem from 'menuitem'
 import Svg from 'SvgIcon'
 import svgIcons from 'svgIcons'
@@ -6,21 +6,27 @@ import styles from './MyCard.css'
 import Button from 'webfront.Button'
 import fileSvgIcons from './myIndexSvg.js'
 import ROUTES from 'web.Config'
-
+import request from 'superagent'
+import {withRouter} from 'react-router'
+import Auth from 'Auth'
+import {Prefixs} from 'web.Config'
+import messenger from 'web.Messenger'
 class MyIndex extends React.Component{
     constructor(props){
-        super(props);
+        super(props)
+        this.state={
+            name:'',
+            job:'',
+            phone:''
+        }
     }
-    clickChangePassword(){
-        this.context.router.push(ROUTES.editpassword)
+    componentDidMount() {
+        this.getUserCard()
     }
-    clickChangePhone(){
-        this.context.router.push(ROUTES.editphone)
-    }
-
     render(){
+        const {name,job,phone} = this.state
         const MyPhoneProps = {
-            frontName:'13819191919',
+            frontName:phone,
             frontSvg:fileSvgIcons.phone,
             frontSize:16,
             afterSvg:svgIcons.rightArrow,
@@ -46,7 +52,8 @@ class MyIndex extends React.Component{
             margin:'auto'
         }
         const buttonProps = {
-            desc:'退出'
+            desc:'退出',
+            onClick:this.logout
         }
         const portrait = {
             fill:'d3d9dd'
@@ -61,8 +68,8 @@ class MyIndex extends React.Component{
                             style={{portrait}}/>
                     </div>
                     <div className={styles.info}>
-                        <h1>Molly</h1>
-                        <h3 className={styles.h3}>运营经理</h3>
+                        <h1>{name}</h1>
+                        <h3 className={styles.h3}>{job}</h3>
                     </div>
                     <div className={styles.QRcodeBox}>
                         <Svg paths={[fileSvgIcons.QRcode]}
@@ -89,8 +96,37 @@ class MyIndex extends React.Component{
             </div>
         )
     }
+    getUserCard=()=>{
+        request.get(`${Prefixs.usercard}?userId=${Auth.getUserId()}`)
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            if (data.success) {
+                this.setState({
+                    name:data.data.name,
+                    job:data.data.job,
+                    phone:data.data.phone
+                })
+            }else {
+                messenger.showMsg({
+                    msg:'获取名片信息失败！'
+                })
+            }
+        })
+    }
+    clickChangePassword(){
+        this.props.router.push(ROUTES.editpassword)
+    }
+    clickChangePhone(){
+        this.props.router.push(ROUTES.editphone)
+    }
+    logout=()=>{
+        Auth.logoutServer(()=>{
+            this.props.router.push(ROUTES.login)
+        },(desc)=>{
+            messenger.showMsg({
+                msg:desc
+            })
+        })
+    }
 }
-MyIndex.contextTypes = {
-    router:PropTypes.object
-}
-module.exports=MyIndex
+module.exports=withRouter(MyIndex)

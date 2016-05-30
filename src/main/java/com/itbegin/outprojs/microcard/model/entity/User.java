@@ -3,6 +3,7 @@ package com.itbegin.outprojs.microcard.model.entity;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,6 +20,9 @@ public class User implements Serializable {
 	private String password;
 	private String realname;
 	private UserRole role=UserRole.ROLE_USER;
+	
+	@Transient
+	private String newPassword;
 	
 	public String getId() {
 		return id;
@@ -49,5 +53,11 @@ public class User implements Serializable {
 	}
 	public void setRole(UserRole role) {
 		this.role = role;
+	}
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import request from 'superagent'
 import styles from './Login.css'
 import Input from 'Input'
 import Button from 'Button'
@@ -61,20 +60,19 @@ class Login extends React.Component {
             username:this.state.username,
             password:this.state.password
         }
-        request.post('/login')
-        .send(user)
-        .set('Content-Type','application/x-www-form-urlencoded')
-        .then((res)=>{
-            const data = JSON.parse(res.text)
-            if (data.success) {
-                Auth.login(
+        Auth.loginServer(
+            user,
+            ()=>{
+                Auth.loginClient(
                     ()=>{this.props.router.push(ROUTES.users)},
                     ()=>{Tip.showDanger('该账号不是管理员帐号！')}
                 )
-            }else {
+            },
+            ()=>{
                 Tip.showDanger('登陆失败，请确保账户、密码正确！')
-            }
-        })
+            },
+            (err)=>{Tip.showDanger(err.message)}
+        )
     }
 }
 module.exports = withRouter(Login)

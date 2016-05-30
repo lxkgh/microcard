@@ -8,7 +8,7 @@ let setUserId=function(value){
     sessionStorage.setItem('userId',value)
 }
 
-let login = function(handleFn,errFn,finallyFn){
+let loginClient = function(handleFn,errFn,finallyFn){
   if (isLogged()) {
     if (handleFn) handleFn()
     if (finallyFn) finallyFn()
@@ -17,6 +17,7 @@ let login = function(handleFn,errFn,finallyFn){
   verifyUser((res) => {
       setUserId(res.userId)
       Auth.authorities=res.currentAuthorities
+      Auth.username=res.username
       if (isLogged()) {
           if (handleFn) handleFn()
       }else if(errFn){
@@ -26,19 +27,42 @@ let login = function(handleFn,errFn,finallyFn){
   })
 }
 
-let logout = function(successHandle,failureHandle){
-    request.get('/logout')
+let loginServer=function(user,successHandle,failureHandle,errHandle){
+    request.post('/login')
+    .send(user)
+    .set('Content-Type','application/x-www-form-urlencoded')
     .then((res)=>{
         const data = JSON.parse(res.text)
         if (data.success) {
-            setUserId('')
-            Auth.authorities=[]
+            if (successHandle) successHandle(data)
+        }else {
+            if (failureHandle) failureHandle(data)
+        }
+    },errHandle)
+}
+
+let logoutServer = function(successHandle,failureHandle){
+    request.get('/logout')
+    .end((err,res)=>{
+        if (err) {
+            if(failureHandle) failureHandle(err.message)
+            return
+        }
+        const data = JSON.parse(res.text)
+        if (data.success) {
+            logoutClient()
             if(successHandle) successHandle(data)
         }else {
-            if(failureHandle) failureHandle(data)
+            if(failureHandle) failureHandle(data.desc)
         }
     })
 
+}
+
+let logoutClient = function(){
+    setUserId('')
+    Auth.username=''
+    Auth.authorities=[]
 }
 
 let isLogged = function(){
@@ -70,19 +94,25 @@ let isAuthorited = function(){
 }
 
 const Auth={
-  login:login,
+  loginClient:loginClient,
+
+  loginServer:loginServer,
 
   getUserId: getUserId,
 
   setUserId:setUserId,
 
-  logout: logout,
+  logoutServer: logoutServer,
+
+  logoutClient:logoutClient,
 
   isLogged: isLogged,
 
   allowedAuthorities:[],
 
-  authorities:[]
+  authorities:[],
+
+  username:''
 }
 
 module.exports = Auth
@@ -93,11 +123,13 @@ function verifyUser(cb) {
         if (data.success) {
             cb({
               userId:data.data['userId'],
+              username:data.data['username'],
               currentAuthorities:data.data['authorities']
             })
         }else {
             cb({
                 userId:'',
+                username:'',
                 currentAuthorities:[]
             })
         }

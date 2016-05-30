@@ -22,6 +22,7 @@ public class AuthApi {
 		}
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("userId", MySecurityContext.getUserId());
+		map.put("username", MySecurityContext.getUsername());
 		map.put("authorities", MySecurityContext.getUserDetails().getAuthorities());
 		return new ApiResult(true, 0, "用户已登录",map );
 	}
