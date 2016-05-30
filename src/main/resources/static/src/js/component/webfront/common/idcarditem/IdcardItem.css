@@ -5,36 +5,36 @@
     background: #fff;
     width: 100%;
     padding: 15px 10px 15px 110px;
-    fontSize: 1.4rem;
+    font-size: 1.4rem;
 }
 .button {
     position: absolute;
     top: 3px;
     right: 1px;
-    paddingRight: 10px;
+    padding-right: 10px;
     height: 38px;
     color: #1f8ff3;
     outline: none;
     border: none;
-    backgroundColor: #fff;
-    borderRadius: 0 5px 5px 0;
-    fontSize: 1.4rem;
+    background-color: #fff;
+    border-radius: 0 5px 5px 0;
+    font-size: 1.4rem;
 }
 .li {
-    listStyle:none;
+    list-style:none;
     outside:none;
     position: relative;
     background: #fff;
     width: 100%;
-    borderBottom: solid 1px #eaeaea
+    border-bottom: solid 1px #eaeaea;
 }
 .label {
     color: #000;
-    fontSize: 1.4rem;
+    font-size: 1.4rem;
     position: absolute;
     left: 12px;
     top: 50%;
-    marginTop: -7px
+    margin-top: -7px
 }
 .wrapLabelStyle {
     width: 100%;

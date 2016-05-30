@@ -20,6 +20,7 @@ public class UserCardRepositoryInterfaceImpl implements
 		query.addCriteria(Criteria.where("userId").is(userId));
 		Update update = new Update();
 		update.set("name", uc.getName());
+		update.set("idcard", uc.getIdcard());
 		update.set("company", uc.getCompany());
 		update.set("job", uc.getJob());
 		update.set("department", uc.getDepartment());

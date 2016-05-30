@@ -18,6 +18,7 @@ public class UserCard implements Serializable {
 	//=====================基本信息=======================//
 	
 	private String name;//名称
+	private String idcard;//身份证号,为必选项，默认对外隐藏
 	private String company;//公司
 	private String job;//职业
 	private String department;//所在部门
@@ -135,5 +136,11 @@ public class UserCard implements Serializable {
 	}
 	public void setShareAbstract(String shareAbstract) {
 		this.shareAbstract = shareAbstract;
+	}
+	public String getIdcard() {
+		return idcard;
+	}
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
 	}
 }
