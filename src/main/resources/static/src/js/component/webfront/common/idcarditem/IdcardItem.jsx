@@ -1,6 +1,6 @@
 import React,{PropTypes} from 'react'
 import styles from './IdcardItem.css'
-import ToggleButton from 'webfront.ToggleButton'
+import SwitchButton from 'webfront.SwitchButton'
 import cx from 'classnames'
 class IdcardItem extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class IdcardItem extends React.Component {
         }
     }
     render() {
-        const {toggleButtonProps} = this.props
+        const {switchButtonProps} = this.props
         return (
             <li className={cx(styles.li,'flexbox','items-center')}>
                 <label className={styles.label}>{this.props.tagName}</label>
@@ -19,7 +19,7 @@ class IdcardItem extends React.Component {
                     type = {this.props.type}
                     value = {this.props.value}
                     onChange = {this.props.onChange}/>
-                <ToggleButton {...toggleButtonProps}/>
+                <SwitchButton {...switchButtonProps}/>
             </li>
         )
     }
@@ -31,6 +31,6 @@ IdcardItem.propTypes = {
     defaultInfo:PropTypes.string,
     value:PropTypes.string,
     onChange:PropTypes.func,
-    toggleButtonProps:PropTypes.object
+    switchButtonProps:PropTypes.object
 }
 export default IdcardItem

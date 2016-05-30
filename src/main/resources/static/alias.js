@@ -18,7 +18,7 @@ module.exports = {
     'webfront.Popup':'src/js/component/webfront/common/popup/Popup.jsx',
     'webfront.QRcodeBar':'src/js/component/webfront/common/qrcodeBar/QRcodeBar.jsx',
     'webfront.IdcardItem':'src/js/component/webfront/common/idcarditem/IdcardItem.jsx',
-    'webfront.ToggleButton':'src/js/component/webfront/common/togglebutton/ToggleButton.jsx',
+    'webfront.SwitchButton':'src/js/component/webfront/common/switchbutton/SwitchButton.jsx',
 
 
     'admin.Auth':'src/js/entry/admin/auth.jsx',
@@ -41,6 +41,6 @@ module.exports = {
 
     //=============================lib==========================//
     'ErrHandles':'src/lib/ErrHandles.jsx',
-    'Validator':'src/lib/utils/validator/validator.js',
+    'ValidatorUtil':'src/lib/utils/validator/validator.js',
     'Auth':'src/lib/auth.js'
 };

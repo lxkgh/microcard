@@ -1,5 +1,5 @@
 import React from 'react'
-import Validator from 'Validator'
+import {checkIdCard} from 'ValidatorUtil'
 import styles from './EditInfo.css'
 import cx from 'classnames'
 import InputItem from 'webfront.InputItem'
@@ -174,7 +174,7 @@ class EditInfo extends React.Component{
     }
     handleSubmit=()=>{
 
-        if(!Validator.checkIdCard(this.state.idcard)){
+        if(!checkIdCard(this.state.idcard)){
             messenger.showMsg({
                 msg:'请输入正确的身份证号'
             })

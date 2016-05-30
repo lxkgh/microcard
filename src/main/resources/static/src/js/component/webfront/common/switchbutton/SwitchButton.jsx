@@ -1,8 +1,8 @@
 import React,{PropTypes} from 'react'
-import styles from './toggleButton.css'
+import styles from './switchButton.css'
 import cx from 'classnames'
 
-class ToggleButton extends React.Component {
+class SwitchButton extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,7 +15,7 @@ class ToggleButton extends React.Component {
             btnName:this.props.name
         })
     }
-    toggleClick(){
+    switchClick(){
         this.setState({
             btnName:this.state.isShow?this.props.name:this.props.nameChecked,
             isShow:!this.state.isShow
@@ -31,18 +31,18 @@ class ToggleButton extends React.Component {
                     </span>
                     <input className={styles.switchButton}
                         type="checkbox"
-                        onChange={()=>this.toggleClick()}/>
+                        onChange={()=>this.switchClick()}/>
                 </label>
             </div>
         )
     }
 }
-ToggleButton.propTypes={
+SwitchButton.propTypes={
     name:PropTypes.string,
     nameChecked:PropTypes.string
 }
-ToggleButton.defaultProps = {
+SwitchButton.defaultProps = {
     name:'',
     nameChecked:''
 }
-export default ToggleButton
+export default SwitchButton
