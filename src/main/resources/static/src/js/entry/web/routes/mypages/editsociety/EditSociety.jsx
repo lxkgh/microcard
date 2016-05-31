@@ -177,8 +177,12 @@ class EditSociety extends React.Component{
         reader.readAsDataURL(file)
     }
     handleSubmit=()=>{
+        const societyinfo={
+            qq:this.state.qq,
+            weChat:this.state.weChat
+        }
         request.put(`${Prefixs.usercard}/societyinfo`)
-        .send(this.state)
+        .send(societyinfo)
         .then((res)=>{
             const data = JSON.parse(res.text)
             messenger.showMsg({
