@@ -70,5 +70,24 @@ public class UserCardRepositoryInterfaceImpl implements
 		update.set("userIcon", image);
 		mongoOperations.updateFirst(query, update, UserCard.class);
 	}
+	
+	@Override
+	public void updateQqQRCode(String userId, Image image) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("userId").is(userId));
+		Update update = new Update();
+		update.set("qqQRCode", image);
+		mongoOperations.updateFirst(query, update, UserCard.class);
+	}
+	
+	@Override
+	public void updateWeChatQRCode(String userId, Image image) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("userId").is(userId));
+		Update update = new Update();
+		update.set("weChatQRCode", image);
+		mongoOperations.updateFirst(query, update, UserCard.class);
+	}
+
 
 }

@@ -6,9 +6,7 @@ import styles from './QRcodeBar.css'
 class QRcodeBar extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     render() {
@@ -19,9 +17,10 @@ class QRcodeBar extends React.Component {
                     <h1 className={styles.QRcodeNameStyle}>{QRcodeName}</h1>
                     <a href={QRLink} className={styles.QRLinkTitleStyle}>{QRLinkTitle}</a>
                 </div>
-                <div className={cx('flexbox','items-center')}>
+                <div className={cx('flexbox','items-center')} style={{position:'relative'}}>
                     <Svg paths={[QRcodeSvg]}
                         size={[svgSize,svgSize]}/>
+                    {this.props.children}
                 </div>
             </div>
         )

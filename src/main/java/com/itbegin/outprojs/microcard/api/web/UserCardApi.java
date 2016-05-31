@@ -107,37 +107,17 @@ public class UserCardApi {
 	
 	@RequestMapping(value = "/usericon",method = RequestMethod.PUT)
 	public ApiResult updateUserIcon(@RequestBody Image image){
-		String hashImage=null;
 		String oldPath = null;
 		Image userIcon = null;
 		try {
 			String userId = MySecurityContext.getUserId();
 			UserCard uc = userCardRepositoryInterface.findByUserId(userId);
 			userIcon = uc.getUserIcon();
-			
-			hashImage=HashUtil.generateMD5(image.getData());
-			
-			//保持图片
-			image.setPath(PathUtil.getUserImgRelPath(hashImage, image.getType(),userId));
-			
-			//生成图片文件	
-			File imageFile=new File(PathUtil.getUserImgPath(hashImage, image.getType(),userId));
-			ImageUtil.ConvertBase64ToImage(image.getData(), imageFile);
-			
-			if (uc.getUserIcon()==null) {
-				image.setImageUse(ImageUse.USER);
-				image.setName("头像");
-				userIcon = imageRepositoryInterface.save(image);
-				System.out.println(1);
-			}else {
-				userIcon.setType(image.getType());
+			if (userIcon!=null) {
 				oldPath = userIcon.getPath();
-				userIcon.setPath(image.getPath());
-				imageRepositoryInterface.updateTypeAndPath(userIcon.getId(),userIcon);
-				System.out.println(2);
 			}
-
-			userCardRepositoryInterface.updateUserIcon(MySecurityContext.getUserId(), userIcon);
+			handleImage(image,userId,userIcon,"header");
+			userCardRepositoryInterface.updateUserIcon(userId, userIcon);
 			
 			if (!StrUtil.isEmpty(oldPath)&&!image.getPath().equals(oldPath)) {
 				FileUtils.forceDelete(new File(PathUtil.RESOURCES+"/"+oldPath));
@@ -152,4 +132,82 @@ public class UserCardApi {
 			return new ApiResult(false, 2, "未知异常",userIcon);
 		}
 	}
+	
+	@RequestMapping(value = "/qqqrcode",method = RequestMethod.PUT)
+	public ApiResult updateQqQRcode(@RequestBody Image image){
+		Image qqQRCode = null;
+		String oldPath = null;
+		try {
+			String userId = MySecurityContext.getUserId();
+			UserCard uc = userCardRepositoryInterface.findByUserId(userId);
+			qqQRCode = uc.getQqQRCode();
+			if (qqQRCode!=null) {
+				oldPath = qqQRCode.getPath();
+			}
+			qqQRCode=handleImage(image,userId,qqQRCode,"qrcode");
+			
+			userCardRepositoryInterface.updateQqQRCode(userId, qqQRCode);
+			
+			if (!StrUtil.isEmpty(oldPath)&&!image.getPath().equals(oldPath)) {
+				FileUtils.forceDelete(new File(PathUtil.RESOURCES+"/"+oldPath));
+			}
+			
+			return new ApiResult(true, 0, "修改qq二维码成功", qqQRCode);
+		} catch (IOException e) {
+			return new ApiResult(false, 0, "保存qq二维码失败",qqQRCode);
+		} catch (DuplicateKeyException e) {
+			return new ApiResult(false, 1, "qq二维码已存在",qqQRCode);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "未知异常",qqQRCode);
+		}
+	}
+	
+	@RequestMapping(value = "/wechatqrcode",method = RequestMethod.PUT)
+	public ApiResult updateWeChatQRCode(@RequestBody Image image){
+		Image weChatQRCode = null;
+		String oldPath = null;
+		try {
+			String userId = MySecurityContext.getUserId();
+			UserCard uc = userCardRepositoryInterface.findByUserId(userId);
+			weChatQRCode = uc.getWeChatQRCode();
+			if (weChatQRCode!=null) {
+				oldPath = weChatQRCode.getPath();
+			}
+			weChatQRCode=handleImage(image,userId,weChatQRCode,"qrcode");
+			userCardRepositoryInterface.updateWeChatQRCode(userId, weChatQRCode);
+			
+			if (!StrUtil.isEmpty(oldPath)&&!image.getPath().equals(oldPath)) {
+				FileUtils.forceDelete(new File(PathUtil.RESOURCES+"/"+oldPath));
+			}
+			
+			return new ApiResult(true, 0, "修改微信二维码成功", weChatQRCode);
+		} catch (IOException e) {
+			return new ApiResult(false, 0, "保存微信二维码失败",weChatQRCode);
+		} catch (DuplicateKeyException e) {
+			return new ApiResult(false, 1, "微信二维码已存在",weChatQRCode);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "未知异常",weChatQRCode);
+		}
+	}
+	
+	public Image handleImage(Image image,String userId,Image qrCode,String kind) throws IOException,Exception{
+		String hashImage=HashUtil.generateMD5(image.getData());
+		//保持图片
+		image.setPath(PathUtil.getUserImgRelPath(hashImage, image.getType(),userId,kind));
+		
+		//生成图片文件	
+		File imageFile=new File(PathUtil.getUserImgPath(hashImage, image.getType(),userId,kind));
+		ImageUtil.ConvertBase64ToImage(image.getData(), imageFile);
+		
+		if (qrCode==null) {
+			image.setImageUse(ImageUse.USER);
+			qrCode = imageRepositoryInterface.save(image);
+		}else {
+			qrCode.setType(image.getType());
+			qrCode.setPath(image.getPath());
+			imageRepositoryInterface.updateTypeAndPath(qrCode.getId(),qrCode);
+		}
+		return qrCode;
+	}
+	
 }

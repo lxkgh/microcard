@@ -9,4 +9,6 @@ public interface UserCardRepositoryInterfaceCustom {
 	public void updateSignature(String userId, UserCard uc);
 	public void updateShareInfo(String userId, UserCard uc);
 	void updateUserIcon(String userId, Image image);
+	void updateQqQRCode(String userId, Image image);
+	void updateWeChatQRCode(String userId, Image image);
 }
