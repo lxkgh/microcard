@@ -110,7 +110,7 @@ class EditInfo extends React.Component{
             defaultInfo:'请输入您的邮箱',
             value:email
         }
-        const toggleButtonProps = {
+        const switchButtonProps = {
             name:'不显示',
             nameChecked:'显示'
         }
@@ -128,7 +128,7 @@ class EditInfo extends React.Component{
                         <ul className={cx(styles.ulStyle,'fixed')}>
                             <InputItem {...input1props}
                                 onChange={(e)=>{this.changeName(e)}}/>
-                            <IdcardItem toggleButtonProps={toggleButtonProps}
+                            <IdcardItem switchButtonProps={switchButtonProps}
                                 {...idItemProps}
                                 onChange={(e)=>{this.changeIdCard(e)}}/>
                             <InputItem {...input2props}

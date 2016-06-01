@@ -1,9 +1,13 @@
 .wrapDivStyle {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    left: 0;
     top: 44px;
-    position: relative;
-    max-width: 600px;
-    margin: auto;
-    padding-top: 20px;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 .shadow {
     box-shadow: 3px 10px 3px rgba(28, 27, 28, 0.52);
