@@ -30,7 +30,8 @@ const rootRoute={
         childRoutes: [
             require('./routes/Login/index.jsx'),
             require('./routes/mypages/index.jsx'),
-            require('./routes/Register/index.jsx')
+            require('./routes/Register/index.jsx'),
+            require('./routes/ShowCard/index.jsx')
         ]
     }]
 }

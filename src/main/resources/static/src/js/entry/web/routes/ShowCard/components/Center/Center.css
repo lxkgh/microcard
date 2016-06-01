@@ -1,0 +1,27 @@
+.center {
+    transition: transform 500ms ease;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.center > * {
+    transition: transform 500ms ease;
+    transform-origin: right;
+    overflow: hidden;
+}
+.hideRight > * {
+    transform: scale(0.95);
+}
+.hideRight {
+    transform: translate3d(70%, 0, 0);
+}
+.hideLeft {
+    transform: translate3d(-80px, 0, 0);
+}
+.hideLeft > * {
+    transform: scale(0.9);
+}

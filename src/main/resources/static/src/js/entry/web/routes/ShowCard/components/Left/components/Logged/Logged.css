@@ -1,0 +1,81 @@
+.logged {
+    width: 100%;
+    height: 100%;
+}
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 10px;
+    color: #c5c9d2;
+    border-bottom: solid 1px rgba(255, 255, 255, .05);
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.userIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    border: solid 1px rgba(255, 255, 255, 0.08);
+    padding: 4px;
+}
+.message {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    border: solid 1px rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.body {
+    top: 81px;
+    left: 0;
+    bottom: 53px;
+    position: absolute;
+    overflow: auto;
+    width: 100%;
+    padding: 10px 20px;
+}
+.item {
+    display: flex;
+    align-items: center;
+    float: left;
+    width: 100%;
+    border-bottom: solid 1px #2f323b;
+    line-height: 1.4;
+    color: #c5c9d2;
+    height: 54px;
+}
+.item:last-child {
+    border-bottom: 0;
+}
+.footer {
+    position: absolute;
+    height: 53px;
+    bottom: 0;
+    left: 0;
+    border-top: solid 1px rgba(255, 255, 255, 0.08);
+    width: 100%;
+    display: flex;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.6rem;
+}
+.search {
+    height: 52px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.exit {
+    height: 52px;
+    width: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex {
+    flex: 1;
+}

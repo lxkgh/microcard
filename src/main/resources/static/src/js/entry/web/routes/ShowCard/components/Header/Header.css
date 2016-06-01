@@ -1,0 +1,29 @@
+.header {
+    color: rgba(256, 256, 256, 0.9);
+    line-height: 40px;
+    height: 40px;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.15);
+}
+.icon {
+    padding: 9px 10px 13px;
+    color: rgba(256, 256, 256, 0.9);
+    font-size: 16px;
+    height: 100%;
+    width: 45px;
+    position: relative;
+    display: block;
+}
+.icon > div {
+    margin: 3px 0 5px;
+    width: 25px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: rgba(256, 256, 256, 0.9);
+}
+.title {}

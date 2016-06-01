@@ -38,6 +38,7 @@ module.exports = {
     'web.Config':'src/js/entry/web/config.js',
     'web.Auth':'src/js/entry/web/auth.jsx',
     'web.Messenger':'src/js/entry/web/components/Messenger/Messenger.jsx',
+    'web.ShowCardIcons':'src/js/entry/web/routes/ShowCard/SvgIcons.js',
 
 
     //=============================lib==========================//
