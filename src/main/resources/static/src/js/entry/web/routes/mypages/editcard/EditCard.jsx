@@ -58,7 +58,9 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             svgBackColor:'#56abe4',
             rx:10,
-            ry:10
+            ry:10,
+            rectWidth:'100%',
+            rectHeight:'100%'
         }
         const MenuItem2Props ={
             frontSvg:fileSvgIcons.society,

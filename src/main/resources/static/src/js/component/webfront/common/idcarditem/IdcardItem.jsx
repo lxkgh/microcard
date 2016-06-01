@@ -12,7 +12,7 @@ class IdcardItem extends React.Component {
     render() {
         const {switchButtonProps} = this.props
         return (
-            <li className={cx(styles.li,'flexbox','items-center')}>
+            <li className={cx(styles.li,'flexbox','items-center','space-between')}>
                 <label className={styles.label}>{this.props.tagName}</label>
                 <input className={styles.InputItem}
                     placeholder={this.props.defaultInfo}

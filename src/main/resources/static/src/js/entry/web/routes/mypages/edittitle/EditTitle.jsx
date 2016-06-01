@@ -5,6 +5,7 @@ import request from 'superagent'
 import Auth from 'Auth'
 import {Prefixs} from 'web.Config'
 import messenger from 'web.Messenger'
+import cx from 'classnames'
 
 class EditTitle extends React.Component{
     constructor(props){
@@ -44,7 +45,7 @@ class EditTitle extends React.Component{
                                 value={shareAbstract}
                                 onChange={this.changeShareAbstract}/>
                             <p className={styles.tips}>字数不超过60个字</p>
-                            <p className={styles.pbtn}>
+                            <p className={cx(styles.pbtn,'flexbox','row-reverse')}>
                                 <a className={styles.svbtn}
                                     onClick={this.handleSubmit}>保存</a>
                             </p>

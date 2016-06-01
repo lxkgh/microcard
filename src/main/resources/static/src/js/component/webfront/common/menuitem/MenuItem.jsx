@@ -28,7 +28,7 @@ class MenuItem extends React.Component {
             display:'flex'
         }
         const wrapperStyle = {
-            padding:'12px 0'
+            padding:'12px 5px'
         }
         const divSuitLi = {
             width:'100%'

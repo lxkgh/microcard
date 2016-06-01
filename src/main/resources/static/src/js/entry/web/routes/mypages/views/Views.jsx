@@ -6,10 +6,16 @@ class Views extends React.Component {
     }
     render() {
         const activeUrl = this.props.location.pathname
+        const psStyle = {
+            position:'absolute',
+            bottom:0,
+            left:0
+        }
         return (
             <div>
                 {this.props.children}
-                <Footerbar activeUrl={activeUrl} />
+                <Footerbar activeUrl={activeUrl}
+                    style={psStyle}/>
             </div>
         )
     }
