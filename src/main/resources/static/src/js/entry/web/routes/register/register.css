@@ -1,10 +1,19 @@
-.RegisterCont {
+.pageCont {
+    z-index: 1;
+    position: absolute;;
     top: 0;
+    bottom: 0;
+    overflow: auto;
     margin: auto;
-    ;
-    position: relative;
-    max-width: 600px;
-    height: 100%;
+    width: 100%;
+    left: 0;
+}
+@media screen and (min-width:800px) {
+    .pageCont {
+        width: 540px;
+        left: 50%;
+        margin-left: -270px;
+    }
 }
 .Wrap {
     background: #1f8ff3;

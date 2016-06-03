@@ -21,7 +21,7 @@ class Register extends React.Component {
             width:'100%'
         }
         return (
-            <div className = {styles.RegisterCont}>
+            <div className = {styles.pageCont}>
                 <div className = {styles.Wrap}>
                 <Carousel {...logoPic}>
                     <button className={styles.loginBtn}

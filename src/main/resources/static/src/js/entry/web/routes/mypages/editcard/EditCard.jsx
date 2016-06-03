@@ -164,7 +164,7 @@ class EditCard extends React.Component{
         }
         return(
             <div>
-                <div className={styles.wrapDivStyle}>
+                <div className={styles.pageCont}>
                     <div className={cx(styles.menuDivStyle,'fixed')}>
                         <section className={cx(styles.section1,'fixed')}>
                             <MenuItem {...MenuItem1Props}

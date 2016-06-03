@@ -1,10 +1,9 @@
-.wrapDivStyle {
+.pageCont {
     z-index: 1;
     position: absolute;;
     top: 44px;
     bottom: 0;
     overflow: auto;
-    max-width: 600px;
     background-color: #f0f1f3;
     margin: auto;
     width: 100%;
@@ -20,4 +19,11 @@
     border-top: solid 1px #d9d9d9;
     border-bottom: solid 1px #d9d9d9;
     margin-top: 10px;
+}
+@media screen and (min-width: 800px){
+    .pageCont {
+    width: 540px;
+    left: 50%;
+    margin-left: -270px;
+    }
 }

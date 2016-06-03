@@ -122,7 +122,7 @@ class EditInfo extends React.Component{
         }
         return(
             <div className= {styles.wrapDivStyle}>
-                <div className= {styles.myInfoMenu}>
+                <div className= {styles.pageCont}>
                     <section className="fixed">
                         <h3 className={styles.h3Style}>基本信息</h3>
                         <ul className={cx(styles.ulStyle,'fixed')}>

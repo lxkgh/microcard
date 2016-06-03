@@ -44,12 +44,6 @@ class MyIndex extends React.Component{
             afterSvg:svgIcons.rightArrow,
             afterSize:16
         }
-        const wrapMenuDivStyle = {
-            top:'44px',
-            position:'relative',
-            maxWidth: '600px',
-            margin:'auto'
-        }
         const buttonProps = {
             desc:'退出',
             onClick:this.logout
@@ -58,7 +52,7 @@ class MyIndex extends React.Component{
             fill:'d3d9dd'
         }
         return (
-            <div style={wrapMenuDivStyle}>
+            <div className={styles.pageCont}>
                 <section className={styles.item}>
                     <div className={styles.iconfont}>
                         <Svg paths={[svgIcons.mine]}

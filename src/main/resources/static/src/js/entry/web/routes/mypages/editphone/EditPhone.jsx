@@ -47,8 +47,8 @@ class EditPhone extends React.Component{
         }
         return(
             <div>
-                <div className={styles.wrapMenuDivStyle}>
-                    <form>
+                <div className={styles.pageCont}>
+                    <form style={{marginTop:'20px'}}>
                         <InputItem {...phoneProps}/>
                         <div className={styles.newPassword}>
                             <InputItem {...loginPwProps}/>
