@@ -215,25 +215,6 @@ public class UserCardApi {
 		}
 		return qrCode;
 	}
-	@RequestMapping(value="/getbkgimage",method = RequestMethod.GET)
-	public ApiResult get(@Param("id") String id){
-		try {
-			if (StrUtil.isEmpty(id)) {
-				throw new EmptyKeyException(0, "id为空");
-			}
-			Image image = imageRepositoryInterface.findOne(id);
-			if (image==null) {
-				throw new NotFoundException(1, "图片不存在");
-			}
-			return new ApiResult(true, 0, "获取图片成功", image);
-		} catch (EmptyKeyException ek){
-			return new ApiResult(false, ek.getState(), ek.getDesc(), null);
-		} catch (NotFoundException nf) {
-			return new ApiResult(false, nf.getState(), nf.getDesc(), null);
-		} catch (Exception e) {
-			return new ApiResult(false, 2, "未知异常", null);
-		}
-	}
 	@RequestMapping(value="/getbkgimages",method = RequestMethod.GET)
 	public ApiResult getBkgImgs(int page,int pagesize){
 		try {

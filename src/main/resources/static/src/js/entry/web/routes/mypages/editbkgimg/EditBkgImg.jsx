@@ -6,21 +6,16 @@ import messenger from 'web.Messenger'
 import ImgBox from 'webfront.Imgbox'
 import request from 'superagent'
 import {Prefixs} from 'web.Config'
+import {webErrHandle} from 'ErrHandles'
 
 class EditBkgImg extends React.Component{
     constructor(props){
         super(props);
         this.state={
             active:true,
-            imgs:[{
-                imageUse:'BACKGROUND',
-                name:'图1',
-                path:'',
-                type:'JPEG'
-            }
-            ],
+            imgs:[],
             page:0,
-            pagesize:4,
+            pagesize:6,
             isSelectedPic:''
         }
     }
@@ -93,19 +88,19 @@ class EditBkgImg extends React.Component{
             const data = JSON.parse(res.text)
             if(data.success){
                 this.setState({
-                    imgs:data.data.data
+                    imgs:this.state.imgs.concat(data.data.data)
                 })
             }else {
                 messenger.show({
                     msg:'获取背景图片失败'
                 })
             }
-        })
+        },webErrHandle)
     }
     loadMoreImgs(){
-        let {pagesize}=this.state
         this.setState({
-            pagesize:pagesize+2
+            pagesize:3,
+            page:this.state.page+1
         },()=>{
             this.getBkgImages()
         })

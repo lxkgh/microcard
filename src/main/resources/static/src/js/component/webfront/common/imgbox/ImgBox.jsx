@@ -2,8 +2,6 @@ import React,{PropTypes} from 'react'
 import styles from './Imgbox.css'
 import Svg from 'SvgIcon'
 import fileSvgIcons from './imgSvg.js'
-// import svgIcons from 'svgIcons'
-// import cx from 'classnames'
 
 class ImgBox extends React.Component {
     constructor(props) {
