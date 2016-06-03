@@ -28,9 +28,7 @@ class EditCard extends React.Component{
         })
     }
     clickEditBackground(){
-        messenger.showMsg({
-            msg:'该功能暂时未开放'
-        })
+        this.context.router.push(ROUTES.editbkgimg)
     }
     clickEditMusic(){
         messenger.showMsg({

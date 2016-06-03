@@ -13,6 +13,7 @@ module.exports={
         require('./EditSociety/index.jsx'),
         require('./EditPhone/index.jsx'),
         require('./EditPassword/index.jsx'),
-        require('./EditTitle/index.jsx')
+        require('./EditTitle/index.jsx'),
+        require('./EditBkgImg/index.jsx')
     ]
 }

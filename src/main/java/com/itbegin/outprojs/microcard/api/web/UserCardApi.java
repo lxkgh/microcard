@@ -2,10 +2,16 @@ package com.itbegin.outprojs.microcard.api.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -209,5 +215,37 @@ public class UserCardApi {
 		}
 		return qrCode;
 	}
-	
+	@RequestMapping(value="/getbkgimage",method = RequestMethod.GET)
+	public ApiResult get(@Param("id") String id){
+		try {
+			if (StrUtil.isEmpty(id)) {
+				throw new EmptyKeyException(0, "id为空");
+			}
+			Image image = imageRepositoryInterface.findOne(id);
+			if (image==null) {
+				throw new NotFoundException(1, "图片不存在");
+			}
+			return new ApiResult(true, 0, "获取图片成功", image);
+		} catch (EmptyKeyException ek){
+			return new ApiResult(false, ek.getState(), ek.getDesc(), null);
+		} catch (NotFoundException nf) {
+			return new ApiResult(false, nf.getState(), nf.getDesc(), null);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "未知异常", null);
+		}
+	}
+	@RequestMapping(value="/getbkgimages",method = RequestMethod.GET)
+	public ApiResult getBkgImgs(int page,int pagesize){
+		try {
+			Page<Image> imagePage= imageRepositoryInterface.findByImageUse(ImageUse.BACKGROUND, new PageRequest(page, pagesize));
+			Map<String,Object> datas=new HashMap<String,Object>();
+			datas.put("totalPages",imagePage.getTotalPages());
+			datas.put("totalElems",imagePage.getTotalElements());
+			datas.put("datasize", imagePage.getNumberOfElements());
+			datas.put("data",imagePage.getContent());
+			return new ApiResult(true, imagePage.getTotalPages(), "获取背景图片成功", datas);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "获取图片失败", null);
+		}	
+	}
 }
