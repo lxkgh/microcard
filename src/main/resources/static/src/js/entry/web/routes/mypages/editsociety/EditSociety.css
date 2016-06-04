@@ -7,17 +7,23 @@
     right: 0;
     overflow: auto;
 }
-.myInfoMenu {
-    -webkit-overflow-scrolling: touch;
+.pageCont {
     z-index: 1;
-    position: relative;
+    position: absolute;;
     top: 44px;
     bottom: 0;
     overflow: auto;
-    max-width: 600px;
     background-color: #f0f1f3;
     margin: auto;
-    height: 800px;
+    width: 100%;
+    left: 0;
+}
+@media screen and (min-width:800px) {
+    .pageCont {
+        width: 540px;
+        left: 50%;
+        margin-left: -270px;
+    }
 }
 .h3Style {
     font-size: 1.2rem;

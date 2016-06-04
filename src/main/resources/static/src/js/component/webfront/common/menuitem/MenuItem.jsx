@@ -53,7 +53,8 @@ class MenuItem extends React.Component {
                         <Svg paths={[frontSvg]}
                             size={[frontSize,frontSize]}
                             style={frontSvgStyle}
-                            viewBoxInfo={viewBoxInfo}>
+                            viewBoxInfo={viewBoxInfo}
+                            >
                             <rect style={rectStyle}></rect>
                         </Svg>
                         <div className={cx('front-name')}>{frontName}</div>

@@ -1,3 +1,20 @@
+.pageCont {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 44px;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+@media screen and (min-width: 800px){
+    .pageCont {
+    width: 540px;
+    left: 50%;
+    margin-left: -270px;
+    }
+}
 .item {
     padding: 0 10px;
     background-color: #fff;

@@ -74,7 +74,7 @@ class Login extends React.Component {
     }
     render() {
         return (
-            <div className={styles.myCont}>
+            <div className={styles.pageCont}>
                 <section className={styles.myLogin}>
                     <div className={styles.loginHd}>
                         <Svg paths ={[svgIcons.microcard]}

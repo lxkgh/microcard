@@ -47,8 +47,8 @@ class EditPassword extends React.Component{
         }
         return(
             <div>
-                <div className={styles.wrapMenuDivStyle}>
-                    <form>
+                <div className={styles.pageCont}>
+                    <form style={{marginTop:'20px'}}>
                         <InputItem {...oldPwProps}/>
                         <div className={styles.newPassword}>
                             <InputItem {...newPwProps}/>

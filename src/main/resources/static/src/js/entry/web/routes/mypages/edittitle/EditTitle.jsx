@@ -32,7 +32,7 @@ class EditTitle extends React.Component{
         const {shareTitle,shareAbstract} = this.state
         return(
             <div className= {styles.wrapDivStyle}>
-                <div className={styles.content}>
+                <div className={styles.pageCont}>
                     <div className = {styles.setHead}>
                         <section className={styles.sectionStyle}>
                             <h1 className={styles.h1Style}>设置名片分享标题</h1>

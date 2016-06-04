@@ -2,10 +2,16 @@ package com.itbegin.outprojs.microcard.api.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -209,5 +215,18 @@ public class UserCardApi {
 		}
 		return qrCode;
 	}
-	
+	@RequestMapping(value="/getbkgimages",method = RequestMethod.GET)
+	public ApiResult getBkgImgs(int page,int pagesize){
+		try {
+			Page<Image> imagePage= imageRepositoryInterface.findByImageUse(ImageUse.BACKGROUND, new PageRequest(page, pagesize));
+			Map<String,Object> datas=new HashMap<String,Object>();
+			datas.put("totalPages",imagePage.getTotalPages());
+			datas.put("totalElems",imagePage.getTotalElements());
+			datas.put("datasize", imagePage.getNumberOfElements());
+			datas.put("data",imagePage.getContent());
+			return new ApiResult(true, imagePage.getTotalPages(), "获取背景图片成功", datas);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "获取图片失败", null);
+		}	
+	}
 }

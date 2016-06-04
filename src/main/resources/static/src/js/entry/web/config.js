@@ -7,6 +7,7 @@ const ROUTES = {
     editsign: '/mypages/editsign',
     editsociety: '/mypages/editsociety',
     edittitle:'/mypages/edittitle',
+    editbkgimg:'/mypages/editbkgimg',
     home: '/mypages/views/home',
     mycard: '/mypages/views/mycard',
     register: '/register'

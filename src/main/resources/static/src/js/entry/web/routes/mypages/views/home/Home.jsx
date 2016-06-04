@@ -81,7 +81,7 @@ class HomePage extends React.Component{
             icon = userIcon.path
         }
         return(
-            <div className={styles.wrapDivStyle}>
+            <div className={styles.pageCont}>
                 <section className={cx(styles.item,styles.shadow)}>
                     <div className={styles.iconfont}>
                         <Svg paths={[svgIcons.mine]}
