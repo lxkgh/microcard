@@ -4,7 +4,7 @@ import styles from './Theme1.css'
 import backgroundImg from './backround.jpg'
 import Header from './components/Header/Header.jsx'
 import Body from './components/Body/Body.jsx'
-import Footer from './components/Footer/Footer.jsx'
+import Footer from '../components/Footer/Footer.jsx'
 
 class Theme1 extends React.Component {
     constructor(props) {

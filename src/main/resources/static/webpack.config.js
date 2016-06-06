@@ -40,7 +40,7 @@ var config = {
             include: [path.resolve(__dirname, 'src/css'), path.resolve(__dirname, 'node_modules')],
             exclude: path.resolve(__dirname, 'src/js')
         }, {
-            test: /\.(png|jpg|eot|svg|ttf|woff|gif|otf|woof2)((\?|#).*)?$/,
+            test: /\.(png|jpg|jpeg|eot|svg|ttf|woff|gif|otf|woof2)((\?|#).*)?$/,
             loader: 'url?limit=100000&name=img/[hash:8].[name].[ext]'
         }],
         preLoaders: [{

@@ -8,7 +8,8 @@ import Center from './components/Center/Center.jsx'
 import Right from './components/Right/Right.jsx'
 import SvgIcon from 'SvgIcon'
 import svgIcons from 'web.ShowCardIcons'
-import Theme1 from './components/themes/Theme1/Theme1.jsx'
+// import Theme1 from './components/themes/Theme1/Theme1.jsx'
+import Theme2 from './components/themes/Theme2/Theme2.jsx'
 
 class ShowCard extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class ShowCard extends React.Component {
                         <div className={styles.semicircle} onClick={this.showRight}>
                             <SvgIcon {...svgIcons.arrowLeft} className={styles.arrowLeft}/>
                         </div>
-                        <Theme1/>
+                        <Theme2/>
                     </div>
                     <div className={cx({[styles.overlay]:showState!=0})}
                         onClick={this.showCenter}/>
