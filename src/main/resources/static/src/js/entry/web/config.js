@@ -10,7 +10,8 @@ const ROUTES = {
     editbkgimg:'/mypages/editbkgimg',
     home: '/mypages/views/home',
     mycard: '/mypages/views/mycard',
-    register: '/register'
+    register: '/register',
+    webchatQrcode:'/help/webchatQrcode'
 }
 
 export const Prefixs={

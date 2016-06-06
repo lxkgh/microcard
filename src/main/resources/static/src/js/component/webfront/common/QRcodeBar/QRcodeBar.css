@@ -16,5 +16,11 @@
     background: transparent;
     text-decoration: none;
     -webkit-tap-highlight-color: rgba(0,0,0,0.2);
-    color: #4f4f4f;
+    color: #7f7f7f;
+}
+.linkDiv {
+    cursor: pointer;
+}
+.linkDiv :hover {
+    color: #0000FF;
 }
