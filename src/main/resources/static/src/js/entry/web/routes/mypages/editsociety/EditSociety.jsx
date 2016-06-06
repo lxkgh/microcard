@@ -54,10 +54,6 @@ class EditSociety extends React.Component{
     }
     render(){
         const {qq,weChat} = this.state
-        const titleClick = (e)=>{
-            e.preventDefault()
-            this.props.router.push(ROUTES.webchatQrcode)
-        }
         const titleSvgStyle = {
             fill:'#ea8010',
             marginLeft:'5px'
@@ -87,7 +83,7 @@ class EditSociety extends React.Component{
             titleSvg:fileSvgIcons.help,
             titleSvgStyle:titleSvgStyle,
             qrcodeSvgStyle:qrcodeSvgStyle,
-            titleClick:titleClick
+            titleClick:this.titleClick
         }
         const codeBar3props = {
             QRcodeName:'微信二维码',
@@ -99,7 +95,7 @@ class EditSociety extends React.Component{
             titleSvg:fileSvgIcons.help,
             titleSvgStyle:titleSvgStyle,
             qrcodeSvgStyle:qrcodeSvgStyle,
-            titleClick:titleClick
+            titleClick:this.titleClick
         }
         return (
             <div className= {styles.wrapDivStyle}>
@@ -130,6 +126,10 @@ class EditSociety extends React.Component{
                 <Popup />
             </div>
         )
+    }
+    titleClick=(e)=>{
+        e.preventDefault()
+        this.props.router.push(ROUTES.webchatQrcode)
     }
     handleUploadIcon=(e,kind)=>{
         e.preventDefault()

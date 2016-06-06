@@ -32,7 +32,8 @@ const rootRoute={
             require('./routes/mypages/index.jsx'),
             require('./routes/Register/index.jsx'),
             require('./routes/ShowCard/index.jsx'),
-            require('./routes/help/webchatQrcode/index.jsx')
+            require('./routes/help/webchatQrcode/index.jsx'),
+            require('./routes/forgetpwd/index.jsx')
         ]
     }]
 }

@@ -2,7 +2,7 @@ import React,{PropTypes} from 'react'
 import Svg from 'SvgIcon'
 import 'css.Common'
 import cx from 'classnames'
-
+import styles from './menuitem.css'
 class MenuItem extends React.Component {
     constructor(props){
         super(props);
@@ -54,6 +54,7 @@ class MenuItem extends React.Component {
                             size={[frontSize,frontSize]}
                             style={frontSvgStyle}
                             viewBoxInfo={viewBoxInfo}
+                            className={styles.frontSvg}
                             >
                             <rect style={rectStyle}></rect>
                         </Svg>

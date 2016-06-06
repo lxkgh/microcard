@@ -1,0 +1,3 @@
+.frontSvg :after {
+    content: attr();
+}
