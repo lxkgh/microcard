@@ -8,9 +8,10 @@ import Popup from 'webfront.Popup'
 import fileSvgIcons from './EditSocietySvg.js'
 import request from 'superagent'
 import Auth from 'Auth'
-import {Prefixs} from 'web.Config'
+import ROUTES,{Prefixs} from 'web.Config'
 import messenger from 'web.Messenger'
 import {webErrHandle} from 'ErrHandles'
+import {withRouter} from 'react-router'
 const Kinds={
     qqQRCode:{
         name:'qqQRCode',
@@ -53,6 +54,17 @@ class EditSociety extends React.Component{
     }
     render(){
         const {qq,weChat} = this.state
+        const titleClick = (e)=>{
+            e.preventDefault()
+            this.props.router.push(ROUTES.webchatQrcode)
+        }
+        const titleSvgStyle = {
+            fill:'#ea8010',
+            marginLeft:'5px'
+        }
+        const qrcodeSvgStyle = {
+            fill:'#7f7f7f'
+        }
         const input2props = {
             tagName:'QQ',
             type:'text',
@@ -70,14 +82,24 @@ class EditSociety extends React.Component{
             QRLink:'',
             QRLinkTitle:'如何获取QQ号二维码',
             QRcodeSvg:fileSvgIcons.QRcode,
-            svgSize:32
+            svgSize:32,
+            titleSvgSize:16,
+            titleSvg:fileSvgIcons.help,
+            titleSvgStyle:titleSvgStyle,
+            qrcodeSvgStyle:qrcodeSvgStyle,
+            titleClick:titleClick
         }
         const codeBar3props = {
             QRcodeName:'微信二维码',
             QRLink:'',
             QRLinkTitle:'如何获取微信号二维码',
             QRcodeSvg:fileSvgIcons.QRcode,
-            svgSize:32
+            svgSize:32,
+            titleSvgSize:16,
+            titleSvg:fileSvgIcons.help,
+            titleSvgStyle:titleSvgStyle,
+            qrcodeSvgStyle:qrcodeSvgStyle,
+            titleClick:titleClick
         }
         return (
             <div className= {styles.wrapDivStyle}>
@@ -208,4 +230,5 @@ class EditSociety extends React.Component{
         },webErrHandle)
     }
 }
-module.exports=EditSociety
+
+module.exports=withRouter(EditSociety)

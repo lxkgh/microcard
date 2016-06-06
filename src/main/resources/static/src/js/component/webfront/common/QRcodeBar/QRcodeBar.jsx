@@ -10,16 +10,24 @@ class QRcodeBar extends React.Component {
     }
 
     render() {
-        const {QRcodeName,QRLink,QRLinkTitle,QRcodeSvg,svgSize} = this.props
+        const {QRcodeName,QRLink,QRLinkTitle,QRcodeSvg,svgSize,qrcodeSvgStyle,
+        titleSvg,titleSvgSize,titleSvgStyle,titleClick} = this.props
         return (
             <div className={cx(styles.wrapDivStyle,'flexbox','space-between')}>
                 <div className={styles.infoDivStyle}>
                     <h1 className={styles.QRcodeNameStyle}>{QRcodeName}</h1>
+                    <div className={cx('flexbox','items-center',styles.linkDiv)}
+                        onClick={titleClick}>
                     <a href={QRLink} className={styles.QRLinkTitleStyle}>{QRLinkTitle}</a>
+                    <Svg paths={[titleSvg]}
+                        size={[titleSvgSize,titleSvgSize]}
+                        style={titleSvgStyle}/>
+                    </div>
                 </div>
                 <div className={cx('flexbox','items-center')} style={{position:'relative'}}>
                     <Svg paths={[QRcodeSvg]}
-                        size={[svgSize,svgSize]}/>
+                        size={[svgSize,svgSize]}
+                        style={qrcodeSvgStyle}/>
                     {this.props.children}
                 </div>
             </div>
@@ -31,6 +39,11 @@ QRcodeBar.propTypes = {
     QRLink:PropTypes.string,
     QRLinkTitle:PropTypes.string,
     QRcodeSvg:PropTypes.string,
-    svgSize:PropTypes.number
+    svgSize:PropTypes.number,
+    titleSvg:PropTypes.string,
+    titleSvgSize:PropTypes.number,
+    titleSvgStyle:PropTypes.object,
+    qrcodeSvgStyle:PropTypes.object,
+    titleClick:PropTypes.func
 }
 export default QRcodeBar
