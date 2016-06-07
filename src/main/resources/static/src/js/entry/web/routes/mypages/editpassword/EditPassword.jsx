@@ -58,7 +58,7 @@ class EditPassword extends React.Component{
                             <Button {...buttonProps}>{buttonProps.desc}</Button>
                         </div>
                     </form>
-                    <a className={styles.forgetName}>忘记密码?</a>
+                    <a className={styles.forgetName} onClick={()=>{this.clickForgetPwd()}}>忘记密码?</a>
                 </div>
             </div>
         )
@@ -77,6 +77,10 @@ class EditPassword extends React.Component{
         this.setState({
             comfirmPassword:e.target.value
         })
+    }
+    clickForgetPwd=()=>{
+        console.log('click');
+        this.props.router.push(ROUTES.forgetpwd)
     }
     handleSubmit=(e)=>{
         e.preventDefault()

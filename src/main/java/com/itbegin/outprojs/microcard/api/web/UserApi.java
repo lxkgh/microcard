@@ -1,5 +1,8 @@
 package com.itbegin.outprojs.microcard.api.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +40,23 @@ public class UserApi {
 			return new ApiResult(false, 1, "修改手机失败，未知异常", null);
 		}
 	}
-	
+	@RequestMapping(value = "/getUsername",method =RequestMethod.GET)
+	public ApiResult getUsername(String username){
+		try {
+			if(StrUtil.isEmpty(username))	{
+				return new ApiResult(false, 1, "手机号码为空", null);
+			}	
+			User user =userRepositoryInterface.findByUsername(username);
+			if(user == null){
+				return new ApiResult(false, 1, "手机号码不存在", null);
+			}
+			System.out.println(user);
+			System.out.println(username);
+			return new ApiResult(true, 0, "获取手机成功", user);
+		} catch (Exception e) {
+			return new ApiResult(false, 1, "手机号码不存在", null);
+		}
+	}
 	@RequestMapping(value = "/password",method = RequestMethod.PUT)
 	public ApiResult updatePassword(@RequestBody User u){
 		try {

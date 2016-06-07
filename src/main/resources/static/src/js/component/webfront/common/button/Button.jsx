@@ -14,7 +14,7 @@ const styles={
         height:'44px',
         borderRadius: '2px',
         boxShadow: '1px 1px 3px #ccc',
-        backgroundColor:'#0079fe',
+        backgroundColor:'#1f8ff3',
         width: '87.5%',
         maxHeight:'50px'
     }
