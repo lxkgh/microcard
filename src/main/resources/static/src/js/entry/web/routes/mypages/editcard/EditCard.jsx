@@ -1,11 +1,11 @@
 import React,{PropTypes} from 'react'
-import MenuItem from 'menuitem'
 import fileSvgIcons from './EditCardSvg.js'
 import svgIcons from 'svgIcons'
 import styles from './EditCard.css'
 import cx from 'classnames'
 import ROUTES from 'web.Config'
 import messenger from 'web.Messenger'
+import EditcardItem from 'webfront.EditcardItem'
 class EditCard extends React.Component{
     constructor(props){
         super(props);
@@ -54,11 +54,8 @@ class EditCard extends React.Component{
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
             afterSvgFill:'#e5e5e5',
-            svgBackColor:'#56abe4',
-            rx:10,
-            ry:10,
-            rectWidth:'100%',
-            rectHeight:'100%'
+            bgColor:'#56abe4',
+            radiusSize:'10px'
         }
         const MenuItem2Props ={
             frontSvg:fileSvgIcons.society,
@@ -67,10 +64,9 @@ class EditCard extends React.Component{
             frontName:'社交信息',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'#00bb9c',
+            bgColor:'#00bb9c',
             afterSvgFill:'#e5e5e5',
-            rx:10,
-            ry:10
+            radiusSize:'10px'
         }
         const MenuItem3Props ={
             frontSvg:fileSvgIcons.mySign,
@@ -80,9 +76,8 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'#9d55b8',
-            rx:10,
-            ry:10
+            bgColor:'#9d55b8',
+            radiusSize:'10px'
         }
         const MenuItem4Props ={
             frontSvg:fileSvgIcons.title,
@@ -92,9 +87,8 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'rgb(6, 94, 175)',
-            rx:10,
-            ry:10
+            bgColor:'rgb(6, 94, 175)',
+            radiusSize:'10px'
         }
         const MenuItem5Props ={
             frontSvg:fileSvgIcons.theme,
@@ -104,9 +98,8 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'#56abe4',
-            rx:10,
-            ry:10
+            bgColor:'#56abe4',
+            radiusSize:'10px'
         }
         const MenuItem6Props ={
             frontSvg:fileSvgIcons.background,
@@ -116,12 +109,9 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'#f4c600',
-            rx:5,
-            ry:5,
-            viewBoxInfo:'-16 -16 64 64',
-            rectx:-16,
-            recty:-16
+            bgColor:'#f4c600',
+            radiusSize:'10px',
+            viewBoxInfo:'-16 -16 64 64'
         }
         const MenuItem7Props ={
             frontSvg:fileSvgIcons.music,
@@ -131,9 +121,8 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'#11cd6e',
-            rx:10,
-            ry:10
+            bgColor:'#11cd6e',
+            radiusSize:'10px'
         }
         const MenuItem8Props ={
             frontSvg:fileSvgIcons.rank,
@@ -143,9 +132,8 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'#9d55b8',
-            rx:10,
-            ry:10
+            bgColor:'#9d55b8',
+            radiusSize:'10px'
         }
         const MenuItem9Props ={
             frontSvg:fileSvgIcons.product,
@@ -155,39 +143,36 @@ class EditCard extends React.Component{
             afterSvgFill:'#e5e5e5',
             afterSvg:svgIcons.rightArrow,
             afterSize:32,
-            svgBackColor:'#33475f',
-            rx:10,
-            ry:10,
+            bgColor:'#33475f',
             viewBoxInfo:'-16 -16 64 64',
-            rectx:-16,
-            recty:-16
+            radiusSize:'10px'
         }
         return(
             <div>
                 <div className={styles.pageCont}>
                     <div className={cx(styles.menuDivStyle,'fixed')}>
                         <section className={cx(styles.section1,'fixed')}>
-                            <MenuItem {...MenuItem1Props}
+                            <EditcardItem {...MenuItem1Props}
                                 onClick={()=>{this.clickMyInfo()}}/>
-                            <MenuItem {...MenuItem2Props}
+                            <EditcardItem {...MenuItem2Props}
                                 onClick={()=>{this.clickMySociety()}}/>
-                            <MenuItem {...MenuItem3Props}
+                            <EditcardItem {...MenuItem3Props}
                                 onClick={()=>{this.clickMySign()}}/>
-                            <MenuItem {...MenuItem4Props}
+                            <EditcardItem {...MenuItem4Props}
                                 onClick={()=>{this.clickEditTitle()}}/>
                         </section>
                         <section className={cx(styles.section1,'fixed')}>
-                            <MenuItem {...MenuItem5Props}
+                            <EditcardItem {...MenuItem5Props}
                                 onClick={()=>{this.clickEditTheme()}}/>
-                            <MenuItem {...MenuItem6Props}
+                            <EditcardItem {...MenuItem6Props}
                                 onClick={()=>{this.clickEditBackground()}}/>
-                            <MenuItem {...MenuItem7Props}
+                            <EditcardItem {...MenuItem7Props}
                                 onClick={()=>{this.clickEditMusic()}}/>
                         </section>
                         <section className={cx(styles.section1,'fixed')}>
-                            <MenuItem {...MenuItem8Props}
+                            <EditcardItem {...MenuItem8Props}
                                 onClick={()=>{this.clickEditRank()}}/>
-                            <MenuItem {...MenuItem9Props}
+                            <EditcardItem {...MenuItem9Props}
                                 onClick={()=>{this.clickEditProduct()}}/>
                         </section>
                     </div>
