@@ -20,6 +20,7 @@ module.exports = {
     'webfront.IdcardItem':'src/js/component/webfront/common/idcarditem/IdcardItem.jsx',
     'webfront.SwitchButton':'src/js/component/webfront/common/switchbutton/SwitchButton.jsx',
     'webfront.Imgbox':'src/js/component/webfront/common/imgbox/ImgBox.jsx',
+    'webfront.EditcardItem':'src/js/component/webfront/common/editcarditem/EditcardItem.jsx',
 
 
     'admin.Auth':'src/js/entry/admin/auth.jsx',

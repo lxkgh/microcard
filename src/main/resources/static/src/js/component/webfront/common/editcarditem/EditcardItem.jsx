@@ -2,20 +2,13 @@ import React,{PropTypes} from 'react'
 import Svg from 'SvgIcon'
 import 'css.Common'
 import cx from 'classnames'
-import styles from './menuitem.css'
-class MenuItem extends React.Component {
+class EditcardItem extends React.Component {
     constructor(props){
         super(props);
     }
     render(){
-        const {frontSvg,frontSize,afterSvg,afterSize,frontName,
-                divContent,afterName,frontSvgFill,afterSvgFill,
-                svgBackColor,rx,ry,viewBoxInfo,rectx,recty,
-                rectWidth,rectHeight,onClick} = this.props
-        const frontSvgStyle = {
-            fill:frontSvgFill,
-            marginRight:'5px'
-        }
+        const {frontSvg,frontSize,afterSvg,afterSize,frontName,bgColor,radiusSize,frontSvgFill,
+                divContent,afterName,afterSvgFill,viewBoxInfo,onClick} = this.props
         const afterSvgStyle = {
             fill:afterSvgFill
         }
@@ -23,41 +16,37 @@ class MenuItem extends React.Component {
             borderBottom: 'solid 1px #e5e5e5',
             background: '#fff',
             width: '100%',
-            // float: 'left',
             height:'50px',
             display:'flex'
         }
         const wrapperStyle = {
             padding:'12px 5px'
         }
-        const divSuitLi = {
+        const wrapDivStyle ={
             width:'100%'
         }
-        const rectStyle = {
-            width:rectWidth,
-            height:rectHeight,
-            stroke:'none',
-            fill:svgBackColor,
-            rx:rx,
-            ry:ry,
-            x:rectx,
-            y:recty
+        const svgBg = {
+            backgroundColor:bgColor,
+            borderRadius:radiusSize,
+            marginRight:'5px'
+        }
+        const frontSvgStyle = {
+            fill:frontSvgFill
         }
         return(
             <li style={liStyle}
                 onClick={onClick}>
                 <div className={cx('flexbox','wrapper','space-between','align-items-center')}
-                    style = {divSuitLi}>
+                    style={wrapDivStyle}>
                     <div className={cx('flexbox','front-content','items-center')}
                         style = {wrapperStyle}>
-                        <Svg paths={[frontSvg]}
-                            size={[frontSize,frontSize]}
-                            style={frontSvgStyle}
-                            viewBoxInfo={viewBoxInfo}
-                            className={styles.frontSvg}
-                            >
-                            <rect style={rectStyle}></rect>
-                        </Svg>
+                        <div style={svgBg}>
+                            <Svg paths={[frontSvg]}
+                                size={[frontSize,frontSize]}
+                                viewBoxInfo={viewBoxInfo}
+                                style={frontSvgStyle}
+                                />
+                        </div>
                         <div className={cx('front-name')}>{frontName}</div>
                     </div>
                     <div className="content">{divContent}</div>
@@ -72,7 +61,7 @@ class MenuItem extends React.Component {
         )
     }
 }
-MenuItem.propTypes={
+EditcardItem.propTypes={
     frontSvg: PropTypes.string,
     afterSvg: PropTypes.string,
     frontSize: PropTypes.number,
@@ -80,22 +69,15 @@ MenuItem.propTypes={
     frontName: PropTypes.string,
     divContent:PropTypes.string,
     afterName:PropTypes.string,
-    frontSvgFill: PropTypes.string,
+    frontSvgFill:PropTypes.string,
     afterSvgFill: PropTypes.string,
-    svgBackColor:PropTypes.string,
-    rx:PropTypes.number,
-    ry:PropTypes.number,
     viewBoxInfo:PropTypes.string,
-    rectx:PropTypes.number,
-    recty:PropTypes.number,
     onClick:PropTypes.func,
-    rectWidth:PropTypes.string,
-    rectHeight:PropTypes.string
+    bgColor:PropTypes.string,
+    radiusSize:PropTypes.string
 }
-MenuItem.defaultProps = {
+EditcardItem.defaultProps = {
     frontSize:0,
-    afterSize:0,
-    rectWidth:'100%',
-    rectHeight:'100%'
+    afterSize:0
 }
-export default MenuItem
+export default EditcardItem
