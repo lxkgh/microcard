@@ -46,9 +46,6 @@ public class UserApi {
 				return new ApiResult(false, 1, "手机号码为空", null);
 			}	
 			User user =userRepositoryInterface.findByUsername(username);
-			if(user == null){
-				return new ApiResult(false, 1, "手机号码不存在", null);
-			}
 			return new ApiResult(true, 0, "获取手机成功", user);
 		} catch (Exception e) {
 			return new ApiResult(false, 1, "手机号码不存在", null);
