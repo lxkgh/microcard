@@ -1,14 +1,24 @@
 import React,{PropTypes} from 'react'
 
 var styles={
-    InputItem:{
+    InputItemShort:{
         WebkitAppearance: 'none',
         appearance: 'none',
         outline: 'none',
         border: 0,
         background: '#fff',
         width: '100%',
-        padding: '15px 10px 15px 110px',
+        padding: '15px 20px 15px 20px',
+        fontSize: '1.4rem'
+    },
+    InputItemLong:{
+        WebkitAppearance: 'none',
+        appearance: 'none',
+        outline: 'none',
+        border: 0,
+        background: '#fff',
+        width: '100%',
+        padding: '15px 10px 15px 120px',
         fontSize: '1.4rem'
     },
     button:{
@@ -24,14 +34,6 @@ var styles={
         borderRadius: '0 5px 5px 0',
         fontSize: '1.4rem'
     },
-    li:{
-        listStyle:'none',
-        outside:'none',
-        position: 'relative',
-        background: '#fff',
-        width: '100%',
-        borderBottom: 'solid 1px #eaeaea'
-    },
     label:{
         color: '#000',
         fontSize: '1.4rem',
@@ -45,12 +47,48 @@ var styles={
 class InputItem extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            tagIsShow:true
+        }
+    }
+    componentWillMount() {
+        this.setState({
+            tagIsShow:this.props.hasTagName
+        })
     }
     render() {
+        const {tagIsShow} = this.state
+        const {InputItemType,marginBottom,borderRadius} = this.props
+        const liStyleLong = {
+            listStyle:'none',
+            outside:'none',
+            position: 'relative',
+            background: '#fff',
+            width: '100%',
+            borderBottom: 'solid 1px #eaeaea',
+            marginBottom:marginBottom,
+            borderRadius:borderRadius,
+            overflow:'hidden'
+        }
+        const liStyleShort = {
+            listStyle:'none',
+            outside:'none',
+            position: 'relative',
+            background: '#fff',
+            width: '100%',
+            border: 'solid 1px #eaeaea',
+            marginBottom:marginBottom,
+            borderRadius:borderRadius,
+            overflow:'hidden'
+        }
         return (
-            <li style={styles.li}>
-                <label style={styles.label}>{this.props.tagName}</label>
-                <input style={styles.InputItem}
+            <li style={InputItemType=='long'?liStyleLong:liStyleShort}>
+                {tagIsShow?
+                    <label style={styles.label}>
+                        {this.props.tagName}
+                    </label>:null
+                }
+                <input style={InputItemType=='long'?styles.InputItemLong:styles.InputItemShort}
                     placeholder={this.props.defaultInfo}
                     type = {this.props.type}
                     value = {this.props.value}
@@ -61,7 +99,9 @@ class InputItem extends React.Component {
     }
 }
 InputItem.defaultProps={
-    value:''
+    value:'',
+    InputItemType:'long',
+    hasTagName:true
 }
 InputItem.propTypes = {
     tagName:PropTypes.string,
@@ -69,6 +109,10 @@ InputItem.propTypes = {
     button:PropTypes.string,
     defaultInfo:PropTypes.string,
     value:PropTypes.string,
-    onChange:PropTypes.func
+    onChange:PropTypes.func,
+    InputItemType:PropTypes.string,
+    hasTagName:PropTypes.bool,
+    marginBottom:PropTypes.string,
+    borderRadius:PropTypes.string
 }
 export default InputItem
