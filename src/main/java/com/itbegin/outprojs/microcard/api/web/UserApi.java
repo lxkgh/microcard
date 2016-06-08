@@ -1,11 +1,5 @@
 package com.itbegin.outprojs.microcard.api.web;
 
-<<<<<<< HEAD
-
-=======
-import java.util.ArrayList;
-import java.util.List;
->>>>>>> 32dc7db... 忘记密码页面
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -26,7 +20,22 @@ public class UserApi {
 	
 	@Autowired
 	private UserRepositoryInterface userRepositoryInterface;
-	
+	@RequestMapping(method =RequestMethod.GET)
+	public ApiResult getUsername(String username){
+		try {
+			if(StrUtil.isEmpty(username))	{
+				return new ApiResult(false, 1, "手机号码为空", null);
+			}	
+			User user =userRepositoryInterface.findByUsername(username);
+			if(user == null){
+				return new ApiResult(false, 1, "手机号码不存在", null);
+			}
+			user.setPassword("");
+			return new ApiResult(true, 0, "获取手机成功", user);
+		} catch (Exception e) {
+			return new ApiResult(false, 1, "手机号码不存在", null);
+		}
+	}
 	@RequestMapping(value = "/username",method = RequestMethod.PUT)
 	public ApiResult updateUsername(@RequestBody User u){
 		try {
@@ -42,21 +51,6 @@ public class UserApi {
 			return new ApiResult(false, 0, "修改手机失败，手机号已存在", null);
 		} catch (Exception e) {
 			return new ApiResult(false, 1, "修改手机失败，未知异常", null);
-		}
-	}
-	@RequestMapping(value = "/getUsername",method =RequestMethod.GET)
-	public ApiResult getUsername(String username){
-		try {
-			if(StrUtil.isEmpty(username))	{
-				return new ApiResult(false, 1, "手机号码为空", null);
-			}	
-			User user =userRepositoryInterface.findByUsername(username);
-			if(user == null){
-				return new ApiResult(false, 1, "手机号码不存在", null);
-			}
-			return new ApiResult(true, 0, "获取手机成功", user);
-		} catch (Exception e) {
-			return new ApiResult(false, 1, "手机号码不存在", null);
 		}
 	}
 	@RequestMapping(value = "/password",method = RequestMethod.PUT)

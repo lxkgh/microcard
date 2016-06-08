@@ -85,7 +85,7 @@ class ForgetPwd extends React.Component {
             })
             return
         }
-        request.get(`${Prefixs.user}/getUsername?username=${this.state.cellphone}`)
+        request.get(`${Prefixs.user}?username=${this.state.cellphone}`)
         .then((res)=>{
             const data = JSON.parse(res.text)
             messenger.showMsg({
