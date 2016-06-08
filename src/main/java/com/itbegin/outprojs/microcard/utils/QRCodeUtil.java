@@ -81,8 +81,8 @@ public class QRCodeUtil {
 	}
 	
 	public static void main(String[] args) {
-		String myCodeText = "http://192.168.1.120:8080/app#/showcard/123";
-		String filePath = "/Users/caoyongzheng/Documents/qrcode.png";
+		String myCodeText = "http://192.168.10.122:8080/app#/showcard/123";
+		String filePath = "/Users/lxk/Documents/qrcode.png";
 		String fileType = "png";
 		File myFile = new File(filePath);
 		try {

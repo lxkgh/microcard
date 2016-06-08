@@ -1,0 +1,51 @@
+.pageCont {
+    z-index: 1;
+    position: absolute;;
+    top:0;
+    bottom: 0;
+    overflow: auto;
+    background-color: #fff;
+    margin: auto;
+    width: 100%;
+    left: 0;
+}
+@media screen and (min-width: 800px){
+    .pageCont {
+        width: 540px;
+        left:50%;
+        margin-left: -270px;
+    }
+}
+.topbox {
+    padding: 50px 0;
+    background-color: #1f8ff3;
+}
+.loginBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #fff;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: medium;
+}
+.keyPic {
+    height: 180px;
+    width: 200px;
+}
+.imgbox {
+    height: 160px;
+    text-align: center;
+}
+.box {
+    width: 100%;
+    height: 40%;
+    padding: 30px 40px;
+}
+.formStyle {
+    border: solid 1px rgb(234,234,234);
+}
+.nextBtn {
+    margin-top: 50px;
+}
