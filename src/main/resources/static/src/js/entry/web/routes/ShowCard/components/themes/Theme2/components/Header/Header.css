@@ -2,6 +2,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 .header.animation {
     height: 100%;

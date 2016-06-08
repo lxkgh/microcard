@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 import styles from './Theme2.css'
 import backgroundImg from './theme2.jpg'
@@ -16,12 +17,19 @@ class Theme2 extends React.Component {
             animation:true
         }
     }
+    componentDidMount() {
+        this.body = ReactDOM.findDOMNode(this.refs['body'])
+    }
     render() {
         const {animation} = this.state
         return (
             <div className={styles.theme}
                 style={{backgroundImage:`url(${backgroundImg})`}}>
-                <div className={styles.body}  onTouchEnd={this.onTouchEnd}>
+                <div className={styles.body}
+                    ref="body"
+                    onTouchStart={this.onTouchStart}
+                    onTouchMove={this.onTouchMove}
+                    onTouchEnd={this.onTouchEnd}>
                     <Header animation={animation}/>
                     <div className={styles.infos}>
                         <a href="#infos"/>
@@ -97,17 +105,29 @@ class Theme2 extends React.Component {
             </div>
         )
     }
-    onTouchEnd = (e) => {
+    onTouchStart=(e)=>{
+        this.start = e.currentTarget.scrollTop
+    }
+    onTouchMove=(e)=>{
         const {animation} = this.state
-        if (Number(e.currentTarget.scrollTop) <= 100&& !animation) {
+        const scrollTop=e.currentTarget.scrollTop
+        const slide=scrollTop-this.start
+        if (slide < 0  && !animation) {
             this.setState({
                 animation:true
             })
-        }else if (animation) {
+            this.body.scrollTop=0
+            return
+        }
+        if (slide > 0  && animation) {
             this.setState({
                 animation:false
             })
+            this.body.scrollTop=0
+            return
         }
+    }
+    onTouchEnd = () => {
     }
 }
 
