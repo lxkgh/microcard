@@ -6,21 +6,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.EnumMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.Result;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
@@ -88,8 +81,8 @@ public class QRCodeUtil {
 	}
 	
 	public static void main(String[] args) {
-		String myCodeText = "http://192.168.10.116:8080";
-		String filePath = "/Users/lxk/Documents/qrcode.png";
+		String myCodeText = "http://192.168.1.120:8080/app#/showcard/123";
+		String filePath = "/Users/caoyongzheng/Documents/qrcode.png";
 		String fileType = "png";
 		File myFile = new File(filePath);
 		try {

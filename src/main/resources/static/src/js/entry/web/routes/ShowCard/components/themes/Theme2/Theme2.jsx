@@ -12,15 +12,19 @@ import icons from './icons.js'
 class Theme2 extends React.Component {
     constructor(props) {
         super(props)
+        this.state={
+            animation:true
+        }
     }
     render() {
+        const {animation} = this.state
         return (
             <div className={styles.theme}
                 style={{backgroundImage:`url(${backgroundImg})`}}>
-                <div className={styles.body}>
-                    <Header/>
+                <div className={styles.body}  onTouchEnd={this.onTouchEnd}>
+                    <Header animation={animation}/>
                     <div className={styles.infos}>
-
+                        <a href="#infos"/>
                         <div className={styles.contacts}>
                             <div className={styles.item}>
                                 <SvgIcon {...icons.telPhone}/>
@@ -93,5 +97,18 @@ class Theme2 extends React.Component {
             </div>
         )
     }
+    onTouchEnd = (e) => {
+        const {animation} = this.state
+        if (Number(e.currentTarget.scrollTop) <= 100&& !animation) {
+            this.setState({
+                animation:true
+            })
+        }else if (animation) {
+            this.setState({
+                animation:false
+            })
+        }
+    }
 }
+
 module.exports = Theme2
