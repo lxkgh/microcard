@@ -53,6 +53,7 @@ public class UserApi {
 			return new ApiResult(false, 1, "修改手机失败，未知异常", null);
 		}
 	}
+
 	@RequestMapping(value = "/password",method = RequestMethod.PUT)
 	public ApiResult updatePassword(@RequestBody User u){
 		try {
