@@ -21,6 +21,7 @@ module.exports = {
     'webfront.SwitchButton':'src/js/component/webfront/common/switchbutton/SwitchButton.jsx',
     'webfront.Imgbox':'src/js/component/webfront/common/imgbox/ImgBox.jsx',
     'webfront.EditcardItem':'src/js/component/webfront/common/editcarditem/EditcardItem.jsx',
+    'webfront.ShowPwd':'src/js/component/webfront/common/showPwd/ShowPwd.jsx',
 
 
     'admin.Auth':'src/js/entry/admin/auth.jsx',
