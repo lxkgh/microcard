@@ -12,7 +12,8 @@ const ROUTES = {
     mycard: '/mypages/views/mycard',
     register: '/register',
     webchatQrcode:'/help/webchatQrcode',
-    forgetpwd:'/forgetpwd'
+    forgetpwd:'/forgetpwd',
+    resetpwd:'/resetpwd'
 }
 
 export const Prefixs={
