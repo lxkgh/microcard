@@ -45,7 +45,8 @@ class ResetPwd extends React.Component {
             iconStyle:{
                 fill:'#4F4F4F'
             },
-            iconSize:32
+            iconSize:32,
+            visible:pwdVisible
         }
         return (
             <div className={styles.pageCont}>
@@ -63,8 +64,7 @@ class ResetPwd extends React.Component {
                             onChange={this.changeCellphone}
                             className={styles.inputItem}/>
                         <ShowPwd {...iconProps}
-                            onClick={()=>{this.pwdVisible()}}
-                            ref="showPwd"/>
+                            onClick={()=>{this.pwdVisible()}}/>
                         <InputItem {...confirmcodeProps}
                             onChange={(e)=>{this.changeConfirmCode(e)}}/>
                     </form>
@@ -92,9 +92,6 @@ class ResetPwd extends React.Component {
     pwdVisible=()=>{
         this.setState({
             pwdVisible:!this.state.pwdVisible
-        })
-        this.refs.showPwd.setState({
-            visible:!this.refs.showPwd.state.visible
         })
     }
 }

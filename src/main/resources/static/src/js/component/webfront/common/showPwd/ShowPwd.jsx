@@ -4,13 +4,9 @@ import fileSvgIcons from './showPwdSvg.js'
 class ShowPwd extends React.Component {
     constructor(props){
         super(props)
-        this.state = {
-            visible:false
-        }
     }
     render(){
-        const {divStyle,iconSize,iconStyle} = this.props
-        const {visible} = this.state
+        const {divStyle,iconSize,iconStyle,visible} = this.props
         return(
             <div style={divStyle} onClick={this.props.onClick}>
                 <Svg paths={visible?[fileSvgIcons.pwdVisible]:[fileSvgIcons.pwdInvisible]}
@@ -25,6 +21,7 @@ ShowPwd.propTypes={
     divStyle:PropTypes.object,
     iconStyle:PropTypes.object,
     iconSize:PropTypes.number,
-    onClick:PropTypes.func
+    onClick:PropTypes.func,
+    visible:PropTypes.string
 }
 export default ShowPwd
