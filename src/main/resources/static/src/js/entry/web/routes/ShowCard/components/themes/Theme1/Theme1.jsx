@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import styles from './Theme1.css'
 import backgroundImg from './backround.jpg'
@@ -11,22 +11,29 @@ class Theme1 extends React.Component {
         super(props)
     }
     render() {
+        const {userCard} = this.props
         return (
             <div className={styles.theme}
                 style={{backgroundImage:`url(${backgroundImg})`}}>
 
                 <Header img={backgroundImg}>
-                    {'Molly'}
-                    {'运营部门  运营经理'}
-                    {176}
+                    {userCard.name}
+                    {`${userCard.department}   ${userCard.job}`}
+                    {userCard.visit?userCard.visit:0}
                 </Header>
 
-                <Body/>
+                <Body userCard={userCard}/>
 
                 <Footer/>
 
             </div>
         )
     }
+}
+Theme1.defaultProps={
+    userCard:{}
+}
+Theme1.propTypes={
+    userCard:PropTypes.object
 }
 module.exports = Theme1

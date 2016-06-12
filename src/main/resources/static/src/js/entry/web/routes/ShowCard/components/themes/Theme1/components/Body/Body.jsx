@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import Item from './Item/Item.jsx'
 import SvgIcon from 'SvgIcon'
@@ -20,6 +20,7 @@ class Body extends React.Component {
         super(props)
     }
     render() {
+        const {userCard} = this.props
         return (
             <div className={styles.body}>
 
@@ -30,64 +31,45 @@ class Body extends React.Component {
                             <SvgIcon {...svgIcons.QRcode}
                                 style={{fill:'#fff'}}/>
                         </div>
-                        {'13758200860'}
+                        {userCard.phone}
                     </div>
                     <SvgIcon {...svgIcons.telPhone}
                         style={{fill:'#1fe9c1'}}/>
                 </Item>
 
-                <Item>
-                    {'传真：'}
-                    {'0571333333'}
-                </Item>
                 <Item >
                     {'E-Mail：'}
-                    {'1113067241@qq.com'}
+                    {userCard.email}
                 </Item>
                 <Item>
                     {'QQ：'}
-                    {'1113067241'}
+                    {userCard.qq}
                     <div style={buttonStyle}>{'加QQ'}</div>
                 </Item>
                 <Item>
                     {'微信：'}
-                    {'cyz132499'}
+                    {userCard.weChat}
                     <div style={buttonStyle}>{'加微信'}</div>
-                </Item>
-                <Item>
-                    {'新浪微博：'}
-                    {'Rr'}
-                    <div style={buttonStyle}>{'关注'}</div>
                 </Item>
                 <Item >
                     {'地址：'}
-                    {'杭州'}
-                </Item>
-                <Item>
-                    {'传真：'}
-                    {'0571333333'}
-                </Item>
-                <Item>
-                    {'微信公众号：'}
-                    {'itBegin'}
-                    <div style={buttonStyle}>{'关注'}</div>
-                </Item>
-
-                <Item style={{height:'25px',marginTop:'20px'}}>
-                    {'产品&服务'}{''}{''}
-                </Item>
-                <Item>
-                    {'公司有很多内容，网站，app等'}{''}{''}
+                    {userCard.address}
                 </Item>
 
                 <Item style={{height:'25px',marginTop:'20px'}}>
                     {'我的签名'}{''}{''}
                 </Item>
                 <Item>
-                    {'我是一个勤劳的运营'}{''}{''}
+                    {userCard.signature}{''}{''}
                 </Item>
             </div>
         )
     }
+}
+Body.defaultProps={
+    userCard:{}
+}
+Body.propTypes={
+    userCard:PropTypes.object
 }
 module.exports = Body
