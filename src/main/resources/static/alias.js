@@ -22,6 +22,7 @@ module.exports = {
     'webfront.Imgbox':'src/js/component/webfront/common/imgbox/ImgBox.jsx',
     'webfront.EditcardItem':'src/js/component/webfront/common/editcarditem/EditcardItem.jsx',
     'webfront.ShowPwd':'src/js/component/webfront/common/showPwd/ShowPwd.jsx',
+    'webfront.aToZ':'src/js/component/webfront/common/aToZ/AToZ.jsx',
 
 
     'admin.Auth':'src/js/entry/admin/auth.jsx',
@@ -41,6 +42,7 @@ module.exports = {
     'web.Auth':'src/js/entry/web/auth.jsx',
     'web.Messenger':'src/js/entry/web/components/Messenger/Messenger.jsx',
     'web.ShowCardIcons':'src/js/entry/web/routes/ShowCard/SvgIcons.js',
+    'web.AddressBookItem':'src/js/entry/web/components/AddressBookItem/AddressBookItem.jsx',
 
 
     //=============================lib==========================//

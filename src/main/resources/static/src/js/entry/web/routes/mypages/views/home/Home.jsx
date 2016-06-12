@@ -33,7 +33,7 @@ class HomePage extends React.Component{
         this.context.router.push(ROUTES.mycard)
     }
     clickMore(){
-
+        this.setContactList()
     }
     componentDidMount() {
         this.getUserCard()
@@ -197,6 +197,16 @@ class HomePage extends React.Component{
                     msg:'获取名片信息失败！'
                 })
             }
+        },webErrHandle)
+    }
+    setContactList=()=>{
+        request.put(`${Prefixs.usercard}/setContactList`+
+        '?userId=574b9bc3d4c63471d31ceea5&&contactId=575f5fe2d4c670916c41a40c')
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            messenger.showMsg({
+                msg:data.desc
+            })
         },webErrHandle)
     }
 }

@@ -13,7 +13,8 @@ const ROUTES = {
     register: '/register',
     webchatQrcode:'/help/webchatQrcode',
     forgetpwd:'/forgetpwd',
-    resetpwd:'/resetpwd'
+    resetpwd:'/resetpwd',
+    addressbook:'/mypages/views/addressbook'
 }
 
 export const Prefixs={

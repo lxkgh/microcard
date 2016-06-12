@@ -1,0 +1,26 @@
+.spanStyle {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0 auto;
+}
+.checkbox {
+    position: absolute;
+    width: 100%;
+    left:0;
+    background-color: #fff;
+}
+.ul {
+    width: 100%;
+}
+.liItem {
+    flex:0 0 25%;
+}
+.liItem :hover{
+    box-shadow: 0 0 2px rgb(125,125,125);
+}
+.retract {
+    margin-left: 10px;
+}

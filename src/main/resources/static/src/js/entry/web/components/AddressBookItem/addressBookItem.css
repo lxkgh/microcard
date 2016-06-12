@@ -1,0 +1,37 @@
+.wrapPortrait{
+    width: 40px;
+    height: 40px;
+    background: #eee;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.items {
+    width: 100%;
+    background: #f3f3f3;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #d8d8d8;
+}
+.aItem {
+    margin:12px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 25%;
+    border-right: 1px solid #d8d8d8;
+    text-decoration: none;
+    color: #5f6267;
+}
+.name {
+    font-size: 1.6rem;
+    overflow: hidden;
+    line-height: 40px;
+    padding: 0 15px;
+    width: 70%;
+}
+.itemDiv {
+    background-color:#fff;
+    padding:5px 15px;
+}
+.spanStyle {
+    margin-top: 5px;
+}

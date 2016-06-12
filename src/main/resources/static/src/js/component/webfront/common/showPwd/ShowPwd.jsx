@@ -22,6 +22,6 @@ ShowPwd.propTypes={
     iconStyle:PropTypes.object,
     iconSize:PropTypes.number,
     onClick:PropTypes.func,
-    visible:PropTypes.string
+    visible:PropTypes.bool
 }
 export default ShowPwd

@@ -1,7 +1,9 @@
 package com.itbegin.outprojs.microcard.api.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,6 @@ public class UserCardApi {
 			if (uc==null) {
 				throw new NotFoundException(1, "名片不存在");
 			}
-			System.out.println(uc.getQqQRCode());
 			return new ApiResult(true, 0, "获取名片成功", uc);
 		} catch(EmptyKeyException ek) {
 			return new ApiResult(false, ek.getState(),ek.getDesc(), null);
@@ -67,6 +68,49 @@ public class UserCardApi {
 			return new ApiResult(true, 0, "添加名片成功", null);
 		} catch (Exception e) {
 			return new ApiResult(false, 0, "添加名片失败", null);
+		}
+	}
+	@RequestMapping(value = "/getContact",method = RequestMethod.GET)
+	public ApiResult getContact(String userId){
+		try {
+			if (StrUtil.isEmpty(userId)) {
+				throw new EmptyKeyException(0, "用户Id不能为空");
+			}
+			List<String>contactList=userCardRepositoryInterface.findByUserId(userId).getContactList();
+			if (contactList==null) {
+				throw new NotFoundException(1, "联系人列表不存在");
+			}
+			List<UserCard> contacts = new ArrayList<UserCard>();
+			for(String usId: contactList){
+				UserCard uscard = userCardRepositoryInterface.findByUserId(usId);
+				contacts.add(uscard);
+			}
+			return new ApiResult(true, 0, "获取名片成功", contacts);
+		} catch(EmptyKeyException ek) {
+			return new ApiResult(false, ek.getState(),ek.getDesc(), null);
+		} catch (NotFoundException nf) {
+			return new ApiResult(false, nf.getState(),nf.getDesc(), null);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "获取联系人列表失败,未知异常", null);
+		}
+	}
+	@RequestMapping(value = "/setContactList",method = RequestMethod.PUT)
+	public ApiResult setContactList(String userId,String contactId){
+		UserCard uc = userCardRepositoryInterface.findByUserId(userId);
+		try{
+		if(uc.getContactList()==null){
+			List<String> ctl = new ArrayList<String>();
+			uc.setContactList(ctl);
+		}
+		if(uc.getContactList().contains(contactId)){
+			return new ApiResult(true, 0, "已存在", null);
+		}
+			List<String>uccl = uc.getContactList();
+			uccl.add(contactId);
+			userCardRepositoryInterface.updateContactList(userId,uccl );
+			return new ApiResult(true, 0, "修改联系人列表成功", null);
+		} catch (Exception e) {
+			return new ApiResult(false, 0, "修改联系人列表失败", null);
 		}
 	}
 	

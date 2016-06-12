@@ -1,5 +1,7 @@
 package com.itbegin.outprojs.microcard.dao.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -88,6 +90,13 @@ public class UserCardRepositoryInterfaceImpl implements
 		update.set("weChatQRCode", image);
 		mongoOperations.updateFirst(query, update, UserCard.class);
 	}
-
+	@Override
+	public void updateContactList(String userId, List<String>contactList){
+		Query query = new Query();
+		query.addCriteria(Criteria.where("userId").is(userId));
+		Update update = new Update();
+		update.set("contactList", contactList);
+		mongoOperations.updateFirst(query, update, UserCard.class);
+	}
 
 }

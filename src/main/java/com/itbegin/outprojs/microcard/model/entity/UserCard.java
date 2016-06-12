@@ -1,6 +1,7 @@
 package com.itbegin.outprojs.microcard.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -19,7 +20,6 @@ public class UserCard implements Serializable {
 	private Image userIcon;
 	
 	//=====================基本信息=======================//
-	
 	private String name;//名称
 	private String idcard;//身份证号,为必选项，默认对外隐藏
 	private String company;//公司
@@ -44,8 +44,8 @@ public class UserCard implements Serializable {
 	//=====================分享======================//
 	private String shareTitle;//分享的标题
 	private String shareAbstract;//分享的摘要
-	
-	
+	//=====================通讯录======================//
+	private List<String> contactList;
 	public String getId() {
 		return id;
 	}
@@ -153,5 +153,11 @@ public class UserCard implements Serializable {
 	}
 	public void setUserIcon(Image userIcon) {
 		this.userIcon = userIcon;
+	}
+	public List<String> getContactList() {
+		return contactList;
+	}
+	public void setContactList(List<String> contactList) {
+		this.contactList = contactList;
 	}
 }
