@@ -51,7 +51,7 @@ class Body extends React.Component {
                         userCard.qqQRCode?
                         (
                             <div style={buttonStyle}
-                            onClick={()=>{this.handleClickQQ(userCard.qqQRCode)}}>
+                            onClick={()=>{this.handleClick(userCard.qqQRCode)}}>
                                 {'加QQ'}
                             </div>
                         ):null
@@ -64,7 +64,7 @@ class Body extends React.Component {
                         userCard.weChatQRCode?
                         (
                             <div style={buttonStyle}
-                            onClick={()=>{this.handleClickQQ(userCard.weChatQRCode)}}>
+                            onClick={()=>{this.handleClick(userCard.weChatQRCode)}}>
                                 {'加微信'}
                             </div>
                         ):null
@@ -84,7 +84,7 @@ class Body extends React.Component {
             </div>
         )
     }
-    handleClickQQ=(image)=>{
+    handleClick=(image)=>{
         messenger.show(QRModal,{image:image})
     }
 }
