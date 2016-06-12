@@ -5,6 +5,9 @@ import background from './backround.jpg'
 import styles from './Logged.css'
 import SvgIcon from 'SvgIcon'
 import svgIcons from './svgIcons.js'
+import {withRouter} from 'react-router'
+import ROUTES from 'web.Config'
+import Auth from 'Auth'
 
 class Logged extends React.Component {
     constructor(props) {
@@ -28,55 +31,23 @@ class Logged extends React.Component {
                 </div>
 
                 <div className={styles.body}>
-                    <div className={styles.item}>
+                    <div className={styles.item} onClick={this.handleClickMyCard}>
                         <SvgIcon {...svgIcons.mycard} />
                         <div>{'我的名片'}</div>
                     </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.editcard} />
+                    <div className={styles.item} onClick={this.handleClickEditCard}>
+                        <SvgIcon {...svgIcons.editcard}/>
                         <div>{'编辑名片'}</div>
                     </div>
                     <div className={styles.item}>
-                        <SvgIcon {...svgIcons.contacts} />
+                        <SvgIcon {...svgIcons.contacts} onClick={this.handleClickCantacts}/>
                         <div>{'通讯录'}</div>
-                    </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.wallet} />
-                        <div>{'我的钱包'}</div>
-                    </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.pos} />
-                        <div>{'手机pos机'}</div>
-                    </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.shopping} />
-                        <div>{'我的v店'}</div>
-                    </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.friends} />
-                        <div>{'我的圈子'}</div>
-                    </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.micropage} />
-                        <div>{'微单页'}</div>
-                    </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.link} />
-                        <div>{'微链接'}</div>
-                    </div>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.more} />
-                        <div>{'更多'}</div>
                     </div>
                 </div>
 
                 <div className={styles.footer}>
-                    <div className={styles.search}>
-                        <SvgIcon {...svgIcons.search} />
-                        <div>{'企业搜索'}</div>
-                    </div>
                     <div className={styles.flex}/>
-                    <div className={styles.exit}>
+                    <div className={styles.exit} onClick={this.handleClickExit}>
                         <SvgIcon {...svgIcons.exit} />
                         <div>{'退出'}</div>
                     </div>
@@ -84,6 +55,20 @@ class Logged extends React.Component {
             </div>
         )
     }
+    handleClickMyCard=()=>{
+        this.props.router.push(ROUTES.mycard)
+    }
+    handleClickEditCard=()=>{
+        this.props.router.push(ROUTES.editcard)
+    }
+    handleClickCantacts=()=>{
+        // this.props.router.push(ROUTES.editcard)
+    }
+    handleClickExit=()=>{
+        Auth.logoutServer(
+            ()=>{this.props.router.push(ROUTES.login)}
+        )
+    }
 }
 
-module.exports = Logged
+module.exports = withRouter(Logged)
