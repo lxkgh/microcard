@@ -31,4 +31,5 @@ public class ImageRepositoryInterfaceImpl implements
 		update.set("path", image.getPath());
 		mongoOperations.updateFirst(query, update, Image.class);
 	}
+
 }

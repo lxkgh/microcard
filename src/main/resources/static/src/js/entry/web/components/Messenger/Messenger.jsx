@@ -37,6 +37,12 @@ class Messenger extends React.Component {
         })
         setTimeout(this.hide,time)
     }
+    show=(Component,options={})=>{
+        this.refs['cover'].setState({show:true})
+        this.setState({
+            popup:<Component {...options} hide={this.hide}/>
+        })
+    }
     hide=()=>{
         this.refs['cover'].setState({show:false})
     }

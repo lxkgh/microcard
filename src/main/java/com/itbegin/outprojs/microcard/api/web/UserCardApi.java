@@ -1,11 +1,9 @@
 package com.itbegin.outprojs.microcard.api.web;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
@@ -24,8 +22,8 @@ import com.itbegin.outprojs.microcard.model.enums.ImageUse;
 import com.itbegin.outprojs.microcard.model.exceptions.EmptyKeyException;
 import com.itbegin.outprojs.microcard.model.exceptions.NotFoundException;
 import com.itbegin.outprojs.microcard.model.json.ApiResult;
+import com.itbegin.outprojs.microcard.service.ImageService;
 import com.itbegin.outprojs.microcard.utils.HashUtil;
-import com.itbegin.outprojs.microcard.utils.ImageUtil;
 import com.itbegin.outprojs.microcard.utils.PathUtil;
 import com.itbegin.outprojs.microcard.utils.StrUtil;
 
@@ -37,6 +35,8 @@ public class UserCardApi {
 	private UserCardRepositoryInterface userCardRepositoryInterface;
 	@Autowired
 	private ImageRepositoryInterface imageRepositoryInterface;
+	@Autowired
+	private ImageService imageService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ApiResult add(String userId) {
@@ -48,6 +48,7 @@ public class UserCardApi {
 			if (uc==null) {
 				throw new NotFoundException(1, "名片不存在");
 			}
+			System.out.println(uc.getQqQRCode());
 			return new ApiResult(true, 0, "获取名片成功", uc);
 		} catch(EmptyKeyException ek) {
 			return new ApiResult(false, ek.getState(),ek.getDesc(), null);
@@ -111,108 +112,85 @@ public class UserCardApi {
 	
 	@RequestMapping(value = "/usericon",method = RequestMethod.PUT)
 	public ApiResult updateUserIcon(@RequestBody Image image){
-		String oldPath = null;
-		Image userIcon = null;
 		try {
 			String userId = MySecurityContext.getUserId();
 			UserCard uc = userCardRepositoryInterface.findByUserId(userId);
-			userIcon = uc.getUserIcon();
+			image.setImageUse(ImageUse.USER);
+			String hashImage=HashUtil.generateMD5(image.getData());
+			image.setPath(PathUtil.getUserImgRelPath(hashImage, image.getType(),userId,"header"));
+			
+			Image userIcon = uc.getUserIcon();
 			if (userIcon!=null) {
-				oldPath = userIcon.getPath();
+				imageService.deleteCompletely(userIcon.getId());
 			}
-			handleImage(image,userId,userIcon,"header");
-			userCardRepositoryInterface.updateUserIcon(userId, userIcon);
+			image=imageService.add(image);
+			userCardRepositoryInterface.updateUserIcon(userId, image);
 			
-			if (!StrUtil.isEmpty(oldPath)&&!image.getPath().equals(oldPath)) {
-				FileUtils.forceDelete(new File(PathUtil.RESOURCES+"/"+oldPath));
-			}
-			
-			return new ApiResult(true, 0, "修改头像成功", userIcon);
+			return new ApiResult(true, 0, "修改头像成功", image);
 		} catch (IOException e) {
-			return new ApiResult(false, 0, "保存头像失败",userIcon);
+			return new ApiResult(false, 0, "保存头像失败",null);
 		} catch (DuplicateKeyException e) {
-			return new ApiResult(false, 1, "头像已存在",userIcon);
+			return new ApiResult(false, 1, "头像已存在",null);
 		} catch (Exception e) {
-			return new ApiResult(false, 2, "未知异常",userIcon);
+			return new ApiResult(false, 2, "未知异常",null);
 		}
 	}
 	
 	@RequestMapping(value = "/qqqrcode",method = RequestMethod.PUT)
 	public ApiResult updateQqQRcode(@RequestBody Image image){
-		Image qqQRCode = null;
-		String oldPath = null;
 		try {
 			String userId = MySecurityContext.getUserId();
 			UserCard uc = userCardRepositoryInterface.findByUserId(userId);
-			qqQRCode = uc.getQqQRCode();
+			
+			String hashImage=HashUtil.generateMD5(image.getData());
+			//图片路径
+			image.setPath(PathUtil.getUserImgRelPath(hashImage, image.getType(),userId,"qrcode"));
+			image.setImageUse(ImageUse.USER);
+			
+			Image qqQRCode = uc.getQqQRCode();
 			if (qqQRCode!=null) {
-				oldPath = qqQRCode.getPath();
-			}
-			qqQRCode=handleImage(image,userId,qqQRCode,"qrcode");
-			
-			userCardRepositoryInterface.updateQqQRCode(userId, qqQRCode);
-			
-			if (!StrUtil.isEmpty(oldPath)&&!image.getPath().equals(oldPath)) {
-				FileUtils.forceDelete(new File(PathUtil.RESOURCES+"/"+oldPath));
+				imageService.deleteCompletely(qqQRCode.getId());
 			}
 			
-			return new ApiResult(true, 0, "修改qq二维码成功", qqQRCode);
+			image=imageService.add(image);
+			userCardRepositoryInterface.updateQqQRCode(userId, image);
+			return new ApiResult(true, 0, "修改qq二维码成功", image);
 		} catch (IOException e) {
-			return new ApiResult(false, 0, "保存qq二维码失败",qqQRCode);
+			return new ApiResult(false, 0, "保存qq二维码失败",null);
 		} catch (DuplicateKeyException e) {
-			return new ApiResult(false, 1, "qq二维码已存在",qqQRCode);
+			return new ApiResult(false, 1, "qq二维码已存在",null);
 		} catch (Exception e) {
-			return new ApiResult(false, 2, "未知异常",qqQRCode);
+			return new ApiResult(false, 2, "未知异常",null);
 		}
 	}
 	
 	@RequestMapping(value = "/wechatqrcode",method = RequestMethod.PUT)
 	public ApiResult updateWeChatQRCode(@RequestBody Image image){
-		Image weChatQRCode = null;
-		String oldPath = null;
 		try {
 			String userId = MySecurityContext.getUserId();
 			UserCard uc = userCardRepositoryInterface.findByUserId(userId);
-			weChatQRCode = uc.getWeChatQRCode();
+			
+			String hashImage=HashUtil.generateMD5(image.getData());
+			//图片路径
+			image.setPath(PathUtil.getUserImgRelPath(hashImage, image.getType(),userId,"qrcode"));
+			image.setImageUse(ImageUse.USER);
+			
+			Image weChatQRCode = uc.getWeChatQRCode();
 			if (weChatQRCode!=null) {
-				oldPath = weChatQRCode.getPath();
+				imageService.deleteCompletely(weChatQRCode.getId());
 			}
-			weChatQRCode=handleImage(image,userId,weChatQRCode,"qrcode");
-			userCardRepositoryInterface.updateWeChatQRCode(userId, weChatQRCode);
-			
-			if (!StrUtil.isEmpty(oldPath)&&!image.getPath().equals(oldPath)) {
-				FileUtils.forceDelete(new File(PathUtil.RESOURCES+"/"+oldPath));
-			}
-			
-			return new ApiResult(true, 0, "修改微信二维码成功", weChatQRCode);
+			image=imageService.add(image);
+			userCardRepositoryInterface.updateWeChatQRCode(userId, image);
+			return new ApiResult(true, 0, "修改微信二维码成功", image);
 		} catch (IOException e) {
-			return new ApiResult(false, 0, "保存微信二维码失败",weChatQRCode);
+			return new ApiResult(false, 0, "保存微信二维码失败",null);
 		} catch (DuplicateKeyException e) {
-			return new ApiResult(false, 1, "微信二维码已存在",weChatQRCode);
+			return new ApiResult(false, 1, "微信二维码已存在",null);
 		} catch (Exception e) {
-			return new ApiResult(false, 2, "未知异常",weChatQRCode);
+			return new ApiResult(false, 2, "未知异常",null);
 		}
 	}
 	
-	public Image handleImage(Image image,String userId,Image qrCode,String kind) throws IOException,Exception{
-		String hashImage=HashUtil.generateMD5(image.getData());
-		//保持图片
-		image.setPath(PathUtil.getUserImgRelPath(hashImage, image.getType(),userId,kind));
-		
-		//生成图片文件	
-		File imageFile=new File(PathUtil.getUserImgPath(hashImage, image.getType(),userId,kind));
-		ImageUtil.ConvertBase64ToImage(image.getData(), imageFile);
-		
-		if (qrCode==null) {
-			image.setImageUse(ImageUse.USER);
-			qrCode = imageRepositoryInterface.save(image);
-		}else {
-			qrCode.setType(image.getType());
-			qrCode.setPath(image.getPath());
-			imageRepositoryInterface.updateTypeAndPath(qrCode.getId(),qrCode);
-		}
-		return qrCode;
-	}
 	@RequestMapping(value="/getbkgimages",method = RequestMethod.GET)
 	public ApiResult getBkgImgs(int page,int pagesize){
 		try {

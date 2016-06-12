@@ -6,6 +6,9 @@ import svgIcons from 'web.ShowCardIcons'
 
 import styles from './Body.css'
 
+import QRModal from '../../../components/QRModal/QRModal.jsx'
+import messenger from 'web.Messenger'
+
 const buttonStyle = {
     width:'70px',
     padding:'7px 0',
@@ -44,12 +47,28 @@ class Body extends React.Component {
                 <Item>
                     {'QQ：'}
                     {userCard.qq}
-                    <div style={buttonStyle}>{'加QQ'}</div>
+                    {
+                        userCard.qqQRCode?
+                        (
+                            <div style={buttonStyle}
+                            onClick={()=>{this.handleClickQQ(userCard.qqQRCode)}}>
+                                {'加QQ'}
+                            </div>
+                        ):null
+                    }
                 </Item>
                 <Item>
                     {'微信：'}
                     {userCard.weChat}
-                    <div style={buttonStyle}>{'加微信'}</div>
+                    {
+                        userCard.weChatQRCode?
+                        (
+                            <div style={buttonStyle}
+                            onClick={()=>{this.handleClickQQ(userCard.weChatQRCode)}}>
+                                {'加微信'}
+                            </div>
+                        ):null
+                    }
                 </Item>
                 <Item >
                     {'地址：'}
@@ -64,6 +83,9 @@ class Body extends React.Component {
                 </Item>
             </div>
         )
+    }
+    handleClickQQ=(image)=>{
+        messenger.show(QRModal,{image:image})
     }
 }
 Body.defaultProps={
