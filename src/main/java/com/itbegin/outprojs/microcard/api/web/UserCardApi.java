@@ -85,7 +85,7 @@ public class UserCardApi {
 				UserCard uscard = userCardRepositoryInterface.findByUserId(usId);
 				contacts.add(uscard);
 			}
-			return new ApiResult(true, 0, "获取名片成功", contacts);
+			return new ApiResult(true, 0, "获取联系人列表成功", contacts);
 		} catch(EmptyKeyException ek) {
 			return new ApiResult(false, ek.getState(),ek.getDesc(), null);
 		} catch (NotFoundException nf) {
@@ -103,7 +103,7 @@ public class UserCardApi {
 			uc.setContactList(ctl);
 		}
 		if(uc.getContactList().contains(contactId)){
-			return new ApiResult(true, 0, "已存在", null);
+			return new ApiResult(true, 0, "已存在该联系人", null);
 		}
 			List<String>uccl = uc.getContactList();
 			uccl.add(contactId);
