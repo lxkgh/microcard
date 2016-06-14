@@ -1,6 +1,7 @@
 package com.itbegin.outprojs.microcard.model.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -8,6 +9,8 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.itbegin.outprojs.microcard.model.json.Theme;
 
 @Document
 public class UserCard implements Serializable {
@@ -47,10 +50,20 @@ public class UserCard implements Serializable {
 	private String shareAbstract;//分享的摘要
 	//=====================通讯录======================//
 	private List<String> contactList;
-	
 	@Transient
 	private Image cardQR;
-	
+	//=====================主题======================//
+	private Theme theme;
+	private List<Theme> themes = new ArrayList<Theme>();
+	@DBRef
+	private  Image bkgImg;
+
+	public Image getBkgImg() {
+		return bkgImg;
+	}
+	public void setBkgImg(Image bkgImg) {
+		this.bkgImg = bkgImg;
+	}
 	public String getId() {
 		return id;
 	}
@@ -170,5 +183,17 @@ public class UserCard implements Serializable {
 	}
 	public void setCardQR(Image cardQR) {
 		this.cardQR = cardQR;
+	}
+	public Theme getTheme() {
+		return theme;
+	}
+	public void setTheme(Theme theme) {
+		this.theme = theme;
+	}
+	public List<Theme> getThemes() {
+		return themes;
+	}
+	public void setThemes(List<Theme> themes) {
+		this.themes = themes;
 	}
 }

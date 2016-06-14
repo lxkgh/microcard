@@ -21,6 +21,12 @@ class Topbar extends React.Component {
             ()=>{this.props.router.push(ROUTES.login)}
         )
     }
+    clickHome=()=>{
+        this.props.router.push(ROUTES.home)
+    }
+    clickMycard=()=>{
+        this.props.router.push(`${ROUTES.showcard}/${Auth.getUserId()}`)
+    }
     handleMenuClick=()=>{
         this.setState({
             isShow:!this.state.isShow
@@ -107,12 +113,19 @@ class Topbar extends React.Component {
                 </div>
                 <section style = {menuBoxStyle}>
                     <ul className={cx('flexbox','space-between')}>
-                        <li>
+                        <li onClick={()=>{this.clickMycard()}}>
                             <span style = {svgSpanStyle}>
                                 <Svg paths={[svgIcons.card]} size={[32,32]}
                                     style = {{fill:'#a1a1a1'}}/>
                             </span>
                             <div style ={btnStyle}>我的名片</div>
+                        </li>
+                        <li onClick={()=>{this.clickHome()}}>
+                            <span style = {svgSpanStyle}>
+                                <Svg paths={[svgIcons.home]} size={[32,32]}
+                                    style = {{fill:'#a1a1a1'}}/>
+                            </span>
+                            <div style ={btnStyle}>我的丰享</div>
                         </li>
                         <li>
                             <span style = {svgSpanStyle}>

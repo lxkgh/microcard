@@ -25,7 +25,7 @@ public class UserApi {
 		try {
 			if(StrUtil.isEmpty(username))	{
 				return new ApiResult(false, 1, "手机号码为空", null);
-			}	
+			}
 			User user =userRepositoryInterface.findByUsername(username);
 			if(user == null){
 				return new ApiResult(false, 1, "手机号码不存在", null);

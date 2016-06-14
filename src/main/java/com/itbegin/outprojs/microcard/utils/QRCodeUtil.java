@@ -10,6 +10,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.FileUtils;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -83,6 +85,7 @@ public class QRCodeUtil {
 	public static void generateQRCodeFile(File file,String codeText){
 		String fileType = "png";
 		try {
+			FileUtils.touch(file);
 			Map<EncodeHintType, Object> hintMap = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
 			hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
 			// Now with zxing version 3.2.1 you could change border size (white border size to just 1)

@@ -66,6 +66,9 @@ class AddressBook extends React.Component{
                         </div>
                         {
                             contacts.map((contact) => {
+                                if (!contact) {
+                                    return
+                                }
                                 return(
                                     <AddressBookItem
                                         userName={contact.name}

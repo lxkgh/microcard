@@ -146,6 +146,10 @@
 .svgIcon6 .animationHide {
     animation: scaleChangeHide 2.1s;
 }
+.SvgTitle {
+    text-align: center;
+    color: #fff;
+}
 .line1 {
     position: absolute;
     top: 76px;

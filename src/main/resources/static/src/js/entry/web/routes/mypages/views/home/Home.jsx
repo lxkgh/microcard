@@ -115,6 +115,16 @@ class HomePage extends React.Component{
             </div>
         )
     }
+    setContactList=()=>{
+        request.put(`${Prefixs.usercard}/setcontactlist`+
+        '?contactId=5761194fd4c6859280d9ddda')
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            messenger.showMsg({
+                msg:data.desc
+            })
+        },webErrHandle)
+    }
     handleUploadIcon=(e)=>{
         e.preventDefault()
         messenger.hide()
@@ -199,16 +209,16 @@ class HomePage extends React.Component{
             }
         },webErrHandle)
     }
-    setContactList=()=>{
-        request.put(`${Prefixs.usercard}/setcontactlist`+
-        '?contactId=575f5fe2d4c670916c41a40c')
-        .then((res)=>{
-            const data = JSON.parse(res.text)
-            messenger.showMsg({
-                msg:data.desc
-            })
-        },webErrHandle)
-    }
+    // setContactList=()=>{
+    //     request.put(`${Prefixs.usercard}/setcontactlist`+
+    //     '?contactId=575f5fe2d4c670916c41a40c')
+    //     .then((res)=>{
+    //         const data = JSON.parse(res.text)
+    //         messenger.showMsg({
+    //             msg:data.desc
+    //         })
+    //     },webErrHandle)
+    // }
 }
 HomePage.contextTypes = {
     router:PropTypes.object

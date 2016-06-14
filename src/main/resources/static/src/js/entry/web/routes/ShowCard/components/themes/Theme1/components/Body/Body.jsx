@@ -8,6 +8,7 @@ import styles from './Body.css'
 
 import QRModal from '../../../components/QRModal/QRModal.jsx'
 import messenger from 'web.Messenger'
+import Phone from '../../../components/Phone/Phone.jsx'
 
 const buttonStyle = {
     width:'70px',
@@ -38,7 +39,8 @@ class Body extends React.Component {
                         {userCard.phone}
                     </div>
                     <SvgIcon {...svgIcons.telPhone}
-                        style={{fill:'#1fe9c1'}}/>
+                        style={{fill:'#1fe9c1'}}
+                        onClick={()=>{this.clickPhone()}}/>
                 </Item>
 
                 <Item >
@@ -88,9 +90,14 @@ class Body extends React.Component {
     handleClick=(image)=>{
         messenger.show(QRModal,{image:image})
     }
+    clickPhone=()=>{
+        messenger.show(Phone,{phoneNum:this.props.userCard.phone})
+    }
 }
 Body.defaultProps={
-    userCard:{}
+    userCard:{
+        phone:0
+    }
 }
 Body.propTypes={
     userCard:PropTypes.object

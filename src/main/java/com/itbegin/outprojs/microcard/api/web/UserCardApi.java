@@ -26,6 +26,7 @@ import com.itbegin.outprojs.microcard.model.enums.ImageUse;
 import com.itbegin.outprojs.microcard.model.exceptions.EmptyKeyException;
 import com.itbegin.outprojs.microcard.model.exceptions.NotFoundException;
 import com.itbegin.outprojs.microcard.model.json.ApiResult;
+import com.itbegin.outprojs.microcard.model.json.Theme;
 import com.itbegin.outprojs.microcard.service.ImageService;
 import com.itbegin.outprojs.microcard.utils.HashUtil;
 import com.itbegin.outprojs.microcard.utils.PathUtil;
@@ -45,7 +46,7 @@ public class UserCardApi {
 	private ImageService imageService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ApiResult add(String userId) {
+	public ApiResult get(String userId) {
 		try {
 			if (StrUtil.isEmpty(userId)) {
 				throw new EmptyKeyException(0, "用户Id不能为空");
@@ -62,7 +63,6 @@ public class UserCardApi {
 			uc.setCardQR(cardQR);
 			
 			File file = new File(PathUtil.getImgAbsPath(cardQR.getPath()));
-			
 			if (!file.exists()) {
 				String host="http://"+env.getProperty("server.host")+":"+env.getProperty("server.port");
 				QRCodeUtil.generateQRCodeFile(file,host+ "/app#/showcard/"+userId);
@@ -134,6 +134,58 @@ public class UserCardApi {
 			return new ApiResult(false, 0, "修改联系人列表失败", null);
 		}
 	}
+	@RequestMapping(value = "/settheme",method = RequestMethod.PUT)
+	public ApiResult setTheme(@RequestBody Theme theme){
+		String userId = MySecurityContext.getUserId();
+		UserCard uc =userCardRepositoryInterface.findByUserId(userId);
+		try {
+			if(uc.getThemes()==null){
+				List<Theme> tl= new ArrayList<Theme>();
+				uc.setThemes(tl);
+			}
+			List<Theme> tml = uc.getThemes();
+			Integer code = theme.getCode();
+			userCardRepositoryInterface.deleteUnusefulThemesInfo(userId, code, tml);
+			tml.add(0, theme);
+			userCardRepositoryInterface.updateThemes(userId, tml);
+			return new ApiResult(true, 0, "修改主题列表成功", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ApiResult(false, 0, "修改主题列表失败", null);
+		}
+	}
+	@RequestMapping(value = "/sortTheme",method = RequestMethod.GET)
+	public ApiResult sortTheme(Integer code){
+		String userId = MySecurityContext.getUserId();
+		UserCard uc =userCardRepositoryInterface.findByUserId(userId);
+		try {
+			if(uc.getThemes()==null){
+				List<Theme> tl= new ArrayList<Theme>();
+				uc.setThemes(tl);
+			}
+			List<Theme> tml = uc.getThemes();
+			userCardRepositoryInterface.sortThemesByCode(userId, code, tml);
+			userCardRepositoryInterface.updateThemes(userId, tml);
+			return new ApiResult(true, 0, "修改主题列表成功", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ApiResult(false, 0, "修改主题列表失败", null);
+		}
+	}
+	@RequestMapping(value ="/gettheme",method = RequestMethod.GET)
+	public ApiResult gettheme(){
+		String userId = MySecurityContext.getUserId();
+		UserCard uc = userCardRepositoryInterface.findByUserId(userId);
+		try {
+			if(uc.getThemes()==null||uc.getThemes().size()==0){
+				return new ApiResult(false, 0, "主题列表为空", null);
+			}
+			Theme theme = uc.getThemes().get(0);
+			return new ApiResult(true, 0, "获取主题成功", theme);
+		} catch (Exception e) {
+			return new ApiResult(false, 0, "获取主题失败", null);
+		}
+	}
 	
 	@RequestMapping(value = "/baseinfo",method = RequestMethod.PUT)
 	public ApiResult updateBaseInfo(@RequestBody UserCard uc){
@@ -198,6 +250,25 @@ public class UserCardApi {
 			return new ApiResult(false, 1, "头像已存在",null);
 		} catch (Exception e) {
 			return new ApiResult(false, 2, "未知异常",null);
+		}
+	}
+	@RequestMapping(value="/setbkgimg",method = RequestMethod.PUT)
+	public ApiResult setBkgImg(String imgId){
+		String userId = MySecurityContext.getUserId();
+		UserCard uc = userCardRepositoryInterface.findByUserId(userId);
+		try {
+			if(uc.getBkgImg()==null){
+				uc.setBkgImg(new Image());
+			}
+			Image oldImage = uc.getBkgImg();
+			if(oldImage.getId()==imgId){
+				return new ApiResult(false, 1, "所选的为当前背景", null);
+			}
+			Image image=imageRepositoryInterface.findOne(imgId);
+			userCardRepositoryInterface.updateBkgImg(userId, image);
+			return new ApiResult(true, 0, "设置背景图片成功", null);
+		} catch (Exception e) {
+			return new ApiResult(false, 2, "背景设置失败", null);
 		}
 	}
 	

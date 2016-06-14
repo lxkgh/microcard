@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 
 import styles from './Footer.css'
 
@@ -10,16 +10,14 @@ class Footer extends React.Component {
         super(props)
     }
     render() {
+        const {clickTelPhone} = this.props
         return (
             <div className={styles.footer}>
                 <div className={styles.itemWrap}>
-                    <div className={styles.item}>
+                    <div
+                        className={styles.item}
+                        onClick={clickTelPhone}>
                         <SvgIcon {...svgIcons.emptyTelPhone}/>
-                    </div>
-                </div>
-                <div className={styles.itemWrap}>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.location}/>
                     </div>
                 </div>
                 <div className={styles.itemWrap}>
@@ -29,17 +27,25 @@ class Footer extends React.Component {
                 </div>
                 <div className={styles.itemWrap}>
                     <div className={styles.item}>
-                        <SvgIcon {...svgIcons.shopping}/>
-                    </div>
-                </div>
-                <div className={styles.itemWrap}>
-                    <div className={styles.item}>
-                        <SvgIcon {...svgIcons.link}/>
+                        <SvgIcon {...svgIcons.location}/>
                     </div>
                 </div>
             </div>
         )
     }
 }
+// <div className={styles.itemWrap}>
+//     <div className={styles.item}>
+//         <SvgIcon {...svgIcons.shopping}/>
+//     </div>
+// </div>
+// <div className={styles.itemWrap}>
+//     <div className={styles.item}>
+//         <SvgIcon {...svgIcons.link}/>
+//     </div>
+// </div>
 
+Footer.propTypes={
+    clickTelPhone:PropTypes.func
+}
 module.exports = Footer

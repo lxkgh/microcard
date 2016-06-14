@@ -72,6 +72,9 @@ class Login extends React.Component {
     clickRegister(){
         this.props.router.push(ROUTES.register)
     }
+    clickForgetPwd(){
+        this.props.router.push(ROUTES.forgetpwd)
+    }
     render() {
         return (
             <div className={styles.pageCont}>
@@ -112,7 +115,9 @@ class Login extends React.Component {
                                             />
                                         下次自动登录
                                 </label>
-                                <a href="##">忘记密码？</a>
+                                <a onClick={()=>{this.clickForgetPwd()}}>
+                                    忘记密码？
+                                </a>
                             </div>
                             <div className={styles.logDiv}>
                                 <input className={styles.loginBtn}

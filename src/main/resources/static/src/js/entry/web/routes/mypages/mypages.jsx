@@ -15,7 +15,9 @@ const TopbarTitle={
     [ROUTES.editpassword]:'修改登录密码',
     [ROUTES.edittitle]:'修改名片标题',
     [ROUTES.editbkgimg]:'主题背景',
-    [ROUTES.addressbook]:'通讯录'
+    [ROUTES.addressbook]:'通讯录',
+    [ROUTES.themestore]:'主题库',
+    [ROUTES.editthemeitem]:'编辑主题栏目'
 }
 
 class MyPages extends React.Component {

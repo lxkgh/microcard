@@ -14,6 +14,8 @@ module.exports={
         require('./EditPhone/index.jsx'),
         require('./EditPassword/index.jsx'),
         require('./EditTitle/index.jsx'),
-        require('./EditBkgImg/index.jsx')
+        require('./EditBkgImg/index.jsx'),
+        require('./ThemeStore/index.jsx'),
+        require('./EditThemeItem/index.jsx')
     ]
 }

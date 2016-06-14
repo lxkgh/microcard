@@ -12,6 +12,7 @@
     width: 100%;
     bottom: 51px;
     overflow: auto;
+    z-index: 1;
 }
 .infos {
     width: 100%;

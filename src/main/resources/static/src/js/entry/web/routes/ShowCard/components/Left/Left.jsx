@@ -4,6 +4,7 @@ import styles from './Left.css'
 import cx from 'classnames'
 import Auth from 'Auth'
 
+
 import Logged from './components/Logged/Logged.jsx'
 import UnLogin from './components/UnLogin/UnLogin.jsx'
 
@@ -15,7 +16,9 @@ class Left extends React.Component {
         const {showState} = this.props
         return (
             <div className={cx(styles.left,{[styles.hide]:showState!=-1})}>
-                {Auth.isLogged()?<Logged/>:<UnLogin/>}
+                {Auth.isLogged()?
+                    <Logged/>
+                    :<UnLogin/>}
             </div>
         )
     }

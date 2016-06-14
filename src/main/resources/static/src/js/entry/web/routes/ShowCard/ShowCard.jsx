@@ -29,7 +29,9 @@ class ShowCard extends React.Component {
         const {showState,userCard,Theme} = this.state
         return (
             <div className={styles.showcard}>
-                <Left showState={showState}/>
+                <Left
+                    showState={showState}
+                />
                 <Center showState={showState}>
                     <div style={{width:'100%',height:'100%',right:'0px'}}>
                         <Header onClick={this.showLeft}>Itbegin</Header>
@@ -47,7 +49,7 @@ class ShowCard extends React.Component {
             </div>
         )
     }
-    getTheme=(theme)=>{
+    getTheme=(theme = 2)=>{
         if (theme === 1) {
             require.ensure([], (require) => {
                 this.setState({
@@ -82,9 +84,10 @@ class ShowCard extends React.Component {
         request.get(`${Prefixs.usercard}?userId=${userId}`)
         .then((res)=>{
             const data = JSON.parse(res.text)
+            console.log(data.data.themes);
             if (data.success) {
                 this.setState({userCard:data.data})
-                this.getTheme(data.data.theme?data.data.theme:1)
+                this.getTheme(data.data.themes[0].code)
             }else {
                 messenger.showMsg({
                     msg:'获取名片信息失败！'

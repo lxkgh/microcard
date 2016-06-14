@@ -61,7 +61,9 @@ class EditBkgImg extends React.Component{
                     </div>
                 </div>
                 <div className = {styles.footer}>
-                    <Button><h2>使用背景</h2></Button>
+                    <Button onClick={()=>{this.submitBkgImg()}}>
+                        <h2>使用背景</h2>
+                    </Button>
                 </div>
             </div>
         )
@@ -71,7 +73,7 @@ class EditBkgImg extends React.Component{
         return images.map((img,i)=>{
             return (
                 <ImgBox key={i} src={img.path} isSelected={img.id==isSelectedPic}
-                onClick={()=>{this.onClick(img.id)}} size={size}/>
+                onClick={()=>{this.onClick(img.id,img.path)}} size={size}/>
             )
         })
     }
@@ -79,6 +81,17 @@ class EditBkgImg extends React.Component{
         this.setState({
             isSelectedPic: imgId
         })
+    }
+    submitBkgImg=()=>{
+        request.put(`${Prefixs.usercard}/setbkgimg?`+
+            `imgId=${this.state.isSelectedPic}`)
+        .send()
+        .then((res)=>{
+            const data = JSON.parse(res.text)
+            messenger.showMsg({
+                msg:data.desc
+            })
+        },webErrHandle)
     }
     getBkgImages=()=>{
         request.get(

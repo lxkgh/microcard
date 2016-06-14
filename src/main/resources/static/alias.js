@@ -23,6 +23,8 @@ module.exports = {
     'webfront.EditcardItem':'src/js/component/webfront/common/editcarditem/EditcardItem.jsx',
     'webfront.ShowPwd':'src/js/component/webfront/common/showPwd/ShowPwd.jsx',
     'webfront.aToZ':'src/js/component/webfront/common/aToZ/AToZ.jsx',
+    'webfront.theme2Header':'src/js/entry/web/components/StaticThemes/Theme2Header/Theme2Header.jsx',
+    'webfront.EditIcon':'src/js/entry/web/components/EditIcon/EditIcon.jsx',
 
 
     'admin.Auth':'src/js/entry/admin/auth.jsx',

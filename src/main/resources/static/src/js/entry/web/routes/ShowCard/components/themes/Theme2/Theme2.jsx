@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react'
 import ReactDOM from 'react-dom'
 
 import styles from './Theme2.css'
-import backgroundImg from './theme2.jpg'
 
 import Header from './components/Header/Header.jsx'
 import Footer from '../components/Footer/Footer.jsx'
@@ -25,13 +24,16 @@ class Theme2 extends React.Component {
         const {userCard} = this.props
         return (
             <div className={styles.theme}
-                style={{backgroundImage:`url(${backgroundImg})`}}>
+                style={{backgroundImage:`url(${userCard.bkgImg.path})`}}>
                 <div className={styles.body}
                     ref="body"
                     onTouchStart={this.onTouchStart}
                     onTouchMove={this.onTouchMove}
                     onTouchEnd={this.onTouchEnd}>
-                    <Header animation={animation}/>
+                    <Header
+                        animation={animation}
+                        userCard={userCard}
+                    />
                     <div className={styles.infos}>
                         <a href="#infos"/>
                         <div className={styles.contacts}>
@@ -99,14 +101,14 @@ class Theme2 extends React.Component {
         const {animation} = this.state
         const scrollTop=e.currentTarget.scrollTop
         const slide=scrollTop-this.start
-        if (slide < 0  && !animation) {
+        if (slide <= 10 && scrollTop < 50  && !animation) {
             this.setState({
                 animation:true
             })
             this.body.scrollTop=0
             return
         }
-        if (slide > 0  && animation) {
+        if (slide > 0 && scrollTop > 5 && animation) {
             this.setState({
                 animation:false
             })
@@ -115,6 +117,7 @@ class Theme2 extends React.Component {
         }
     }
     onTouchEnd = () => {
+
     }
 }
 Theme2.defaultProps={

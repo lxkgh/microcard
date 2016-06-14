@@ -1,0 +1,33 @@
+.pageCont {
+    z-index: 1;
+    position: absolute;;
+    top: 44px;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #f0f1f3;
+    margin: auto;
+    width: 100%;
+    left: 0;
+}
+@media screen and (min-width:800px) {
+    .pageCont {
+        width: 540px;
+        left: 50%;
+        margin-left: -270px;
+    }
+}
+.submitBtn {
+    display: block;
+    height: 44px;
+    line-height: 44px;
+    background-color: #0079ff;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #fff;
+}
+.wrapThemeEdit {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 44px;
+    position: relative;
+}

@@ -1,0 +1,92 @@
+.pageCont {
+    background-color: #fff;
+    position: relative;
+    z-index: 5;
+    transition:transform 300ms ease;
+}
+@media screen and (min-width: 800px){
+    .pageCont{
+    width: 540px;
+    margin: 0 auto;
+    }
+}
+.ulTitle {
+    height: 50px;
+    line-height: 50px;
+    background-color: #f6f5f6;
+    overflow: hidden;
+}
+.liTitle {
+    flex: 1;
+    width: 25%;
+    font-size: 1.4rem;
+    color: #5f6367;
+    text-align: center;
+    position: relative
+}
+.aTitle {
+    display: block;
+    position: relative;
+    z-index: 3;
+    color: #fff;
+}
+.aTitle::after{
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 0;
+    left: -10px;
+    bottom: -20px;
+    background-color: #459bfa;
+    transform: rotate(-15deg);
+}
+.content {
+    height: 350px;
+}
+.pTip {
+    font-size: 1.2rem;
+    color: #999;
+    padding-left: 15px;
+    line-height: 25px;
+    padding-top: 0px;
+    margin-top: 0;
+}
+.editIcon {
+    font-size: 1.2rem;
+    color: #999;
+    padding-left: 15px;
+    line-height: 25px;
+    padding-top: 0px;
+    margin-top: 0;
+}
+.pIconTitle{
+    font-size: 1.4rem;
+    color: #000;
+    text-align: center;
+    margin-top: 10px;
+}
+.bottomInput {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #d2d2d2;
+    outline: none;
+    -webkit-appearance: none;
+    font-size: 1.4rem;
+}
+.closeBtn {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #e34c4e;
+    z-index: 4;
+}
+.SvgIcon {
+    background-color: #0079fe;
+    border-radius: 50%;
+}

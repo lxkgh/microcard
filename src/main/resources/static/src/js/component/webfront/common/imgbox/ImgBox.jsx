@@ -17,7 +17,9 @@ class ImgBox extends React.Component {
             <div style={{
                 margin:'10px 10px',
                 position:'relative',
-                verticalAlign:'middle'
+                verticalAlign:'middle',
+                borderRadius:'2px',
+                boxShadow: '0 0 4px rgba(0,0,0,0.3)'
             }} onClick={onClick}>
                 <div style={{position:'relative',width:size[0],height:size[1],
                     overflow:'hidden'}}>
@@ -31,6 +33,7 @@ class ImgBox extends React.Component {
                             </div>
                     </div>
                 </div>
+                {this.props.children}
             </div>
         )
     }

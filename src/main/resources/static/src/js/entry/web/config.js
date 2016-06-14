@@ -14,7 +14,10 @@ const ROUTES = {
     webchatQrcode:'/help/webchatQrcode',
     forgetpwd:'/forgetpwd',
     resetpwd:'/resetpwd',
-    addressbook:'/mypages/views/addressbook'
+    addressbook:'/mypages/views/addressbook',
+    showcard:'/ShowCard',
+    themestore:'/mypages/ThemeStore',
+    editthemeitem:'/mypages/EditThemeItem'
 }
 
 export const Prefixs={
