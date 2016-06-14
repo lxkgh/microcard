@@ -6,7 +6,7 @@ import ROUTES from 'web.Config'
 
 const TopbarTitle={
     [ROUTES.home]:'名片主页',
-    [ROUTES.mycard]:'我的名片',
+    [ROUTES.mycard]:'账号管理',
     [ROUTES.editcard]:'编辑名片',
     [ROUTES.editinfo]:'修改个人基本信息',
     [ROUTES.editsign]:'修改个人签名',
@@ -14,7 +14,8 @@ const TopbarTitle={
     [ROUTES.editphone]:'修改绑定手机',
     [ROUTES.editpassword]:'修改登录密码',
     [ROUTES.edittitle]:'修改名片标题',
-    [ROUTES.editbkgimg]:'主题背景'
+    [ROUTES.editbkgimg]:'主题背景',
+    [ROUTES.addressbook]:'通讯录'
 }
 
 class MyPages extends React.Component {
