@@ -200,8 +200,8 @@ class HomePage extends React.Component{
         },webErrHandle)
     }
     setContactList=()=>{
-        request.put(`${Prefixs.usercard}/setContactList`+
-        '?userId=574b9bc3d4c63471d31ceea5&&contactId=575f5fe2d4c670916c41a40c')
+        request.put(`${Prefixs.usercard}/setcontactlist`+
+        '?contactId=575f5fe2d4c670916c41a40c')
         .then((res)=>{
             const data = JSON.parse(res.text)
             messenger.showMsg({

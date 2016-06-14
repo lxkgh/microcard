@@ -70,7 +70,7 @@ public class UserCardApi {
 			return new ApiResult(false, 0, "添加名片失败", null);
 		}
 	}
-	@RequestMapping(value = "/getContact",method = RequestMethod.GET)
+	@RequestMapping(value = "/getcontact",method = RequestMethod.GET)
 	public ApiResult getContact(String userId){
 		try {
 			if (StrUtil.isEmpty(userId)) {
@@ -94,8 +94,12 @@ public class UserCardApi {
 			return new ApiResult(false, 2, "获取联系人列表失败,未知异常", null);
 		}
 	}
-	@RequestMapping(value = "/setContactList",method = RequestMethod.PUT)
-	public ApiResult setContactList(String userId,String contactId){
+	@RequestMapping(value = "/setcontactlist",method = RequestMethod.PUT)
+		public ApiResult setContactList(String contactId){
+		String userId = MySecurityContext.getUserId();
+		if(userId==contactId){
+			return new ApiResult(false, 0, "不能自己收藏自己", null);
+		}
 		UserCard uc = userCardRepositoryInterface.findByUserId(userId);
 		try{
 		if(uc.getContactList()==null){

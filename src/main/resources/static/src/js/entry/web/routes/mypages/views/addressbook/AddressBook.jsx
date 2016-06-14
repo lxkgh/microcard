@@ -97,7 +97,7 @@ class AddressBook extends React.Component{
     }
     getContactList=()=>{
         request.get(
-            `${Prefixs.usercard}/getContact?userId=${this.state.userId}`
+            `${Prefixs.usercard}/getcontact?userId=${this.state.userId}`
         ).then((res) => {
             const data = JSON.parse(res.text)
             if(data.success){
