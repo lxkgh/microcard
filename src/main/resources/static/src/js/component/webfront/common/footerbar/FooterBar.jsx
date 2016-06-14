@@ -4,7 +4,7 @@ import svgIcons from 'svgIcons'
 import {withRouter} from 'react-router'
 import cx from 'classnames'
 import ROUTES from 'web.Config'
-var staticStyle = {
+const staticStyle = {
     wrapdivStyle:{
         position: 'absolute',
         bottom: 0,
