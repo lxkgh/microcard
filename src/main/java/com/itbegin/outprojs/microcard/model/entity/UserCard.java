@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -46,6 +47,10 @@ public class UserCard implements Serializable {
 	private String shareAbstract;//分享的摘要
 	//=====================通讯录======================//
 	private List<String> contactList;
+	
+	@Transient
+	private Image cardQR;
+	
 	public String getId() {
 		return id;
 	}
@@ -159,5 +164,11 @@ public class UserCard implements Serializable {
 	}
 	public void setContactList(List<String> contactList) {
 		this.contactList = contactList;
+	}
+	public Image getCardQR() {
+		return cardQR;
+	}
+	public void setCardQR(Image cardQR) {
+		this.cardQR = cardQR;
 	}
 }

@@ -1,5 +1,6 @@
 package com.itbegin.outprojs.microcard.api.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,12 +29,14 @@ import com.itbegin.outprojs.microcard.model.json.ApiResult;
 import com.itbegin.outprojs.microcard.service.ImageService;
 import com.itbegin.outprojs.microcard.utils.HashUtil;
 import com.itbegin.outprojs.microcard.utils.PathUtil;
+import com.itbegin.outprojs.microcard.utils.QRCodeUtil;
 import com.itbegin.outprojs.microcard.utils.StrUtil;
 
 @RestController
 @RequestMapping("/api/usercard")
 public class UserCardApi {
-	
+	@Autowired  
+    private Environment env; 
 	@Autowired
 	private UserCardRepositoryInterface userCardRepositoryInterface;
 	@Autowired
@@ -49,6 +53,19 @@ public class UserCardApi {
 			UserCard uc=userCardRepositoryInterface.findByUserId(userId);
 			if (uc==null) {
 				throw new NotFoundException(1, "名片不存在");
+			}
+			Image cardQR = new Image();
+			cardQR.setImageUse(ImageUse.USER);
+			cardQR.setName("名片");
+			cardQR.setPath(PathUtil.getUserCardQRRelPath(userId));
+			
+			uc.setCardQR(cardQR);
+			
+			File file = new File(PathUtil.getImgAbsPath(cardQR.getPath()));
+			
+			if (!file.exists()) {
+				String host="http://"+env.getProperty("server.host")+":"+env.getProperty("server.port");
+				QRCodeUtil.generateQRCodeFile(file,host+ "/app#/showcard/"+userId);
 			}
 			return new ApiResult(true, 0, "获取名片成功", uc);
 		} catch(EmptyKeyException ek) {

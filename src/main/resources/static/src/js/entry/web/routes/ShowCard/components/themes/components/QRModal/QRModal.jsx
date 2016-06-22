@@ -10,7 +10,10 @@ class QRModal extends React.Component {
         super(props)
     }
     render() {
-        const {title,desc,hide,image} = this.props
+        let {title,desc,hide,image} = this.props
+        if (image.name) {
+            desc=`选择“识别${image.name}二维码”`
+        }
         return (
             <section className={styles.stage}>
                 <div className={styles.close} onClick={hide}>

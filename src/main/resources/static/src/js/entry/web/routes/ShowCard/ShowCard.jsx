@@ -84,7 +84,7 @@ class ShowCard extends React.Component {
             const data = JSON.parse(res.text)
             if (data.success) {
                 this.setState({userCard:data.data})
-                this.getTheme(data.data.theme?data.data.theme:2)
+                this.getTheme(data.data.theme?data.data.theme:1)
             }else {
                 messenger.showMsg({
                     msg:'获取名片信息失败！'

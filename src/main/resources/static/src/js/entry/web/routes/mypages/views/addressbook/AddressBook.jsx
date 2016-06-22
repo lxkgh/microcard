@@ -8,7 +8,7 @@ import {Prefixs} from 'web.Config'
 import request from 'superagent'
 import messenger from 'web.Messenger'
 import {webErrHandle} from 'ErrHandles'
-import defaultPortait from '../home/头像默认.png'
+import defaultPortait from './defaultPortait.png'
 let span1 = true
 let span2 = false
 class AddressBook extends React.Component{

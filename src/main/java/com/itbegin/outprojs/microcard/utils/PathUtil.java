@@ -38,7 +38,14 @@ public class PathUtil {
 				.append("/").append(kind).append("/")
 				.append(hashImage).append(".").append(type.getSuffix()).toString();
 	}
-
+	
+	//获取名片二维码码路径
+	public static String getUserCardQRRelPath(String userId){
+		return new StringBuffer("/img/userImg/").append(userId.substring(0,2)).append("/").append(userId)
+				.append("/").append("qrcode").append("/")
+				.append("cardqr").append(".png").toString();
+	}
+	
 	public static List<String> resolveCSSs(String...csses){
 		List<String> cssList=new ArrayList<String>();
 		for (int i = 0; i < csses.length; i++) {

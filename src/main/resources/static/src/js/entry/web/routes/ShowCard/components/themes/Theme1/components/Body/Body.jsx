@@ -30,7 +30,8 @@ class Body extends React.Component {
                 <Item style={{height:'60px',padding:'0 15px 0 0'}}>
                     <div style={{lineHeight:'60px',
                         fontSize:'1.5em',color:'rgba(255,255,255,0.9)'}}>
-                        <div className={styles.qrcodeWrap}>
+                        <div className={styles.qrcodeWrap}
+                          onClick={()=>{this.handleClick(userCard.cardQR)}}>
                             <SvgIcon {...svgIcons.QRcode}
                                 style={{fill:'#fff'}}/>
                         </div>

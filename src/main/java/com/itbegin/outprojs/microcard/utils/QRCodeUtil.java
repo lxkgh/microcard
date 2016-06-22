@@ -80,12 +80,8 @@ public class QRCodeUtil {
 
 	}
 	
-	public static void main(String[] args) {
-
-		String myCodeText = "http://192.168.10.110:8080/app#/showcard/574ab96f77c89690ebb98942";
-		String filePath = "/Users/caoyongzheng/Documents/qrcode.png";
+	public static void generateQRCodeFile(File file,String codeText){
 		String fileType = "png";
-		File myFile = new File(filePath);
 		try {
 			Map<EncodeHintType, Object> hintMap = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
 			hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -93,13 +89,35 @@ public class QRCodeUtil {
 			hintMap.put(EncodeHintType.MARGIN, 1); /* default = 4 */
 			hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
 			
-			encode(myCodeText,myFile,fileType,250,250,hintMap);
+			encode(codeText,file,fileType,250,250,hintMap);
 			
 		} catch (WriterException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("\n\nYou have successfully created QR Code.");
 	}
+	
+//	public static void main(String[] args) {
+//
+//		String myCodeText = "http://192.168.10.110:8080/app#/showcard/574ab96f77c89690ebb98942";
+//		String filePath = "/Users/caoyongzheng/Documents/qrcode.png";
+//		String fileType = "png";
+//		File myFile = new File(filePath);
+//		try {
+//			Map<EncodeHintType, Object> hintMap = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
+//			hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+//			// Now with zxing version 3.2.1 you could change border size (white border size to just 1)
+//			hintMap.put(EncodeHintType.MARGIN, 1); /* default = 4 */
+//			hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+//			
+//			encode(myCodeText,myFile,fileType,250,250,hintMap);
+//			
+//		} catch (WriterException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("\n\nYou have successfully created QR Code.");
+//	}
 }

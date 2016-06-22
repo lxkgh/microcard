@@ -44,8 +44,8 @@ public class SendPhoneMessageUtil {
              List<NameValuePair> params = new ArrayList<NameValuePair>();
 
              //正式
-             params.add(new BasicNameValuePair("account","ao1ypa"));
-             params.add(new BasicNameValuePair("pswd","hL71AA9G"));
+             params.add(new BasicNameValuePair("account","002006"));
+             params.add(new BasicNameValuePair("pswd","Sy123456"));
              System.out.println(msg);
              params.add(new BasicNameValuePair("msg",msg));
              params.add(new BasicNameValuePair("mobile",phoneNum));
