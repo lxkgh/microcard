@@ -1,0 +1,99 @@
+.wrapDivStyle {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+.setHead {
+    padding: 0 10px;
+}
+.pageCont {
+    z-index: 1;
+    position: absolute;;
+    top: 44px;
+    bottom: 0;
+    overflow: auto;
+    background-color: #f0f1f3;
+    margin: auto;
+    width: 100%;
+    left: 0;
+}
+@media screen and (min-width:800px) {
+    .pageCont {
+        width: 540px;
+        left: 50%;
+        margin-left: -270px;
+    }
+}
+.sectionStyle {
+    background-color: #fff;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+}
+.h1Style {
+    font-size: 1.4rem;
+    color: #000;
+    display: block;
+    min-height: 1%;
+}
+.title {
+    margin: 10px 0 0 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    font-size: 1.4rem;
+    line-height: 24px;
+    color: #5f6267;
+    resize: none;
+}
+.tips {
+    font-size: 1.2rem;
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.pbtn {
+    padding-top: 10px;
+    min-height: 1%;
+}
+.svbtn {
+    display: inline-block;
+    padding: 0 25px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #2999ff;
+    font-size: 1.4rem;
+    color: #fff;
+}
+.msg {
+    background-color: #fff;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+    display: block;
+    min-height: 1%;
+}
+.spanStyle {
+    font-size: 1.4rem;
+    color: #2999ff;
+}
+.explain {
+    line-height: 18px;
+    color: #5f6267;
+    font-size: 1.2rem;
+}
+.expB{
+    font-weight: normal;
+    display: table-cell;
+    width: 25px;
+}
+.expSpan {
+    display: table-cell;
+}
+.imgBoxBtm {
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}

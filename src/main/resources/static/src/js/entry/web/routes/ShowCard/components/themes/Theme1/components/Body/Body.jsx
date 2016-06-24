@@ -42,7 +42,10 @@ class Body extends React.Component {
                         style={{fill:'#1fe9c1'}}
                         onClick={()=>{this.clickPhone()}}/>
                 </Item>
-
+                <Item>
+                    {'公司: '}
+                    {userCard.company}
+                </Item>
                 <Item >
                     {'E-Mail：'}
                     {userCard.email}

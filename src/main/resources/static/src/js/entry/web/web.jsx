@@ -33,6 +33,7 @@ const rootRoute={
             require('./routes/Register/index.jsx'),
             require('./routes/ShowCard/index.jsx'),
             require('./routes/help/webchatQrcode/index.jsx'),
+            require('./routes/help/useMicrocard/index.jsx'),
             require('./routes/forgetpwd/index.jsx'),
             require('./routes/resetpwd/index.jsx'),
             require('./routes/ShowCard/index.jsx')

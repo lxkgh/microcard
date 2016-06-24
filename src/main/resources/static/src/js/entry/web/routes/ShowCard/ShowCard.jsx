@@ -11,6 +11,7 @@ import svgIcons from 'web.ShowCardIcons'
 import request from 'superagent'
 import {Prefixs} from 'web.Config'
 import messenger from 'web.Messenger'
+import _ from 'lodash'
 
 class ShowCard extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class ShowCard extends React.Component {
                 />
                 <Center showState={showState}>
                     <div style={{width:'100%',height:'100%',right:'0px'}}>
-                        <Header onClick={this.showLeft}>Itbegin</Header>
+                        <Header onClick={this.showLeft}>丰享名片</Header>
                         <div className={styles.semicircle} onClick={this.showRight}>
                             <SvgIcon {...svgIcons.arrowLeft} className={styles.arrowLeft}/>
                         </div>
@@ -49,7 +50,7 @@ class ShowCard extends React.Component {
             </div>
         )
     }
-    getTheme=(theme = 2)=>{
+    getTheme=(theme = 1)=>{
         if (theme === 1) {
             require.ensure([], (require) => {
                 this.setState({
@@ -84,10 +85,19 @@ class ShowCard extends React.Component {
         request.get(`${Prefixs.usercard}?userId=${userId}`)
         .then((res)=>{
             const data = JSON.parse(res.text)
-            console.log(data.data.themes);
             if (data.success) {
-                this.setState({userCard:data.data})
-                this.getTheme(data.data.themes[0].code)
+                const userCard = data.data
+                this.setState({userCard})
+                if(!userCard.company||!userCard.name||!userCard.idcard){
+                    messenger.showMsg({
+                        msg:'您的个人信息与配置还不完整，请在编辑名片页面下进行更新'
+                    })
+                }
+                if(_.size(data.data.themes)!=0){
+                    this.getTheme(data.data.themes[0].code)
+                }else{
+                    this.getTheme()
+                }
             }else {
                 messenger.showMsg({
                     msg:'获取名片信息失败！'

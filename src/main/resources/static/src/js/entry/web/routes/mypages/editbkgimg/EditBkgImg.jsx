@@ -15,7 +15,7 @@ class EditBkgImg extends React.Component{
             active:true,
             imgs:[],
             page:0,
-            pagesize:6,
+            pagesize:5,
             isSelectedPic:''
         }
     }
@@ -112,7 +112,7 @@ class EditBkgImg extends React.Component{
     }
     loadMoreImgs(){
         this.setState({
-            pagesize:3,
+            pagesize:5,
             page:this.state.page+1
         },()=>{
             this.getBkgImages()

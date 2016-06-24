@@ -16,6 +16,7 @@ module.exports={
         require('./EditTitle/index.jsx'),
         require('./EditBkgImg/index.jsx'),
         require('./ThemeStore/index.jsx'),
-        require('./EditThemeItem/index.jsx')
+        require('./EditThemeItem/index.jsx'),
+        require('./EditProduct/index.jsx')
     ]
 }

@@ -79,7 +79,6 @@ class EditPassword extends React.Component{
         })
     }
     clickForgetPwd=()=>{
-        console.log('click');
         this.props.router.push(ROUTES.forgetpwd)
     }
     handleSubmit=(e)=>{

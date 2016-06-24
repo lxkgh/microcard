@@ -12,12 +12,14 @@ const ROUTES = {
     mycard: '/mypages/views/mycard',
     register: '/register',
     webchatQrcode:'/help/webchatQrcode',
+    usemicrocard:'/help/useMicrocard',
     forgetpwd:'/forgetpwd',
     resetpwd:'/resetpwd',
     addressbook:'/mypages/views/addressbook',
     showcard:'/ShowCard',
     themestore:'/mypages/ThemeStore',
-    editthemeitem:'/mypages/EditThemeItem'
+    editthemeitem:'/mypages/EditThemeItem',
+    editproduct:'/mypages/EditProduct'
 }
 
 export const Prefixs={

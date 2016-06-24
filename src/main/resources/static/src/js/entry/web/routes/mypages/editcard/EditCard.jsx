@@ -39,9 +39,7 @@ class EditCard extends React.Component{
         })
     }
     clickEditProduct(){
-        messenger.showMsg({
-            msg:'该功能暂时未开放'
-        })
+        this.context.router.push(ROUTES.editproduct)
     }
     render(){
         const MenuItem1Props ={
